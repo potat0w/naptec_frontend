@@ -1,47 +1,18 @@
-import AccordionList from "@/components/AccordionList";
+import FaqTestimonials from "@/components/FaqTestimonials";
+import GetInTouch from "@/components/GetInTouch";
+import HowItWorksSteps from "@/components/HowItWorksSteps";
+import { containerClass } from "@/lib/layout";
+import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "How It Works | Naptec",
   description:
-    "Learn how Naptec home care works, from your first conversation through meeting your team and starting your care plan.",
+    "Learn how Naptec home care works — from finding your local team to meeting your Care Professionals and starting care at home.",
 };
 
 const serif = { fontFamily: "var(--font-cormorant), ui-serif, serif" } as const;
-
-const steps = [
-  {
-    id: "tell-us-about-you",
-    title: "Tell us about you",
-    content: (
-      <p>
-        We listen to health, routines, and what matters most so we can shape the
-        right level of support.
-      </p>
-    ),
-  },
-  {
-    id: "meet-your-team",
-    title: "Meet your team",
-    content: (
-      <p>
-        Get to know the caregivers who will visit, with clear handovers and a
-        single point of contact for questions.
-      </p>
-    ),
-  },
-  {
-    id: "start-your-plan",
-    title: "Start your plan",
-    content: (
-      <p>
-        We agree visit patterns and goals together, then refine as life changes so
-        care stays relevant and reassuring.
-      </p>
-    ),
-  },
-];
 
 export default function HowItWorksPage() {
   return (
@@ -50,7 +21,7 @@ export default function HowItWorksPage() {
         <form
           action="/enquire"
           method="get"
-          className="mx-auto flex max-w-4xl flex-col gap-3 sm:flex-row sm:items-stretch"
+          className={`${containerClass} flex max-w-4xl flex-col gap-3 sm:flex-row sm:items-stretch`}
         >
           <label htmlFor="how-it-works-postcode" className="sr-only">
             Postcode or area
@@ -88,8 +59,8 @@ export default function HowItWorksPage() {
         </form>
       </div>
 
-      <section className="bg-white px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
-        <div className="mx-auto max-w-4xl">
+      <section className="bg-white px-4 pt-10 sm:px-6 sm:pt-14 lg:px-8">
+        <div className="mx-auto max-w-6xl">
           <nav aria-label="Breadcrumb" className="text-sm text-neutral-500">
             <ol className="flex flex-wrap items-center gap-2">
               <li>
@@ -105,21 +76,72 @@ export default function HowItWorksPage() {
           </nav>
 
           <h1
-            className="mt-8 text-4xl font-normal tracking-tight text-neutral-900 sm:text-5xl"
+            className="mt-8 text-4xl font-normal tracking-tight text-neutral-900 sm:text-5xl lg:text-6xl"
             style={serif}
           >
             How it works
           </h1>
           <p className="mt-6 max-w-3xl text-lg leading-relaxed text-neutral-600">
-            Share your needs, meet your care team, and start a plan that fits your
-            routine, with clear communication at every step.
+            Whatever care your loved one needs, we will work quickly to find a
+            bespoke solution that is right for you. Care needs can change over
+            time, so we are always ready to adapt — and just a phone call away
+            when you need us.
           </p>
+        </div>
+      </section>
 
-          <div className="mt-14">
-            <AccordionList badge="How it works" items={steps} />
+      <HowItWorksSteps />
+
+      <GetInTouch />
+
+      <section className="bg-white px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+        <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-2 lg:items-center lg:gap-14">
+          <div>
+            <h2
+              className="text-3xl font-normal leading-tight text-neutral-900 sm:text-4xl"
+              style={serif}
+            >
+              Confused about home care? We can help.
+            </h2>
+            <div className="mt-6 space-y-4 text-base leading-relaxed text-neutral-600">
+              <p>
+                We know you want the best for your loved one. When it comes to
+                arranging home care, we have made it straightforward with
+                personalised, attentive support that adapts as needs change.
+              </p>
+              <p>
+                Organising care should not feel like a leap in the dark. By
+                taking time to listen and understand your circumstances, we help
+                your loved one live more independently at home while giving you
+                peace of mind.
+              </p>
+              <p>
+                From warm companionship to specialist, practical care that puts
+                their preferences first, we are changing how families think about
+                home care. Whatever questions you have, we are here to help — with
+                no pressure until you feel ready.
+              </p>
+            </div>
+            <Link
+              href="/advice-and-care/faqs"
+              className="mt-8 inline-block text-sm font-medium text-[#3B2A8F] underline underline-offset-4 transition-colors hover:text-[#2d1f6d]"
+            >
+              Discover more
+            </Link>
+          </div>
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm bg-[#f2f2f2]">
+            <Image
+              src="https://images.unsplash.com/photo-1516307365426-b304ed83931e?w=1200&q=80"
+              alt="Older adult receiving supportive home care"
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover"
+            />
           </div>
         </div>
       </section>
+
+      <FaqTestimonials />
     </main>
   );
 }

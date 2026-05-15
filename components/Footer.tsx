@@ -28,9 +28,11 @@ const whatWeDoLinks = [
 ];
 
 const howItWorksLinks = [
-  { label: "Tell us about you", href: "/how-it-works#tell-us-about-you" },
-  { label: "Meet your team", href: "/how-it-works#meet-your-team" },
-  { label: "Start your plan", href: "/how-it-works#start-your-plan" },
+  { label: "Find your team", href: "/how-it-works#find-your-team" },
+  { label: "Initial chat", href: "/how-it-works#initial-chat" },
+  { label: "Home visit", href: "/how-it-works#home-visit" },
+  { label: "Meet your Care Professionals", href: "/how-it-works#meet-care-professionals" },
+  { label: "Get to know each other", href: "/how-it-works#get-to-know-each-other" },
 ];
 
 const enquireLinks = [

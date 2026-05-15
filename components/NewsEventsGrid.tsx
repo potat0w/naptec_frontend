@@ -4,15 +4,20 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
 
 import NewsEventCard from "@/components/NewsEventCard";
-import { newsEvents } from "@/lib/news-events";
+import { newsEvents, type NewsEventItem } from "@/lib/news-events";
 
 const PER_PAGE = 6;
 
-export default function NewsEventsGrid() {
+type NewsEventsGridProps = {
+  items?: NewsEventItem[];
+};
+
+export default function NewsEventsGrid({ items: itemsProp }: NewsEventsGridProps) {
+  const allItems = itemsProp ?? newsEvents;
   const [page, setPage] = useState(0);
-  const totalPages = Math.ceil(newsEvents.length / PER_PAGE);
+  const totalPages = Math.ceil(allItems.length / PER_PAGE);
   const start = page * PER_PAGE;
-  const items = newsEvents.slice(start, start + PER_PAGE);
+  const items = allItems.slice(start, start + PER_PAGE);
 
   return (
     <>
