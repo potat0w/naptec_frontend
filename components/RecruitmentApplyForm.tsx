@@ -1,0 +1,316 @@
+"use client";
+
+import Link from "next/link";
+import { useState, type FormEvent } from "react";
+
+const serif = { fontFamily: "var(--font-cormorant), ui-serif, serif" } as const;
+
+const inputClass =
+  "w-full rounded-lg border border-neutral-200 bg-white px-4 py-3 text-sm text-neutral-900 outline-none transition-[border-color,box-shadow] placeholder:text-neutral-400 focus:border-[#3B2A8F] focus:ring-2 focus:ring-[#3B2A8F]/15";
+
+const labelClass = "mb-1.5 block text-sm font-medium text-neutral-800";
+
+type Position = "part-time" | "full-time" | "live-in";
+
+type Experience = "new" | "some" | "experienced";
+
+export default function RecruitmentApplyForm() {
+  const [position, setPosition] = useState<Position>("part-time");
+  const [experience, setExperience] = useState<Experience>("new");
+  const [cvFileName, setCvFileName] = useState<string | null>(null);
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSubmitted(true);
+  };
+
+  return (
+    <div className="bg-[#faf8f4]">
+      <div className="mx-auto grid max-w-6xl gap-12 px-4 py-12 sm:px-6 lg:grid-cols-[1fr_1.15fr] lg:gap-16 lg:px-8 lg:py-16">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#3B2A8F]">
+            Join our team
+          </p>
+          <h1
+            className="mt-3 text-4xl font-normal leading-tight text-neutral-900 sm:text-5xl"
+            style={serif}
+          >
+            Apply to become a Care Professional
+          </h1>
+          <p className="mt-6 text-base leading-relaxed text-neutral-600">
+            Tell us a little about yourself and the role you&apos;re interested
+            in. Our recruitment team will be in touch to discuss next steps,
+            training, and how you could make a difference in clients&apos; homes.
+          </p>
+          <ul className="mt-8 space-y-3 text-sm text-neutral-600">
+            <li className="flex gap-3">
+              <span
+                className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#3B2A8F]"
+                aria-hidden
+              />
+              Minimum one-hour visits with matched clients
+            </li>
+            <li className="flex gap-3">
+              <span
+                className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#3B2A8F]"
+                aria-hidden
+              />
+              Industry-leading training — experience welcome but not required
+            </li>
+            <li className="flex gap-3">
+              <span
+                className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#3B2A8F]"
+                aria-hidden
+              />
+              Part-time, full-time, and live-in opportunities
+            </li>
+          </ul>
+          <p className="mt-10 text-sm text-neutral-600">Questions about careers?</p>
+          <a
+            href="tel:03308228465"
+            className="mt-1 block text-2xl font-semibold tracking-tight text-neutral-900 transition-colors hover:text-[#3B2A8F] sm:text-3xl"
+          >
+            03308 228465
+          </a>
+          <p className="mt-6 text-sm text-neutral-600">
+            Looking for home care for yourself or a loved one?{" "}
+            <Link
+              href="/enquire"
+              className="font-medium text-[#3B2A8F] underline underline-offset-4 hover:text-[#2d1f6d]"
+            >
+              Enquire about care
+            </Link>
+          </p>
+        </div>
+
+        <div className="rounded-2xl border border-neutral-200/80 bg-white p-6 shadow-sm sm:p-8">
+          {submitted ? (
+            <div className="py-8 sm:py-12">
+              <p className="text-3xl font-normal text-neutral-900" style={serif}>
+                Application received
+              </p>
+              <p className="mt-4 text-sm leading-relaxed text-neutral-600">
+                Thank you for your interest in joining Naptec. Our recruitment
+                team will review your details and contact you shortly.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-4">
+                <Link
+                  href="/recruitment"
+                  className="inline-flex rounded-full bg-[#3B2A8F] px-8 py-3.5 text-sm font-medium text-white transition-[filter] hover:brightness-95"
+                >
+                  Back to careers
+                </Link>
+                <Link
+                  href="/"
+                  className="inline-flex rounded-full border border-neutral-200 px-8 py-3.5 text-sm font-medium text-neutral-800 transition-colors hover:border-[#3B2A8F] hover:text-[#3B2A8F]"
+                >
+                  Home
+                </Link>
+              </div>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <div className="grid gap-5 sm:grid-cols-2">
+                <label className="block">
+                  <span className={labelClass}>First name *</span>
+                  <input
+                    type="text"
+                    name="firstName"
+                    required
+                    autoComplete="given-name"
+                    className={inputClass}
+                  />
+                </label>
+                <label className="block">
+                  <span className={labelClass}>Last name *</span>
+                  <input
+                    type="text"
+                    name="lastName"
+                    required
+                    autoComplete="family-name"
+                    className={inputClass}
+                  />
+                </label>
+              </div>
+
+              <label className="block">
+                <span className={labelClass}>Email *</span>
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  autoComplete="email"
+                  className={inputClass}
+                />
+              </label>
+
+              <label className="block">
+                <span className={labelClass}>Mobile number *</span>
+                <input
+                  type="tel"
+                  name="telephone"
+                  required
+                  autoComplete="tel"
+                  className={inputClass}
+                />
+              </label>
+
+              <label className="block">
+                <span className={labelClass}>Postcode *</span>
+                <input
+                  type="text"
+                  name="postcode"
+                  required
+                  autoComplete="postal-code"
+                  className={inputClass}
+                />
+              </label>
+
+              <fieldset>
+                <legend className={labelClass}>Position you&apos;re interested in *</legend>
+                <div className="mt-2 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
+                  {(
+                    [
+                      { value: "part-time" as const, label: "Part-time" },
+                      { value: "full-time" as const, label: "Full-time" },
+                      { value: "live-in" as const, label: "Live-in" },
+                    ] as const
+                  ).map((option) => (
+                    <label
+                      key={option.value}
+                      className={`flex cursor-pointer items-center gap-2 rounded-lg border px-4 py-2.5 text-sm transition-colors ${
+                        position === option.value
+                          ? "border-[#3B2A8F] bg-[#3B2A8F]/5 text-[#3B2A8F]"
+                          : "border-neutral-200 text-neutral-700 hover:border-neutral-300"
+                      }`}
+                    >
+                      <input
+                        type="radio"
+                        name="position"
+                        value={option.value}
+                        checked={position === option.value}
+                        onChange={() => setPosition(option.value)}
+                        className="sr-only"
+                      />
+                      {option.label}
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend className={labelClass}>Care experience *</legend>
+                <div className="mt-2 space-y-2">
+                  {(
+                    [
+                      {
+                        value: "new" as const,
+                        label: "New to care — keen to learn",
+                      },
+                      {
+                        value: "some" as const,
+                        label: "Some experience (personal or voluntary)",
+                      },
+                      {
+                        value: "experienced" as const,
+                        label: "Experienced care professional",
+                      },
+                    ] as const
+                  ).map((option) => (
+                    <label
+                      key={option.value}
+                      className={`flex cursor-pointer items-start gap-3 rounded-lg border px-4 py-3 text-sm transition-colors ${
+                        experience === option.value
+                          ? "border-[#3B2A8F] bg-[#3B2A8F]/5"
+                          : "border-neutral-200 hover:border-neutral-300"
+                      }`}
+                    >
+                      <input
+                        type="radio"
+                        name="experience"
+                        value={option.value}
+                        checked={experience === option.value}
+                        onChange={() => setExperience(option.value)}
+                        className="mt-0.5 h-4 w-4 shrink-0 accent-[#3B2A8F]"
+                      />
+                      <span className="text-neutral-800">{option.label}</span>
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+
+              <label className="block">
+                <span className={labelClass}>CV *</span>
+                <div
+                  className={`relative rounded-lg border border-dashed px-4 py-5 transition-colors ${
+                    cvFileName
+                      ? "border-[#3B2A8F] bg-[#3B2A8F]/5"
+                      : "border-neutral-300 bg-neutral-50/50 hover:border-neutral-400"
+                  }`}
+                >
+                  <input
+                    type="file"
+                    name="cv"
+                    required
+                    accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                    onChange={(e) => {
+                      const file = e.target.files?.[0];
+                      setCvFileName(file ? file.name : null);
+                    }}
+                    className="absolute inset-0 cursor-pointer opacity-0"
+                  />
+                  <p className="text-sm font-medium text-neutral-800">
+                    {cvFileName ?? "Choose a file or drag it here"}
+                  </p>
+                  <p className="mt-1 text-xs text-neutral-500">
+                    PDF or Word document, max 5MB
+                  </p>
+                </div>
+              </label>
+
+              <label className="block">
+                <span className={labelClass}>When are you available to work?</span>
+                <textarea
+                  name="availability"
+                  rows={3}
+                  placeholder="e.g. weekdays, evenings, weekends"
+                  className={`${inputClass} resize-y`}
+                />
+              </label>
+
+              <label className="block">
+                <span className={labelClass}>Why would you like to join Naptec?</span>
+                <textarea
+                  name="message"
+                  rows={4}
+                  className={`${inputClass} resize-y`}
+                />
+              </label>
+
+              <label className="flex cursor-pointer items-start gap-3 rounded-lg border border-neutral-100 bg-neutral-50/80 px-4 py-3">
+                <input
+                  type="checkbox"
+                  name="rightToWork"
+                  required
+                  className="mt-0.5 h-4 w-4 shrink-0 accent-[#3B2A8F]"
+                />
+                <span className="text-sm leading-relaxed text-neutral-700">
+                  I confirm I have the right to work in the UK and agree to Naptec
+                  processing my details for recruitment purposes. *
+                </span>
+              </label>
+
+              <button
+                type="submit"
+                className="w-full rounded-full bg-[#3B2A8F] px-8 py-4 text-sm font-medium text-white transition-[filter] hover:brightness-95 sm:w-auto"
+              >
+                Submit application
+              </button>
+            </form>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}

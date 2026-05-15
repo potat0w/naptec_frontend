@@ -1,65 +1,95 @@
+import CqcSection from "@/components/CqcSection";
+import GetInTouch from "@/components/GetInTouch";
+import RecruitmentCta from "@/components/RecruitmentCta";
+import HomeCareServices from "@/components/HomeCareServices";
+import NewsEvents from "@/components/NewsEvents";
+import PopularServices from "@/components/PopularServices";
+import Testimonials from "@/components/Testimonials";
+import TrustBar from "@/components/TrustBar";
+import WhyUs from "@/components/WhyUs";
+import { containerClass } from "@/lib/layout";
 import Image from "next/image";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Naptec | Home care built around your family",
+  description:
+    "Personalised, reliable home care from Naptec so your loved one can stay independent in the place they love.",
+};
+
+const heroImage =
+  "https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=85&w=2000&auto=format&fit=crop";
+
+const serif = { fontFamily: "var(--font-cormorant), ui-serif, serif" } as const;
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <main className="flex flex-1 flex-col">
+      <section className="relative overflow-hidden bg-[#f5f2eb]">
+        <div className={`${containerClass} grid lg:min-h-[min(85vh,780px)] lg:grid-cols-2 lg:gap-8`}>
+          <div className="flex flex-col justify-center py-12 sm:py-16 lg:py-20">
+            <h1
+              className="max-w-xl text-4xl font-medium italic leading-[1.12] tracking-tight text-neutral-900 sm:text-5xl xl:text-6xl"
+              style={serif}
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              Home care
+              <br />
+              your way
+            </h1>
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-neutral-700 sm:text-lg">
+              Your loved one deserves personalised, quality, reliable home care.
+              Our experienced caregivers help them continue to live independently
+              in the place they love. We&apos;ve helped many families, and we&apos;re
+              here when you need us.
+            </p>
+            <form
+              action="/enquire"
+              method="get"
+              className="mt-8 flex max-w-xl flex-col gap-3 sm:flex-row sm:items-stretch"
             >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+              <label htmlFor="hero-postcode" className="sr-only">
+                Postcode or area
+              </label>
+              <input
+                id="hero-postcode"
+                name="postcode"
+                type="text"
+                placeholder="Enter a postcode or area"
+                className="min-h-[3.25rem] flex-1 rounded-full border border-neutral-200 bg-white px-5 py-3 text-neutral-900 shadow-sm outline-none placeholder:text-neutral-400 focus:border-[#3B2A8F] focus:ring-2 focus:ring-[#3B2A8F]/20"
+              />
+              <button
+                type="submit"
+                className="shrink-0 rounded-full bg-[#3B2A8F] px-8 py-3 text-sm font-semibold uppercase tracking-wide text-white transition-colors hover:bg-[#2d1f6d]"
+              >
+                Find care
+              </button>
+            </form>
+          </div>
+
+          <div className="relative min-h-[240px] sm:min-h-[320px] lg:min-h-0 lg:min-h-[480px]">
+            <div className="absolute inset-0 overflow-hidden rounded-sm lg:rounded-none lg:[clip-path:polygon(12%_0,100%_0,100%_100%,0_100%)]">
+              <Image
+                src={heroImage}
+                alt="A caregiver and an older adult sharing a moment at home"
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+              />
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </section>
+
+      <TrustBar />
+      <CqcSection />
+      <PopularServices />
+      <HomeCareServices />
+      <WhyUs />
+      <Testimonials />
+      <GetInTouch />
+      <RecruitmentCta />
+      <NewsEvents />
+    </main>
   );
 }
