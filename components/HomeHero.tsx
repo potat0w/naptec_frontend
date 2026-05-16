@@ -5,7 +5,7 @@ import Link from "next/link";
 const heroImage =
   "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=85&w=2000&auto=format&fit=crop";
 
-const serif = { fontFamily: "var(--font-cormorant), ui-serif, serif" } as const;
+const serif = { fontFamily: "var(--font-playfair), ui-serif, serif" } as const;
 
 export default function HomeHero() {
   return (
@@ -38,33 +38,30 @@ export default function HomeHero() {
             place they love — with caregivers who take the time to listen.
           </p>
 
-          <form
-            action="/enquire"
-            method="get"
-            className="mt-9 max-w-lg rounded-2xl border border-neutral-200/80 bg-white p-2 shadow-[0_8px_40px_-12px_rgba(42,32,72,0.18)] sm:mt-10 sm:p-2.5"
-          >
-            <p className="px-3 pt-2 text-xs font-medium text-neutral-500 sm:px-4 sm:pt-2.5">
-              Find care near you
-            </p>
-            <div className="mt-1 flex flex-col gap-2 sm:flex-row sm:items-center">
-              <label htmlFor="hero-postcode" className="sr-only">
-                Postcode or area
-              </label>
-              <input
-                id="hero-postcode"
-                name="postcode"
-                type="text"
-                placeholder="Enter postcode or area"
-                className="min-h-[3rem] flex-1 rounded-xl border-0 bg-neutral-50 px-4 py-3 text-sm text-neutral-900 outline-none ring-1 ring-neutral-200/80 placeholder:text-neutral-400 focus:bg-white focus:ring-2 focus:ring-[#3B2A8F]/25 sm:min-h-[3.25rem] sm:text-base"
-              />
-              <button
-                type="submit"
-                className="min-h-[3rem] shrink-0 rounded-xl bg-[#3B2A8F] px-8 text-sm font-semibold tracking-wide text-white transition-[filter,transform] hover:brightness-95 active:scale-[0.99] sm:min-h-[3.25rem]"
+          <div className="mt-9 sm:mt-10">
+            <Link
+              href="/enquire"
+              className="group inline-flex w-fit items-center gap-3 rounded-full bg-[#3B2A8F] py-3.5 pl-7 pr-4 text-sm font-semibold tracking-wide text-white shadow-[0_8px_32px_-10px_rgba(59,42,143,0.55)] transition-all duration-200 hover:bg-[#2d1f6d] hover:shadow-[0_12px_36px_-10px_rgba(59,42,143,0.65)] hover:-translate-y-0.5 active:translate-y-0"
+            >
+              Enquire Now
+              <span
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15 transition-transform duration-200 group-hover:translate-x-0.5"
+                aria-hidden
               >
-                Find care
-              </button>
-            </div>
-          </form>
+                <svg
+                  className="h-4 w-4"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </span>
+            </Link>
+          </div>
 
           <p className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-neutral-500">
             <span className="flex items-center gap-2">

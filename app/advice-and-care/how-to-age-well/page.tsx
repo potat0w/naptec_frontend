@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     "Practical support for healthy ageing at home. Naptec helps families age well with dignified care in familiar surroundings.",
 };
 
-const serif = { fontFamily: "var(--font-cormorant), ui-serif, serif" } as const;
+const serif = { fontFamily: "var(--font-playfair), ui-serif, serif" } as const;
 
 const pillars = [
   {

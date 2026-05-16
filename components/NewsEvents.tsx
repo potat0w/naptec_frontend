@@ -8,7 +8,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { containerClass, sectionPy, sectionTitle } from "@/lib/layout";
 import { newsEvents } from "@/lib/news-events";
 
-const serif = { fontFamily: "var(--font-cormorant), ui-serif, serif" } as const;
+const serif = { fontFamily: "var(--font-playfair), ui-serif, serif" } as const;
 const GAP_PX = 24;
 
 const cards = newsEvents.slice(0, 6);

@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     "Join Naptec as a Care Professional. Make a difference with flexible roles, industry-leading training, and meaningful client relationships.",
 };
 
-const serif = { fontFamily: "var(--font-cormorant), ui-serif, serif" } as const;
+const serif = { fontFamily: "var(--font-playfair), ui-serif, serif" } as const;
 
 const stats = [
   { value: "96", suffix: "%", label: "are proud to work for Naptec" },

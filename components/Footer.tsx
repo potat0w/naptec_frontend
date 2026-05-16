@@ -28,7 +28,7 @@ const whatWeDoLinks = [
 ];
 
 const howItWorksLinks = [
-  { label: "Find your team", href: "/how-it-works#find-your-team" },
+  { label: "Get in touch", href: "/how-it-works#find-your-team" },
   { label: "Initial chat", href: "/how-it-works#initial-chat" },
   { label: "Home visit", href: "/how-it-works#home-visit" },
   { label: "Meet your Care Professionals", href: "/how-it-works#meet-care-professionals" },
@@ -65,7 +65,7 @@ function FooterColumn({
 }) {
   return (
     <div className="min-w-0">
-      <h3 className="text-xs font-bold uppercase tracking-[0.14em] text-white">
+      <h3 className="font-sans text-xs font-bold uppercase tracking-[0.14em] text-white">
         {title}
       </h3>
       {children}
@@ -109,7 +109,7 @@ export default function Footer() {
                 className="h-10 w-auto brightness-0 invert"
               />
             </Link>
-            <h3 className="mt-10 text-xs font-bold uppercase tracking-[0.14em] text-white">
+            <h3 className="mt-10 font-sans text-xs font-bold uppercase tracking-[0.14em] text-white">
               National Office
             </h3>
             <a

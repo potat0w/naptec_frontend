@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import type { NewsEventItem } from "@/lib/news-events";
 
-const serif = { fontFamily: "var(--font-cormorant), ui-serif, serif" } as const;
+const serif = { fontFamily: "var(--font-playfair), ui-serif, serif" } as const;
 
 export default function NewsEventCard({ item }: { item: NewsEventItem }) {
   return (

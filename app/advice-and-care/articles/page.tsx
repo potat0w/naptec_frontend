@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     "Articles and guides from Naptec on home care, ageing well, and supporting loved ones at home.",
 };
 
-const serif = { fontFamily: "var(--font-cormorant), ui-serif, serif" } as const;
+const serif = { fontFamily: "var(--font-playfair), ui-serif, serif" } as const;
 
 export default function ArticlesPage() {
   return (

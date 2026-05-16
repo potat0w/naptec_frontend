@@ -13,7 +13,7 @@ type AccordionListProps = {
   items: AccordionItem[];
 };
 
-const serif = { fontFamily: "var(--font-cormorant), ui-serif, serif" } as const;
+const serif = { fontFamily: "var(--font-playfair), ui-serif, serif" } as const;
 
 export default function AccordionList({ badge, items }: AccordionListProps) {
   const baseId = useId();

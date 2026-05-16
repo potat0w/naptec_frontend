@@ -12,10 +12,10 @@ export const howItWorksSteps: HowItWorksStep[] = [
   {
     id: "find-your-team",
     number: 1,
-    navLabel: "Find your local Naptec team",
-    title: "Find your local Naptec team",
+    navLabel: "Get in touch with Naptec",
+    title: "Get in touch with Naptec",
     paragraphs: [
-      "We have offices across the UK, each rooted in the communities they serve. Enter your postcode above or get in touch to find a care team near you.",
+      "Our team is based in Warrington and rooted in the community we serve. Get in touch to speak with a friendly advisor about care for you or a loved one.",
     ],
     image:
       "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1200&q=80",

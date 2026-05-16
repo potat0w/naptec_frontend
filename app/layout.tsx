@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Outfit } from "next/font/google";
+import { Outfit, Playfair_Display } from "next/font/google";
 import "./globals.css";
+import AuthProvider from "@/components/AuthProvider";
 import EnquireProvider from "@/components/EnquireProvider";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
@@ -11,10 +12,11 @@ const outfit = Outfit({
   display: "swap",
 });
 
-const cormorant = Cormorant_Garamond({
+const playfair = Playfair_Display({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  variable: "--font-cormorant",
+  style: ["normal", "italic"],
+  variable: "--font-playfair",
   display: "swap",
 });
 
@@ -31,18 +33,20 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${outfit.variable} ${cormorant.variable} h-full scroll-smooth`}
+      className={`${outfit.variable} ${playfair.variable} h-full scroll-smooth`}
       suppressHydrationWarning
     >
       <body
         className={`${outfit.className} flex min-h-full flex-col bg-white text-neutral-900 antialiased`}
         suppressHydrationWarning
       >
-        <EnquireProvider>
-          <Navbar />
-          {children}
-          <Footer />
-        </EnquireProvider>
+        <AuthProvider>
+          <EnquireProvider>
+            <Navbar />
+            {children}
+            <Footer />
+          </EnquireProvider>
+        </AuthProvider>
       </body>
     </html>
   );

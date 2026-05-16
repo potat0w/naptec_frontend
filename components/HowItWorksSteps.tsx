@@ -2,7 +2,7 @@ import { howItWorksSteps } from "@/lib/how-it-works-steps";
 import Image from "next/image";
 import Link from "next/link";
 
-const serif = { fontFamily: "var(--font-cormorant), ui-serif, serif" } as const;
+const serif = { fontFamily: "var(--font-playfair), ui-serif, serif" } as const;
 
 export default function HowItWorksSteps() {
   return (

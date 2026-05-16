@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: "Frequently asked questions about Naptec home care services.",
 };
 
-const serif = { fontFamily: "var(--font-cormorant), ui-serif, serif" } as const;
+const serif = { fontFamily: "var(--font-playfair), ui-serif, serif" } as const;
 
 function DiscoverMore({ href = "/enquire" }: { href?: string }) {
   return (

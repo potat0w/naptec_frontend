@@ -1,6 +1,6 @@
 "use client";
 
-import EnquireButton from "@/components/EnquireButton";
+import AuthNav from "@/components/AuthNav";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -83,6 +83,8 @@ function ChevronDown({ className }: { className?: string }) {
 
 export default function Navbar() {
   const pathname = usePathname();
+  const onAuthPage =
+    pathname === "/login" || pathname === "/signup" || pathname === "/book";
   const [hash, setHash] = useState("");
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -318,10 +320,10 @@ export default function Navbar() {
           </ul>
         </div>
 
-        <div className="relative z-10 ml-auto flex flex-none items-center gap-2">
-          <EnquireButton className="hidden rounded-full bg-[#3B2A8F] px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.14em] text-white shadow-sm transition-colors duration-200 hover:bg-[#2d1f6d] lg:inline-flex">
-            Enquire Now
-          </EnquireButton>
+        <div className="relative z-10 ml-auto flex flex-none items-center gap-3 lg:gap-4">
+          {!onAuthPage ? (
+            <AuthNav className="hidden lg:inline-flex" />
+          ) : null}
 
           <button
             type="button"
@@ -581,12 +583,13 @@ export default function Navbar() {
             </div>
           </div>
 
-          <EnquireButton
-            onBeforeOpen={closeMobile}
-            className="mt-2 inline-flex w-full items-center justify-center rounded-full bg-[#3B2A8F] px-5 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-white transition-colors duration-200 hover:bg-[#2d1f6d]"
-          >
-            Enquire Now
-          </EnquireButton>
+          {!onAuthPage ? (
+            <AuthNav
+              className="mt-4 w-full lg:hidden"
+              buttonClassName="mt-2 inline-flex w-full items-center justify-center rounded-full bg-[#3B2A8F] px-5 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-white shadow-[0_4px_20px_-6px_rgba(59,42,143,0.45)] transition-colors duration-200 hover:bg-[#2d1f6d]"
+              onNavigate={closeMobile}
+            />
+          ) : null}
         </div>
       </div>
     </header>

@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useState } from "react";
 
-const serif = { fontFamily: "var(--font-cormorant), ui-serif, serif" } as const;
+const serif = { fontFamily: "var(--font-playfair), ui-serif, serif" } as const;
 
 const slides = [
   {

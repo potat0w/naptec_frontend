@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     "Latest news and events from Naptec — updates on awards, community work, and home care across the UK.",
 };
 
-const serif = { fontFamily: "var(--font-cormorant), ui-serif, serif" } as const;
+const serif = { fontFamily: "var(--font-playfair), ui-serif, serif" } as const;
 
 export default function NewsEventsPage() {
   return (

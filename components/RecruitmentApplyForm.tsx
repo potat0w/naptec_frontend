@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState, type FormEvent } from "react";
 
-const serif = { fontFamily: "var(--font-cormorant), ui-serif, serif" } as const;
+const serif = { fontFamily: "var(--font-playfair), ui-serif, serif" } as const;
 
 const inputClass =
   "w-full rounded-lg border border-neutral-200 bg-white px-4 py-3 text-sm text-neutral-900 outline-none transition-[border-color,box-shadow] placeholder:text-neutral-400 focus:border-[#3B2A8F] focus:ring-2 focus:ring-[#3B2A8F]/15";
@@ -152,17 +152,6 @@ export default function RecruitmentApplyForm() {
                   name="telephone"
                   required
                   autoComplete="tel"
-                  className={inputClass}
-                />
-              </label>
-
-              <label className="block">
-                <span className={labelClass}>Postcode *</span>
-                <input
-                  type="text"
-                  name="postcode"
-                  required
-                  autoComplete="postal-code"
                   className={inputClass}
                 />
               </label>

@@ -15,11 +15,7 @@ export default function EnquireButton({
   onBeforeOpen,
 }: EnquireButtonProps) {
   return (
-    <Link
-      href="/enquire"
-      onClick={() => onBeforeOpen?.()}
-      className={className}
-    >
+    <Link href="/enquire" onClick={() => onBeforeOpen?.()} className={className}>
       {children}
     </Link>
   );

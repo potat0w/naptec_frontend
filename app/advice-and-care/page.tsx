@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     "Elderly care advice from Naptec — understand care types, funding options, and how to age well at home.",
 };
 
-const serif = { fontFamily: "var(--font-cormorant), ui-serif, serif" } as const;
+const serif = { fontFamily: "var(--font-playfair), ui-serif, serif" } as const;
 
 const pillars = [
   {

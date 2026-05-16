@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 
-const cormorant = {
-  fontFamily: "'Cormorant Garamond', 'Cormorant', ui-serif, Georgia, serif",
+const headingFont = {
+  fontFamily: "var(--font-playfair), ui-serif, serif",
 } as const;
 
 export default function GetInTouch() {
@@ -30,8 +30,6 @@ export default function GetInTouch() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap');
-
         .git-section {
           position: relative;
           overflow: hidden;
@@ -143,7 +141,7 @@ export default function GetInTouch() {
           border-radius: 100px;
           background: #3B2A8F;
           color: #fff;
-          font-family: 'Cormorant Garamond', ui-serif, serif;
+          font-family: var(--font-playfair), ui-serif, serif;
           font-size: 1.1rem;
           font-weight: 400;
           letter-spacing: 0.06em;
@@ -206,11 +204,11 @@ export default function GetInTouch() {
               <span className="git-ornament-line" />
             </div>
 
-            <h2 className="git-heading" ref={headingRef} style={cormorant}>
+            <h2 className="git-heading" ref={headingRef} style={headingFont}>
               Get in touch{" "}
               <em>today</em>
               {" "}to
-              <span className="git-subline" style={cormorant}>
+              <span className="git-subline" style={headingFont}>
                 see how we can help
               </span>
             </h2>

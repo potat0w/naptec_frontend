@@ -1,7 +1,6 @@
 import FaqTestimonials from "@/components/FaqTestimonials";
 import GetInTouch from "@/components/GetInTouch";
 import HowItWorksSteps from "@/components/HowItWorksSteps";
-import { containerClass } from "@/lib/layout";
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -9,56 +8,14 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "How It Works | Naptec",
   description:
-    "Learn how Naptec home care works — from finding your local team to meeting your Care Professionals and starting care at home.",
+    "Learn how Naptec home care works — from your first conversation to meeting your Care Professionals and starting care at home.",
 };
 
-const serif = { fontFamily: "var(--font-cormorant), ui-serif, serif" } as const;
+const serif = { fontFamily: "var(--font-playfair), ui-serif, serif" } as const;
 
 export default function HowItWorksPage() {
   return (
     <main className="flex flex-1 flex-col">
-      <div className="bg-[#3B2A8F] px-4 py-4 sm:px-6 lg:px-8">
-        <form
-          action="/enquire"
-          method="get"
-          className={`${containerClass} flex max-w-4xl flex-col gap-3 sm:flex-row sm:items-stretch`}
-        >
-          <label htmlFor="how-it-works-postcode" className="sr-only">
-            Postcode or area
-          </label>
-          <div className="relative flex flex-1 items-center">
-            <svg
-              className="pointer-events-none absolute left-4 h-5 w-5 text-white/70"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              aria-hidden
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M12 21s7-4.5 7-10a7 7 0 10-14 0c0 5.5 7 10 7 10z"
-              />
-              <circle cx="12" cy="11" r="2.5" />
-            </svg>
-            <input
-              id="how-it-works-postcode"
-              name="postcode"
-              type="text"
-              placeholder="Enter your postcode or area"
-              className="min-h-[3rem] w-full rounded-full border-0 bg-white/10 py-3 pl-12 pr-5 text-white placeholder:text-white/60 outline-none ring-1 ring-white/20 focus:bg-white/15 focus:ring-2 focus:ring-white/40"
-            />
-          </div>
-          <button
-            type="submit"
-            className="shrink-0 rounded-full bg-white px-8 py-3 text-sm font-semibold uppercase tracking-wide text-[#3B2A8F] transition-colors hover:bg-white/90"
-          >
-            Find care
-          </button>
-        </form>
-      </div>
-
       <section className="bg-white px-4 pt-10 sm:px-6 sm:pt-14 lg:px-8">
         <div className="mx-auto max-w-6xl">
           <nav aria-label="Breadcrumb" className="text-sm text-neutral-500">
