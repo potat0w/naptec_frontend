@@ -29,11 +29,7 @@ export default function RoleGuard({ allowedRole, children }: RoleGuardProps) {
     }
 
     if (user.role !== allowedRole) {
-      if (user.role === "admin" || user.role === "caregiver") {
-        router.replace(dashboardPathForRole(user.role));
-      } else {
-        router.replace(`/access-denied?from=${encodeURIComponent(pathname)}`);
-      }
+      router.replace(dashboardPathForRole(user.role));
     }
   }, [ready, user, allowedRole, router, pathname]);
 

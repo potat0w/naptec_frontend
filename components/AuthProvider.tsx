@@ -51,7 +51,19 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    setUser(readStoredUser());
+    const stored = readStoredUser();
+    if (stored) {
+      const migrated: MockUser = {
+        ...stored,
+        addressLine1: stored.addressLine1 ?? "",
+        addressLine2: stored.addressLine2 ?? "",
+        city: stored.city ?? "",
+        postcode: stored.postcode ?? "",
+        role: resolveRoleFromEmail(stored.email),
+      };
+      writeStoredUser(migrated);
+      setUser(migrated);
+    }
     setReady(true);
   }, []);
 
@@ -71,7 +83,7 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
     };
     const mockUser: MockUser =
       stored?.email === trimmedEmail
-        ? { ...emptyAddress, ...stored, role: stored.role ?? role }
+        ? { ...emptyAddress, ...stored, role }
         : {
             id: crypto.randomUUID(),
             email: trimmedEmail,
