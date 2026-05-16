@@ -84,8 +84,8 @@ function ChevronDown({ className }: { className?: string }) {
 
 export default function Navbar() {
   const pathname = usePathname();
-  const onAuthPage =
-    pathname === "/login" || pathname === "/signup" || pathname === "/book";
+  const onAuthPage = pathname === "/login" || pathname === "/signup";
+  const isBookPage = pathname === "/book";
   const [hash, setHash] = useState("");
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -282,6 +282,12 @@ export default function Navbar() {
               </Link>
             </li>
 
+            {isBookPage ? (
+              <li>
+                <span className={`${linkBase} ${linkActive}`}>My account</span>
+              </li>
+            ) : null}
+
             <li className="group/advice relative">
               <button
                 type="button"
@@ -322,9 +328,7 @@ export default function Navbar() {
         </div>
 
         <div className="relative z-10 ml-auto flex flex-none items-center gap-3 lg:gap-4">
-          {!onAuthPage ? (
-            <AuthNav className="hidden lg:inline-flex" />
-          ) : null}
+          <AuthNav className="hidden lg:inline-flex" />
 
           <button
             type="button"
@@ -584,13 +588,11 @@ export default function Navbar() {
             </div>
           </div>
 
-          {!onAuthPage ? (
-            <AuthNav
-              className="mt-4 w-full lg:hidden"
-              buttonClassName={`mt-2 w-full ${btnPrimary}`}
-              onNavigate={closeMobile}
-            />
-          ) : null}
+          <AuthNav
+            className="mt-4 flex justify-end lg:hidden"
+            buttonClassName={`mt-2 w-full ${btnPrimary}`}
+            onNavigate={closeMobile}
+          />
         </div>
       </div>
     </header>

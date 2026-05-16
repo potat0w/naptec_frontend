@@ -1,215 +1,293 @@
 "use client";
 
 import { useAuth } from "@/components/AuthProvider";
-import FormFieldError from "@/components/FormFieldError";
-import { formErrorClass } from "@/lib/auth/form-styles";
-import { btnPrimary } from "@/lib/layout";
-import { formValuesFromForm, inputErrorClass, validateWithSchema } from "@/lib/validation/helpers";
-import { bookCareSchema } from "@/lib/validation/schemas";
+import BookCareForm from "@/components/BookCareForm";
+import { formInputClass, formLabelClass } from "@/lib/auth/form-styles";
+import {
+  readBookingsForUser,
+  type BookingRequest,
+} from "@/lib/auth/bookings-storage";
+import {
+  Calendar,
+  Home,
+  Mail,
+  MapPin,
+  Phone,
+  User,
+} from "lucide-react";
 import Link from "next/link";
-import { useState, type FormEvent } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const serif = { fontFamily: "var(--font-playfair), ui-serif, serif" } as const;
 
-const inputClass =
-  "w-full rounded-full border border-gray-200 bg-white px-5 py-3.5 text-sm text-gray-900 outline-none transition-[border-color,box-shadow] placeholder:text-gray-400 focus:border-brand focus:ring-2 focus:ring-brand/15";
+const exploreLinks = [
+  { label: "Home", href: "/" },
+  { label: "What we do", href: "/what-we-do/domiciliary-care" },
+  { label: "How it works", href: "/how-it-works" },
+  { label: "Advice & care", href: "/advice-and-care" },
+  { label: "Enquire", href: "/enquire" },
+  { label: "Recruitment", href: "/recruitment" },
+] as const;
 
-type CareFor = "loved-one" | "me";
+function formatAddress(booking: BookingRequest) {
+  const line2 = booking.addressLine2 ? `, ${booking.addressLine2}` : "";
+  return `${booking.addressLine1}${line2}, ${booking.city} ${booking.postcode}`;
+}
 
 export default function BookCareContent() {
-  const { user } = useAuth();
-  const [careFor, setCareFor] = useState<CareFor>("me");
-  const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
-  const [pending, setPending] = useState(false);
+  const { user, updateProfile } = useAuth();
+  const [bookings, setBookings] = useState<BookingRequest[]>([]);
+  const [phone, setPhone] = useState("");
+  const [addressLine1, setAddressLine1] = useState("");
+  const [addressLine2, setAddressLine2] = useState("");
+  const [city, setCity] = useState("");
+  const [postcode, setPostcode] = useState("");
+  const [saved, setSaved] = useState(false);
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setError(null);
-    setFieldErrors({});
-    setPending(true);
+  const loadBookings = useCallback(() => {
+    if (!user) return;
+    setBookings(readBookingsForUser(user.id));
+  }, [user]);
 
-    const validation = await validateWithSchema(bookCareSchema, {
-      ...formValuesFromForm(e.currentTarget),
-      careFor,
+  useEffect(() => {
+    loadBookings();
+  }, [loadBookings]);
+
+  useEffect(() => {
+    if (!user) return;
+    setPhone(user.phone ?? "");
+    setAddressLine1(user.addressLine1 ?? "");
+    setAddressLine2(user.addressLine2 ?? "");
+    setCity(user.city ?? "");
+    setPostcode(user.postcode ?? "");
+  }, [user]);
+
+  const handleSaveProfile = () => {
+    updateProfile({
+      phone: phone.trim(),
+      addressLine1: addressLine1.trim(),
+      addressLine2: addressLine2.trim(),
+      city: city.trim(),
+      postcode: postcode.trim(),
     });
-
-    if (!validation.success) {
-      setError(validation.message);
-      setFieldErrors(validation.fieldErrors);
-      setPending(false);
-      return;
-    }
-
-    setPending(false);
-    setSubmitted(true);
+    setSaved(true);
+    setTimeout(() => setSaved(false), 2000);
   };
 
+  if (!user) return null;
+
+  const profileComplete = Boolean(
+    phone.trim() && addressLine1.trim() && city.trim() && postcode.trim()
+  );
+
   return (
-    <div className="mx-auto grid max-w-6xl gap-12 px-6 py-12 lg:grid-cols-2 lg:gap-16 lg:px-10 lg:py-16">
-      <div>
-        <h1
-          className="text-4xl font-normal leading-tight text-gray-900 sm:text-5xl"
-          style={serif}
-        >
-          Book a <em className="italic">caregiver</em>
-        </h1>
-        <p className="mt-6 text-sm leading-relaxed text-gray-600">
-          Signed in as{" "}
-          <span className="font-medium text-gray-900">
-            {user?.firstName} {user?.lastName}
-          </span>
-          . Tell us about the care you need and we&apos;ll match you with a Care
-          Professional and arrange a home visit.
-        </p>
-        <p className="mt-4 text-sm leading-relaxed text-gray-600">
-          Just looking for advice first?{" "}
-          <Link
-            href="/enquire"
-            className="font-medium text-brand underline underline-offset-4 transition-colors hover:text-brand-dark"
-          >
-            Send a general enquiry
-          </Link>{" "}
-          — no account needed.
-        </p>
-        <p className="mt-10 text-sm text-gray-600">Call Naptec on:</p>
-        <a
-          href="tel:03308228465"
-          className="mt-1 block text-3xl font-semibold tracking-tight text-gray-900 transition-colors hover:text-brand"
-        >
-          03308 228465
-        </a>
+    <div className="bg-surface">
+      <div className="border-b border-surface-card bg-white">
+        <div className="mx-auto max-w-6xl px-6 py-3 lg:px-10">
+          <p className="text-xs font-medium uppercase tracking-wide text-brand">My account</p>
+          <div className="mt-2 flex flex-wrap gap-2">
+            {exploreLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="rounded-full border border-surface-card bg-surface px-3 py-1.5 text-xs font-medium text-body transition-colors hover:border-brand/30 hover:text-brand"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        </div>
       </div>
 
-      <form onSubmit={handleSubmit} noValidate className="flex flex-col">
-        {error ? (
-          <p className={`mb-4 ${formErrorClass}`} role="alert">
-            {error}
+      <div className="mx-auto max-w-6xl px-6 py-10 lg:px-10 lg:py-14">
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div>
+            <h1
+              className="text-4xl font-normal leading-tight text-neutral-900 sm:text-5xl"
+              style={serif}
+            >
+              Book a <em className="italic">caregiver</em>
+            </h1>
+            <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted">
+              Welcome back, {user.firstName}. Save your home details, then request a visit — we
+              match you with a Care Professional for care at your location.
+            </p>
+          </div>
+          <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand text-lg font-semibold text-white">
+            {user.firstName.charAt(0)}
+            {user.lastName.charAt(0)}
+          </span>
+        </div>
+
+        {!profileComplete ? (
+          <p className="mt-6 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+            Complete your phone and home address below so we know where to send your caregiver.
           </p>
         ) : null}
 
-        {submitted ? (
-          <div className="flex flex-1 flex-col justify-center py-8">
-            <p className="text-3xl font-normal text-gray-900" style={serif}>
-              Booking request received
-            </p>
-            <p className="mt-4 text-sm leading-relaxed text-gray-600">
-              Thanks, {user?.firstName}. We&apos;ll be in touch to confirm your
-              caregiver match and home visit. (Demo — nothing was sent to a
-              server.)
-            </p>
-            <Link href="/" className={`mt-8 w-fit ${btnPrimary}`}>
-              Back to home
-            </Link>
-          </div>
-        ) : (
-          <>
-            <div className="grid gap-4 sm:grid-cols-2">
-              <label className="block">
-                <span className="sr-only">First name</span>
-                <input
-                  type="text"
-                  name="firstName"
-                  defaultValue={user?.firstName}
-                  placeholder="First Name *"
-                  aria-invalid={Boolean(fieldErrors.firstName)}
-                  className={inputErrorClass(Boolean(fieldErrors.firstName), inputClass)}
-                />
-                <FormFieldError message={fieldErrors.firstName} />
-              </label>
-              <label className="block">
-                <span className="sr-only">Last name</span>
-                <input
-                  type="text"
-                  name="lastName"
-                  defaultValue={user?.lastName}
-                  placeholder="Last Name *"
-                  aria-invalid={Boolean(fieldErrors.lastName)}
-                  className={inputErrorClass(Boolean(fieldErrors.lastName), inputClass)}
-                />
-                <FormFieldError message={fieldErrors.lastName} />
-              </label>
-            </div>
-            <label className="mt-4 block">
-              <span className="sr-only">Email address</span>
-              <input
-                type="email"
-                name="email"
-                defaultValue={user?.email}
-                placeholder="Email Address *"
-                aria-invalid={Boolean(fieldErrors.email)}
-                className={inputErrorClass(Boolean(fieldErrors.email), inputClass)}
-              />
-              <FormFieldError message={fieldErrors.email} />
-            </label>
-            <label className="mt-4 block">
-              <span className="sr-only">Telephone</span>
-              <input
-                type="tel"
-                name="telephone"
-                defaultValue={user?.phone}
-                placeholder="Telephone *"
-                aria-invalid={Boolean(fieldErrors.telephone)}
-                className={inputErrorClass(Boolean(fieldErrors.telephone), inputClass)}
-              />
-              <FormFieldError message={fieldErrors.telephone} />
-            </label>
-
-            <fieldset className="mt-8">
-              <legend className="text-sm text-gray-700">
-                Who is the care for? *
-              </legend>
-              <FormFieldError message={fieldErrors.careFor} />
-              <div className="mt-4 flex flex-wrap gap-8">
-                {(
-                  [
-                    { value: "loved-one" as const, label: "A loved one" },
-                    { value: "me" as const, label: "Myself" },
-                  ] as const
-                ).map((option) => (
-                  <label
-                    key={option.value}
-                    className="flex cursor-pointer items-center gap-3 text-sm text-gray-800"
-                  >
-                    <input
-                      type="radio"
-                      name="careFor"
-                      value={option.value}
-                      checked={careFor === option.value}
-                      onChange={() => setCareFor(option.value)}
-                      className="sr-only"
-                    />
-                    <span
-                      className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 transition-colors ${
-                        careFor === option.value
-                          ? "border-brand bg-brand"
-                          : "border-gray-300 bg-white"
-                      }`}
-                      aria-hidden
-                    >
-                      {careFor === option.value ? (
-                        <span className="h-2 w-2 rounded-full bg-white" />
-                      ) : null}
-                    </span>
-                    {option.label}
-                  </label>
-                ))}
+        <div className="mt-10 grid gap-8 lg:grid-cols-5">
+          <section className="rounded-2xl border border-surface-card bg-white p-6 shadow-[0_8px_32px_-16px_rgba(63,45,98,0.1)] lg:col-span-2">
+            <h2 className="flex items-center gap-2 text-lg font-semibold text-neutral-900">
+              <User className="h-5 w-5 text-brand" />
+              Your details
+            </h2>
+            <dl className="mt-5 space-y-4 text-sm">
+              <div>
+                <dt className="flex items-center gap-2 text-muted">
+                  <User className="h-4 w-4" /> Name
+                </dt>
+                <dd className="mt-0.5 font-medium text-neutral-900">
+                  {user.firstName} {user.lastName}
+                </dd>
               </div>
-            </fieldset>
+              <div>
+                <dt className="flex items-center gap-2 text-muted">
+                  <Mail className="h-4 w-4" /> Email
+                </dt>
+                <dd className="mt-0.5 text-body">{user.email}</dd>
+              </div>
+            </dl>
 
-            <div className="mt-10 flex justify-end">
-              <button
-                type="submit"
-                disabled={pending}
-                className={`${btnPrimary} disabled:cursor-not-allowed disabled:opacity-60`}
-              >
-                {pending ? "Submitting…" : "Request caregiver"}
-              </button>
+            <div className="mt-6 space-y-4">
+              <label className="block">
+                <span className={`${formLabelClass} flex items-center gap-2`}>
+                  <Phone className="h-4 w-4 text-brand" /> Phone *
+                </span>
+                <input
+                  type="tel"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  className={`${formInputClass} mt-1`}
+                />
+              </label>
+              <label className="block">
+                <span className={`${formLabelClass} flex items-center gap-2`}>
+                  <Home className="h-4 w-4 text-brand" /> Street address *
+                </span>
+                <input
+                  type="text"
+                  value={addressLine1}
+                  onChange={(e) => setAddressLine1(e.target.value)}
+                  placeholder="14 Oak Lane"
+                  className={`${formInputClass} mt-1`}
+                />
+              </label>
+              <label className="block">
+                <span className={formLabelClass}>Flat, building (optional)</span>
+                <input
+                  type="text"
+                  value={addressLine2}
+                  onChange={(e) => setAddressLine2(e.target.value)}
+                  className={`${formInputClass} mt-1`}
+                />
+              </label>
+              <div className="grid gap-4 sm:grid-cols-2">
+                <label className="block">
+                  <span className={formLabelClass}>Town / city *</span>
+                  <input
+                    type="text"
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                    className={`${formInputClass} mt-1`}
+                  />
+                </label>
+                <label className="block">
+                  <span className={formLabelClass}>Postcode *</span>
+                  <input
+                    type="text"
+                    value={postcode}
+                    onChange={(e) => setPostcode(e.target.value)}
+                    className={`${formInputClass} mt-1`}
+                  />
+                </label>
+              </div>
             </div>
-          </>
-        )}
-      </form>
+
+            <button
+              type="button"
+              onClick={handleSaveProfile}
+              className={`mt-6 w-full rounded-xl py-2.5 text-sm font-medium text-white ${
+                saved ? "bg-emerald-600" : "bg-brand hover:bg-brand-dark"
+              }`}
+            >
+              {saved ? "Details saved" : "Save my details"}
+            </button>
+
+            <p className="mt-6 text-sm text-muted">
+              Need advice first?{" "}
+              <Link href="/enquire" className="font-medium text-brand hover:text-brand-dark">
+                Send an enquiry
+              </Link>
+            </p>
+            <p className="mt-4 text-sm text-muted">Call Naptec:</p>
+            <a
+              href="tel:03308228465"
+              className="text-2xl font-semibold text-neutral-900 hover:text-brand"
+            >
+              03308 228465
+            </a>
+          </section>
+
+          <div className="lg:col-span-3">
+            <BookCareForm
+              key={`${user.addressLine1}-${user.city}-${user.postcode}`}
+              onSuccess={loadBookings}
+            />
+          </div>
+        </div>
+
+        <section className="mt-10 rounded-2xl border border-surface-card bg-white p-6 shadow-[0_8px_32px_-16px_rgba(63,45,98,0.1)]">
+          <h2 className="text-lg font-semibold text-neutral-900">Your booking requests</h2>
+          {bookings.length === 0 ? (
+            <p className="mt-3 text-sm text-muted">
+              No bookings yet. Save your details and submit a home visit request.
+            </p>
+          ) : (
+            <ul className="mt-5 space-y-4">
+              {bookings.map((booking) => (
+                <li
+                  key={booking.id}
+                  className="rounded-xl border border-surface-card p-4"
+                >
+                  <div className="flex flex-wrap items-start justify-between gap-3">
+                    <div>
+                      <p className="font-medium text-neutral-900">
+                        Care for {booking.careFor === "me" ? "myself" : "a loved one"}
+                      </p>
+                      <p className="mt-2 flex items-start gap-2 text-sm text-body">
+                        <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand" />
+                        {formatAddress(booking)}
+                      </p>
+                      {booking.careNotes ? (
+                        <p className="mt-2 text-sm text-muted">{booking.careNotes}</p>
+                      ) : null}
+                    </div>
+                    <div className="text-right">
+                      <span
+                        className={`inline-flex rounded-full px-2.5 py-0.5 text-xs font-medium ${
+                          booking.status === "pending"
+                            ? "bg-amber-50 text-amber-800"
+                            : "bg-emerald-50 text-emerald-700"
+                        }`}
+                      >
+                        {booking.status === "pending" ? "Pending match" : "Matched"}
+                      </span>
+                      <p className="mt-2 flex items-center justify-end gap-1 text-xs text-muted">
+                        <Calendar className="h-3.5 w-3.5" />
+                        {new Date(booking.createdAt).toLocaleDateString("en-GB", {
+                          day: "numeric",
+                          month: "short",
+                          year: "numeric",
+                        })}
+                      </p>
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
+      </div>
     </div>
   );
 }

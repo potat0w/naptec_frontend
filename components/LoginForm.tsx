@@ -13,6 +13,7 @@ import {
 } from "@/lib/auth/form-styles";
 import { formValuesFromForm, inputErrorClass, validateWithSchema } from "@/lib/validation/helpers";
 import { loginSchema } from "@/lib/validation/schemas";
+import { dashboardPathForRole, resolveRoleFromEmail } from "@/lib/portal/role";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, type FormEvent } from "react";
 
@@ -20,7 +21,7 @@ export default function LoginForm() {
   const { login, ready } = useAuth();
   const router = useRouter();
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") ?? "/book";
+  const callbackUrl = searchParams.get("callbackUrl");
   const [error, setError] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [pending, setPending] = useState(false);
@@ -51,7 +52,14 @@ export default function LoginForm() {
       return;
     }
 
-    router.push(callbackUrl);
+    const role = resolveRoleFromEmail(validation.values.email);
+    const destination =
+      callbackUrl &&
+      !callbackUrl.startsWith("/admin") &&
+      !callbackUrl.startsWith("/caregiver")
+        ? callbackUrl
+        : dashboardPathForRole(role);
+    router.push(destination);
   };
 
   return (
@@ -61,7 +69,7 @@ export default function LoginForm() {
           Sign in
         </p>
         <p className={formSectionSubtitleClass}>
-          Welcome back — continue to your booking.
+          Welcome back — continue to your profile.
         </p>
       </div>
 

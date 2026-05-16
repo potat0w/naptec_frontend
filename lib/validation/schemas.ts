@@ -64,14 +64,33 @@ export const enquireSchema = yup.object({
 });
 
 export const bookCareSchema = yup.object({
-  firstName: nameField.label("First name"),
-  lastName: nameField.label("Last name"),
-  email: emailField,
-  telephone: phoneField.label("Telephone"),
+  addressLine1: yup
+    .string()
+    .trim()
+    .required("Street address is required.")
+    .max(120, "Please enter a shorter address."),
+  addressLine2: yup.string().trim().max(120, "Please enter a shorter address.").optional().default(""),
+  city: yup
+    .string()
+    .trim()
+    .required("Town or city is required.")
+    .max(80, "Please enter a valid town or city."),
+  postcode: yup
+    .string()
+    .trim()
+    .required("Postcode is required.")
+    .max(12, "Please enter a valid postcode."),
   careFor: yup
     .string()
     .required("Please select who the care is for.")
     .oneOf(["loved-one", "me"], "Please select who the care is for."),
+  preferredDate: yup.string().trim().optional().default(""),
+  careNotes: yup
+    .string()
+    .trim()
+    .max(500, "Notes must be 500 characters or fewer.")
+    .optional()
+    .default(""),
 });
 
 const cvFileField = yup

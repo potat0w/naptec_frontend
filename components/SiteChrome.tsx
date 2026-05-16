@@ -5,17 +5,24 @@ import Navbar from "@/components/Navbar";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 
-const formPaths = ["/signup", "/login", "/enquire", "/book"];
+const chromelessPaths = [
+  "/signup",
+  "/login",
+  "/enquire",
+  "/admin",
+  "/caregiver",
+  "/access-denied",
+];
 
-function isFormPath(pathname: string) {
-  return formPaths.some(
+function isChromelessPath(pathname: string) {
+  return chromelessPaths.some(
     (path) => pathname === path || pathname.startsWith(`${path}/`)
   );
 }
 
 export default function SiteChrome({ children }: { children: ReactNode }) {
   const pathname = usePathname();
-  const hideChrome = isFormPath(pathname);
+  const hideChrome = isChromelessPath(pathname);
 
   if (hideChrome) {
     return <>{children}</>;
