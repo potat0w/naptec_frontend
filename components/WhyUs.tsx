@@ -1,6 +1,14 @@
 "use client";
 
-import { containerClass, sectionPy, sectionTitle } from "@/lib/layout";
+import {
+  btnPrimary,
+  carouselBtnNext,
+  carouselBtnPrev,
+  containerClass,
+  sectionBgWhite,
+  sectionPy,
+  sectionTitle,
+} from "@/lib/layout";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,7 +19,7 @@ const serif = { fontFamily: "var(--font-playfair), ui-serif, serif" } as const;
 const slides = [
   {
     image:
-      "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=1200&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933382/pexels-jsme-mila-523821574-18459193_nlhoas.jpg",
     alt: "Caregiver and client sharing a moment",
     titleParts: [
       { text: "Finding the " },
@@ -23,7 +31,7 @@ const slides = [
   },
   {
     image:
-      "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1200&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933365/pexels-kampus-7551662_ock8o9.jpg",
     alt: "Caregiver training session",
     titleParts: [
       { text: "Industry " },
@@ -35,7 +43,7 @@ const slides = [
   },
   {
     image:
-      "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=1200&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933350/pexels-jsme-mila-523821574-29372720_niar1j.jpg",
     alt: "Caregiver in the community",
     titleParts: [
       { text: "Global experts, " },
@@ -47,7 +55,7 @@ const slides = [
   },
   {
     image:
-      "https://images.unsplash.com/photo-1559027615-cd4628901751?w=1200&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933332/pexels-jsme-mila-523821574-18429571_lahwba.jpg",
     alt: "Award recognition",
     titleParts: [{ text: "Awards" }],
     body: "We're proud to be recommended by families we support and recognised for excellence in home care. Our commitment to innovation and supporting our teams helps us deliver outstanding care every day.",
@@ -65,14 +73,14 @@ export default function WhyUs() {
   const slide = slides[currentSlide];
 
   return (
-    <section className={`overflow-hidden bg-white ${sectionPy}`} aria-label="Why us">
+    <section className={`overflow-hidden ${sectionBgWhite} ${sectionPy}`} aria-label="Why us">
       <div className={`${containerClass} mb-10 flex items-end justify-between gap-6 lg:mb-12`}>
         <h2 className={sectionTitle}>Why us?</h2>
         <div className="flex shrink-0 gap-3">
           <button
             type="button"
             onClick={() => go(-1)}
-            className="flex h-12 w-12 items-center justify-center rounded-full bg-neutral-200 text-neutral-700 transition-colors hover:bg-neutral-300"
+            className={carouselBtnPrev}
             aria-label="Previous slide"
           >
             <ChevronLeft className="h-5 w-5" strokeWidth={2} />
@@ -80,7 +88,7 @@ export default function WhyUs() {
           <button
             type="button"
             onClick={() => go(1)}
-            className="flex h-12 w-12 items-center justify-center rounded-full bg-[#3B2A8F] text-white transition-colors hover:bg-[#2d1f6d]"
+            className={carouselBtnNext}
             aria-label="Next slide"
           >
             <ChevronRight className="h-5 w-5" strokeWidth={2} />
@@ -89,7 +97,7 @@ export default function WhyUs() {
       </div>
 
       <article className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
-        <div className="overflow-hidden rounded-2xl bg-[#e8ebe4] shadow-sm">
+        <div className="overflow-hidden rounded-2xl bg-surface-card shadow-sm">
           <div className="grid lg:grid-cols-2">
             <div className="relative aspect-[4/3] w-full lg:aspect-auto lg:min-h-[420px]">
               <Image
@@ -116,14 +124,14 @@ export default function WhyUs() {
                   ),
                 )}
               </h3>
-              <p className="mt-5 text-sm leading-relaxed text-neutral-600 sm:text-base">
+              <p className="mt-5 text-sm leading-relaxed text-body sm:text-base">
                 {slide.body}
               </p>
               <Link
                 href={slide.href}
-                className="mt-8 inline-flex w-fit rounded-full bg-[#3B2A8F] px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-[#2d1f6d]"
+                className={`mt-8 ${btnPrimary}`}
               >
-                Discover More
+                Discover more
               </Link>
             </div>
           </div>
@@ -134,7 +142,7 @@ export default function WhyUs() {
               key={i}
               type="button"
               onClick={() => setCurrentSlide(i)}
-              className={`h-2 rounded-full transition-all ${i === currentSlide ? "w-8 bg-[#3B2A8F]" : "w-2 bg-neutral-300"}`}
+              className={`h-2 rounded-full transition-all ${i === currentSlide ? "w-8 bg-brand" : "w-2 bg-surface-card-hover"}`}
               aria-label={`Go to slide ${i + 1}`}
             />
           ))}

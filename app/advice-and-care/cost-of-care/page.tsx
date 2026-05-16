@@ -49,31 +49,31 @@ const packageExamples = [
 const guideCards: CarouselCard[] = [
   {
     image:
-      "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933400/pexels-kampus-8949833_tldckz.jpg",
     title: "Paying for care: who pays what?",
     href: "/advice-and-care/cost-of-care",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933400/pexels-olly-3768131_mdki5q.jpg",
     title: "Financial benefits for pensioners: topping up your income",
     href: "/advice-and-care/articles",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933399/pexels-olly-3791666_nap6fe.jpg",
     title: "The benefits of home care versus a care home",
     href: "/advice-and-care/articles",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1516307365426-b304ed83931e?w=800&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933382/pexels-jsme-mila-523821574-18459193_nlhoas.jpg",
     title: "What is home or domiciliary care?",
     href: "/what-we-do/domiciliary-care",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933365/pexels-kampus-7551662_ock8o9.jpg",
     title: "How to age well at home",
     href: "/advice-and-care/how-to-age-well",
   },
@@ -193,7 +193,7 @@ export default function CostOfCarePage() {
 
           <div className="relative mt-10 aspect-[21/9] w-full overflow-hidden rounded-sm bg-[#f2f2f2] sm:mt-12">
             <Image
-              src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=1600&q=80"
+              src="https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933350/pexels-jsme-mila-523821574-29372720_niar1j.jpg"
               alt="Family discussing care costs at home"
               fill
               priority
@@ -205,7 +205,7 @@ export default function CostOfCarePage() {
 
         <ContentBlock
           heading="Understanding the cost of home care"
-          image="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1200&q=80"
+          image="https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933332/pexels-jsme-mila-523821574-18429571_lahwba.jpg"
           imageAlt="Care professional supporting a client at home"
         >
           <p>
@@ -240,7 +240,7 @@ export default function CostOfCarePage() {
       <section className="px-4 pb-10 sm:px-6 sm:pb-14 lg:px-8 lg:pb-16">
         <ContentBlock
           heading="What does home care involve?"
-          image="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1200&q=80"
+          image="https://res.cloudinary.com/dw1n6qugv/image/upload/v1778932857/centre-for-ageing-better-rQJ3xo-0WYE-unsplash_mhe64i.jpg"
           imageAlt="Caregiver helping with daily activities at home"
           reverse
           cta={{
@@ -261,7 +261,7 @@ export default function CostOfCarePage() {
 
         <ContentBlock
           heading="Is home care more affordable than a care home?"
-          image="https://images.unsplash.com/photo-1516307365426-b304ed83931e?w=1200&q=80"
+          image="https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933400/pexels-kampus-8949833_tldckz.jpg"
           imageAlt="Older adult receiving care at home"
           cta={{
             label: "Read our guide to the benefits of home care versus a care home",
@@ -422,7 +422,7 @@ export default function CostOfCarePage() {
 
         <ContentBlock
           heading="How do I arrange home care for myself or a loved one?"
-          image="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&q=80"
+          image="https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933400/pexels-olly-3768131_mdki5q.jpg"
           imageAlt="Naptec caregiver with a client at home"
           reverse
         >

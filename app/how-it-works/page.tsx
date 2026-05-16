@@ -88,7 +88,7 @@ export default function HowItWorksPage() {
           </div>
           <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm bg-[#f2f2f2]">
             <Image
-              src="https://images.unsplash.com/photo-1516307365426-b304ed83931e?w=1200&q=80"
+              src="https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933399/pexels-olly-3791666_nap6fe.jpg"
               alt="Older adult receiving supportive home care"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"

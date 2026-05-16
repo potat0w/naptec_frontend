@@ -5,7 +5,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import { containerClass, sectionPy, sectionTitle } from "@/lib/layout";
+import {
+  carouselBtnNext,
+  carouselBtnPrev,
+  containerClass,
+  sectionBgSurfaceAlt,
+  sectionPy,
+  sectionTitle,
+} from "@/lib/layout";
 import { newsEvents } from "@/lib/news-events";
 
 const serif = { fontFamily: "var(--font-playfair), ui-serif, serif" } as const;
@@ -51,7 +58,7 @@ export default function NewsEvents() {
 
   return (
     <section
-      className={`overflow-hidden bg-[#f9f9f9] ${sectionPy}`}
+      className={`overflow-hidden ${sectionBgSurfaceAlt} ${sectionPy}`}
       aria-label="News and events"
     >
       <div className={containerClass}>
@@ -60,7 +67,7 @@ export default function NewsEvents() {
           <div className="flex shrink-0 items-center gap-4">
             <Link
               href="/advice-and-care/news-events"
-              className="hidden text-sm text-neutral-600 underline underline-offset-4 transition-colors hover:text-[#3B2A8F] sm:inline"
+              className="hidden text-sm text-body underline underline-offset-4 transition-colors hover:text-brand sm:inline"
             >
               View all
             </Link>
@@ -69,7 +76,7 @@ export default function NewsEvents() {
                 type="button"
                 onClick={goPrev}
                 disabled={offset === 0}
-                className="flex h-12 w-12 items-center justify-center rounded-full bg-[#c5c9b8] text-white transition-[filter] hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-40"
+                className={`${carouselBtnPrev} disabled:cursor-not-allowed disabled:opacity-40`}
                 aria-label="Previous news item"
               >
                 <ChevronLeft className="h-5 w-5" strokeWidth={2} />
@@ -78,7 +85,7 @@ export default function NewsEvents() {
                 type="button"
                 onClick={goNext}
                 disabled={offset >= maxOffset}
-                className="flex h-12 w-12 items-center justify-center rounded-full bg-[#3B2A8F] text-white transition-[filter] hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-40"
+                className={`${carouselBtnNext} disabled:cursor-not-allowed disabled:opacity-40`}
                 aria-label="Next news item"
               >
                 <ChevronRight className="h-5 w-5" strokeWidth={2} />
@@ -108,7 +115,7 @@ export default function NewsEvents() {
               key={card.title}
               className="w-[min(88vw,380px)] shrink-0 sm:w-[min(42vw,420px)] lg:w-[calc((min(100vw,1600px)-4rem-24px)/2)]"
             >
-              <div className="relative aspect-[4/3] w-full bg-[#f2f2f2]">
+              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-surface-card">
                 <Image
                   src={card.image}
                   alt=""
@@ -117,7 +124,7 @@ export default function NewsEvents() {
                   className="object-cover object-center"
                 />
               </div>
-              <div className="bg-[#f9f9f9] pt-5">
+              <div className="pt-5">
                 <h3
                   className="mb-4 text-xl font-normal leading-snug text-neutral-900 sm:text-2xl"
                   style={serif}
@@ -127,14 +134,14 @@ export default function NewsEvents() {
                 <div className="flex items-center gap-3">
                   <Link
                     href={card.href}
-                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#3B2A8F] text-white transition-[filter] hover:brightness-90"
+                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand text-white transition-colors hover:bg-brand-dark"
                     aria-label={`Discover more: ${card.title}`}
                   >
                     <ArrowRight className="h-4 w-4" strokeWidth={2} />
                   </Link>
                   <Link
                     href={card.href}
-                    className="text-sm text-neutral-700 underline underline-offset-4 transition-colors hover:text-[#3B2A8F]"
+                    className="text-sm text-body underline underline-offset-4 transition-colors hover:text-brand"
                   >
                     Discover more
                   </Link>

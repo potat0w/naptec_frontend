@@ -1,7 +1,7 @@
 import AccordionList from "@/components/AccordionList";
 import CareProTestimonials from "@/components/CareProTestimonials";
 import ContentCarousel, { type CarouselCard } from "@/components/ContentCarousel";
-import { containerClass, sectionTitle } from "@/lib/layout";
+import { btnPrimary, btnPrimaryInverse, containerClass, sectionTitle } from "@/lib/layout";
 import {
   Clock,
   HandHeart,
@@ -113,60 +113,53 @@ const positions = [
 const guideCards: CarouselCard[] = [
   {
     image:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933382/pexels-jsme-mila-523821574-18459193_nlhoas.jpg",
     title: "How care professionals can promote dignity in care",
     href: "/advice-and-care/articles",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1516307365426-b304ed83931e?w=800&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933365/pexels-kampus-7551662_ock8o9.jpg",
     title: "What it takes to become a professional dementia carer",
     href: "/advice-and-care/articles",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933350/pexels-jsme-mila-523821574-29372720_niar1j.jpg",
     title: "What to expect from a domiciliary care interview",
     href: "/advice-and-care/articles",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933332/pexels-jsme-mila-523821574-18429571_lahwba.jpg",
     title: "Complex care roles at Naptec",
     href: "/advice-and-care/articles",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778932857/centre-for-ageing-better-rQJ3xo-0WYE-unsplash_mhe64i.jpg",
     title: "Jobs and careers in palliative care",
     href: "/advice-and-care/articles",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933400/pexels-kampus-8949833_tldckz.jpg",
     title: "What skills and qualities does a good carer need?",
     href: "/advice-and-care/articles",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933400/pexels-olly-3768131_mdki5q.jpg",
     title: "A guide to typical care interview questions",
     href: "/advice-and-care/articles",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933399/pexels-olly-3791666_nap6fe.jpg",
     title: "What is a live-in carer?",
     href: "/advice-and-care/articles",
   },
 ];
-
-const partners = [
-  "Alzheimer's Society",
-  "Parkinson's UK",
-  "British Franchise Association",
-  "Homecare Association",
-] as const;
 
 function ContentBlock({
   heading,
@@ -211,11 +204,17 @@ function ContentBlock({
   );
 }
 
-function ApplyButton({ className = "" }: { className?: string }) {
+function ApplyButton({
+  className = "",
+  variant = "primary",
+}: {
+  className?: string;
+  variant?: "primary" | "inverse";
+}) {
   return (
     <Link
       href="/recruitment/apply"
-      className={`inline-flex items-center justify-center rounded-full bg-[#3B2A8F] px-10 py-3.5 text-sm font-medium text-white transition-[filter] hover:brightness-95 ${className}`}
+      className={`${variant === "inverse" ? btnPrimaryInverse : btnPrimary} ${className}`}
     >
       Apply now
     </Link>
@@ -254,7 +253,7 @@ export default function RecruitmentPage() {
           </div>
           <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm bg-[#f2f2f2] lg:aspect-[5/4]">
             <Image
-              src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1200&q=80"
+              src="https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933382/pexels-jsme-mila-523821574-18459193_nlhoas.jpg"
               alt="Care professional with a client at home"
               fill
               priority
@@ -268,7 +267,7 @@ export default function RecruitmentPage() {
       <section className="px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
         <ContentBlock
           heading="A Financial Times best employer"
-          image="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1200&q=80"
+          image="https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933365/pexels-kampus-7551662_ock8o9.jpg"
           imageAlt="Naptec team celebrating an award"
           reverse
         >
@@ -290,6 +289,18 @@ export default function RecruitmentPage() {
             Professionals.
           </p>
         </ContentBlock>
+
+        <div className={`${containerClass} mt-14 sm:mt-16`}>
+          <div className="rounded-2xl bg-brand px-6 py-12 text-center text-white sm:px-10 sm:py-14">
+            <h2
+              className="text-3xl font-normal sm:text-4xl"
+              style={serif}
+            >
+              Ready to join our team?
+            </h2>
+            <ApplyButton variant="inverse" className="mt-8" />
+          </div>
+        </div>
 
         <div className="mx-auto mt-16 max-w-6xl sm:mt-20">
           <h2
@@ -352,7 +363,7 @@ export default function RecruitmentPage() {
           </div>
           <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm bg-[#f2f2f2]">
             <Image
-              src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&q=80"
+              src="https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933350/pexels-jsme-mila-523821574-29372720_niar1j.jpg"
               alt="Client and care professional together at home"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
@@ -398,7 +409,7 @@ export default function RecruitmentPage() {
       <section className="px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
         <ContentBlock
           heading="The responsibilities of a Care Professional"
-          image="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1200&q=80"
+          image="https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933332/pexels-jsme-mila-523821574-18429571_lahwba.jpg"
           imageAlt="Care professional supporting daily living at home"
         >
           <ul className="space-y-4">
@@ -535,39 +546,6 @@ export default function RecruitmentPage() {
         cards={guideCards}
         ariaLabel="Care recruitment guides"
       />
-
-      <section className="border-t border-neutral-100 bg-[#f9f9f9] px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
-        <div className={`${containerClass} text-center`}>
-          <h2
-            className="text-2xl font-normal text-neutral-900 sm:text-3xl"
-            style={serif}
-          >
-            Our partners
-          </h2>
-          <ul className="mt-10 flex flex-wrap items-center justify-center gap-x-10 gap-y-6">
-            {partners.map((name) => (
-              <li
-                key={name}
-                className="text-sm font-medium uppercase tracking-wide text-neutral-500"
-              >
-                {name}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      <section className="bg-[#3B2A8F] px-4 py-14 text-center text-white sm:px-6 sm:py-16">
-        <div className={containerClass}>
-          <h2
-            className="text-3xl font-normal sm:text-4xl"
-            style={serif}
-          >
-            Ready to join our team?
-          </h2>
-          <ApplyButton className="mt-8 bg-white text-[#3B2A8F] hover:brightness-100" />
-        </div>
-      </section>
     </main>
   );
 }

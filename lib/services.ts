@@ -55,7 +55,7 @@ const categoryLabels: Record<ServiceCategory, string> = {
 };
 
 const defaultImage =
-  "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1200&q=80";
+  "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933365/pexels-kampus-7551662_ock8o9.jpg";
 
 function domiciliarySections(shortTitle: string, topic: string): ServiceSection[] {
   return [
@@ -72,7 +72,7 @@ function domiciliarySections(shortTitle: string, topic: string): ServiceSection[
         "Encourage participation in activities inside and outside the home",
         "Give families peace of mind with reliable visits",
       ],
-      image: "https://images.unsplash.com/photo-1516307365426-b304ed83931e?w=1200&q=80",
+      image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933350/pexels-jsme-mila-523821574-29372720_niar1j.jpg",
       imageAlt: `Caregiver providing ${shortTitle.toLowerCase()} at home`,
     },
     {
@@ -80,7 +80,7 @@ function domiciliarySections(shortTitle: string, topic: string): ServiceSection[
       paragraphs: [
         `The right support at home can protect wellbeing and independence. Naptec aims to prevent isolation by providing ${shortTitle.toLowerCase()} that fits your routine. Many people we support want company, conversation, and practical help that keeps life enjoyable at home.`,
       ],
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1200&q=80",
+      image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933332/pexels-jsme-mila-523821574-18429571_lahwba.jpg",
       imageAlt: `Older adult benefiting from ${shortTitle.toLowerCase()}`,
     },
     {
@@ -88,7 +88,7 @@ function domiciliarySections(shortTitle: string, topic: string): ServiceSection[
       paragraphs: [
         `Home visits from Naptec mean you and your loved ones have peace of mind knowing you have the company and support of a friendly, trusted caregiver. We match you with someone who shares your interests and can accompany you in whatever you enjoy, so if your needs change over time, there is already someone you know and trust.`,
       ],
-      image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&q=80",
+      image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778932857/centre-for-ageing-better-rQJ3xo-0WYE-unsplash_mhe64i.jpg",
       imageAlt: "Caregiver and client spending time together",
     },
   ];
@@ -162,7 +162,7 @@ const companionship: ServicePage = {
         "Encourage participation in activities inside and outside the home",
         "Help families take a rest from caring with peace of mind",
       ],
-      image: "https://images.unsplash.com/photo-1516307365426-b304ed83931e?w=1200&q=80",
+      image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933400/pexels-kampus-8949833_tldckz.jpg",
       imageAlt: "Caregiver and client sharing time together at home",
     },
     {
@@ -170,7 +170,7 @@ const companionship: ServicePage = {
       paragraphs: [
         "Loneliness can have serious effects on a person's health. Naptec aims to prevent social isolation by providing companionship care at home. Many people we support simply want company and conversation, whether they live alone or want a companion for appointments, shopping, or outings.",
       ],
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1200&q=80",
+      image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933400/pexels-olly-3768131_mdki5q.jpg",
       imageAlt: "Older adults enjoying conversation at home",
     },
     {
@@ -178,7 +178,7 @@ const companionship: ServicePage = {
       paragraphs: [
         "Home visits from Naptec mean you and your loved ones have peace of mind knowing you have the company and support of a friendly, trusted caregiver. We match you with someone who shares your interests and can accompany you in whatever you like to do. Starting with companionship means that if you need extra help later, there is already someone you know and trust.",
       ],
-      image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&q=80",
+      image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933399/pexels-olly-3791666_nap6fe.jpg",
       imageAlt: "Caregiver supporting a client on an outing",
     },
   ],
@@ -274,7 +274,7 @@ const categoryPages: ServicePage[] = [
         paragraphs: [
           "A caregiver lives in your home to provide continuous support, companionship, and assistance tailored to your loved one's routine and preferences.",
         ],
-        image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1200&q=80",
+        image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933382/pexels-jsme-mila-523821574-18459193_nlhoas.jpg",
         imageAlt: "Live-in care at home",
       },
     ],

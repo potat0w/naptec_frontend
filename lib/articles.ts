@@ -3,73 +3,73 @@ import type { NewsEventItem } from "@/lib/news-events";
 export const articles: NewsEventItem[] = [
   {
     image:
-      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=900&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778932857/centre-for-ageing-better-rQJ3xo-0WYE-unsplash_mhe64i.jpg",
     title: "Do all pensioners get winter fuel allowance?",
     href: "/advice-and-care/articles",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=900&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933400/pexels-kampus-8949833_tldckz.jpg",
     title: "Home adaptations for disabled older people",
     href: "/advice-and-care/articles",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1516307365426-b304ed83931e?w=900&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933400/pexels-olly-3768131_mdki5q.jpg",
     title: "Signs of loneliness in older people",
     href: "/advice-and-care/articles",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=900&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933399/pexels-olly-3791666_nap6fe.jpg",
     title: "Symptoms of dehydration in older people",
     href: "/advice-and-care/articles",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=900&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933382/pexels-jsme-mila-523821574-18459193_nlhoas.jpg",
     title: "How to get power of attorney for ageing parents",
     href: "/advice-and-care/articles",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=900&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933365/pexels-kampus-7551662_ock8o9.jpg",
     title: "How to get hot meals delivered for ageing adults",
     href: "/advice-and-care/articles",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=900&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933350/pexels-jsme-mila-523821574-29372720_niar1j.jpg",
     title: "How care professionals can promote dignity in care",
     href: "/advice-and-care/articles",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1516307365426-b304ed83931e?w=900&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933332/pexels-jsme-mila-523821574-18429571_lahwba.jpg",
     title: "What it takes to become a professional dementia carer",
     href: "/advice-and-care/articles",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=900&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778932857/centre-for-ageing-better-rQJ3xo-0WYE-unsplash_mhe64i.jpg",
     title: "What to expect from a domiciliary care interview",
     href: "/advice-and-care/articles",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=900&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933400/pexels-kampus-8949833_tldckz.jpg",
     title: "A guide to typical care interview questions",
     href: "/advice-and-care/articles",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=900&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933400/pexels-olly-3768131_mdki5q.jpg",
     title: "What skills and qualities does a good carer need?",
     href: "/advice-and-care/articles",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=900&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933399/pexels-olly-3791666_nap6fe.jpg",
     title: "What is a live-in carer?",
     href: "/advice-and-care/articles",
   },

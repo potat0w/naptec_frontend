@@ -19,7 +19,7 @@ function DiscoverMore({ href = "/enquire" }: { href?: string }) {
         href={href}
         className="text-sm font-medium text-[#3B2A8F] underline underline-offset-4 transition-colors hover:text-[#2d1f6d]"
       >
-        Discover More
+        Discover more
       </Link>
     </p>
   );
@@ -32,37 +32,37 @@ function FaqAnswer({ children }: { children: ReactNode }) {
 const adviceCards: CarouselCard[] = [
   {
     image:
-      "https://images.unsplash.com/photo-1516307365426-b304ed83931e?w=800&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933399/pexels-olly-3791666_nap6fe.jpg",
     title: "Meet our magical client, Mr P",
     href: "/advice-and-care/articles",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933382/pexels-jsme-mila-523821574-18459193_nlhoas.jpg",
     title: "The New Ageing - Brand & Ageism",
     href: "/advice-and-care/how-to-age-well",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933365/pexels-kampus-7551662_ock8o9.jpg",
     title: "Launching Homecare's Got Talent!",
     href: "/advice-and-care/articles",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933350/pexels-jsme-mila-523821574-29372720_niar1j.jpg",
     title: "Dementia training: Anthony's journey",
     href: "/advice-and-care/articles",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1559027615-cd4628901751?w=800&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933332/pexels-jsme-mila-523821574-18429571_lahwba.jpg",
     title: "Celebrating 10 years of being most recommended home care company",
     href: "/advice-and-care/articles",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778932857/centre-for-ageing-better-rQJ3xo-0WYE-unsplash_mhe64i.jpg",
     title: "5 Signs an ageing relative may need support",
     href: "/advice-and-care/how-to-age-well",
   },

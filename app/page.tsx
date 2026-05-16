@@ -1,3 +1,4 @@
+import AboutUsSection from "@/components/AboutUsSection";
 import CqcSection from "@/components/CqcSection";
 import GetInTouch from "@/components/GetInTouch";
 import HomeHero from "@/components/HomeHero";
@@ -21,10 +22,11 @@ export default function Home() {
     <main className="flex flex-1 flex-col">
       <HomeHero />
       <TrustBar />
+      <AboutUsSection />
       <CqcSection />
       <PopularServices />
-      <HomeCareServices />
       <WhyUs />
+      <HomeCareServices />
       <Testimonials />
       <GetInTouch />
       <RecruitmentCta />

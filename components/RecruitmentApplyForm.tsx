@@ -1,5 +1,6 @@
 "use client";
 
+import { btnPrimary, btnSecondary } from "@/lib/layout";
 import Link from "next/link";
 import { useState, type FormEvent } from "react";
 
@@ -97,13 +98,13 @@ export default function RecruitmentApplyForm() {
               <div className="mt-8 flex flex-wrap gap-4">
                 <Link
                   href="/recruitment"
-                  className="inline-flex rounded-full bg-[#3B2A8F] px-8 py-3.5 text-sm font-medium text-white transition-[filter] hover:brightness-95"
+                  className={btnPrimary}
                 >
                   Back to careers
                 </Link>
                 <Link
                   href="/"
-                  className="inline-flex rounded-full border border-neutral-200 px-8 py-3.5 text-sm font-medium text-neutral-800 transition-colors hover:border-[#3B2A8F] hover:text-[#3B2A8F]"
+                  className={btnSecondary}
                 >
                   Home
                 </Link>
@@ -292,7 +293,7 @@ export default function RecruitmentApplyForm() {
 
               <button
                 type="submit"
-                className="w-full rounded-full bg-[#3B2A8F] px-8 py-4 text-sm font-medium text-white transition-[filter] hover:brightness-95 sm:w-auto"
+                className={`w-full sm:w-auto ${btnPrimary}`}
               >
                 Submit application
               </button>

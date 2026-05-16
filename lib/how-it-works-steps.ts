@@ -18,7 +18,7 @@ export const howItWorksSteps: HowItWorksStep[] = [
       "Our team is based in Warrington and rooted in the community we serve. Get in touch to speak with a friendly advisor about care for you or a loved one.",
     ],
     image:
-      "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1200&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778932857/centre-for-ageing-better-rQJ3xo-0WYE-unsplash_mhe64i.jpg",
     imageAlt: "Naptec care team in the community",
   },
   {
@@ -30,7 +30,7 @@ export const howItWorksSteps: HowItWorksStep[] = [
       "Your care journey begins with an informal, no-pressure conversation with one of our friendly advisors. They will learn about your situation, understand your loved one's current challenges, and answer any questions you have about home care.",
     ],
     image:
-      "https://images.unsplash.com/photo-1573497019940-1c28c88b4f0e?w=1200&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933400/pexels-kampus-8949833_tldckz.jpg",
     imageAlt: "Advisor speaking with a family about care options",
   },
   {
@@ -43,7 +43,7 @@ export const howItWorksSteps: HowItWorksStep[] = [
       "The same Care Professional, or a small consistent team, will usually visit regularly. We work hard to find someone who is a great match.",
     ],
     image:
-      "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1200&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933400/pexels-olly-3768131_mdki5q.jpg",
     imageAlt: "Care professional visiting a client at home",
   },
   {
@@ -55,7 +55,7 @@ export const howItWorksSteps: HowItWorksStep[] = [
       "When we have selected the best support team for your loved one's needs, we arrange an introduction in a relaxed setting so you can meet, ask questions, and lay the foundations of a strong care relationship.",
     ],
     image:
-      "https://images.unsplash.com/photo-1516307365426-b304ed83931e?w=1200&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933399/pexels-olly-3791666_nap6fe.jpg",
     imageAlt: "Client meeting their care professional",
   },
   {
@@ -68,7 +68,7 @@ export const howItWorksSteps: HowItWorksStep[] = [
       "Family involvement helps foster this process, and we stay in touch every step of the way to ensure a smooth transition and a lasting care relationship.",
     ],
     image:
-      "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933382/pexels-jsme-mila-523821574-18459193_nlhoas.jpg",
     imageAlt: "Care professional and client enjoying time together at home",
   },
 ];

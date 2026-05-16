@@ -3,6 +3,7 @@ import ContentCarousel from "@/components/ContentCarousel";
 import FaqTestimonials from "@/components/FaqTestimonials";
 import CareOfferingsCarousel from "@/components/CareOfferingsCarousel";
 import GetInTouch from "@/components/GetInTouch";
+import { btnPrimary } from "@/lib/layout";
 import type { ServicePage } from "@/lib/services";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,17 +12,17 @@ const serif = { fontFamily: "var(--font-playfair), ui-serif, serif" } as const;
 
 const defaultGuides = [
   {
-    image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&q=80",
+    image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778932857/centre-for-ageing-better-rQJ3xo-0WYE-unsplash_mhe64i.jpg",
     title: "Supporting mental health in older adults",
     href: "/advice-and-care/articles",
   },
   {
-    image: "https://images.unsplash.com/photo-1516307365426-b304ed83931e?w=800&q=80",
+    image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933400/pexels-kampus-8949833_tldckz.jpg",
     title: "How to make friends in your 50s and older",
     href: "/advice-and-care/how-to-age-well",
   },
   {
-    image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80",
+    image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933400/pexels-olly-3768131_mdki5q.jpg",
     title: "Friendly help with shopping and errands",
     href: "/advice-and-care/articles",
   },
@@ -108,7 +109,7 @@ export default function ServicePageContent({ service }: { service: ServicePage }
                   <p className="pt-2">
                     <Link
                       href={section.cta.href}
-                      className="inline-flex rounded-full bg-[#3B2A8F] px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white transition-colors hover:bg-[#2d1f6d]"
+                      className={btnPrimary}
                     >
                       {section.cta.label}
                     </Link>
@@ -120,7 +121,7 @@ export default function ServicePageContent({ service }: { service: ServicePage }
                       href={section.discoverMore.href ?? "/enquire"}
                       className="text-sm font-medium text-[#3B2A8F] underline underline-offset-4"
                     >
-                      Discover More
+                      Discover more
                     </Link>
                   </p>
                 ) : null}
@@ -174,7 +175,7 @@ export default function ServicePageContent({ service }: { service: ServicePage }
           <div className="flex flex-col justify-center">
             <Link
               href="/enquire"
-              className="inline-flex w-fit rounded-full bg-[#3B2A8F] px-8 py-3.5 text-sm font-semibold uppercase tracking-wide text-white transition-colors hover:bg-[#2d1f6d]"
+              className={`w-fit ${btnPrimary}`}
             >
               Enquire now
             </Link>
@@ -212,12 +213,12 @@ export default function ServicePageContent({ service }: { service: ServicePage }
                 href="/enquire"
                 className="mt-6 inline-block text-sm font-medium text-[#3B2A8F] underline underline-offset-4"
               >
-                Discover More
+                Discover more
               </Link>
             </div>
             <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm bg-[#f2f2f2]">
               <Image
-                src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1200&q=80"
+                src="https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933399/pexels-olly-3791666_nap6fe.jpg"
                 alt="Home care support"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"

@@ -14,6 +14,7 @@ import {
 } from "react";
 
 import { slugify } from "@/lib/slugify";
+import { btnPrimary } from "@/lib/layout";
 
 const whatWeDoColumns = [
   {
@@ -586,7 +587,7 @@ export default function Navbar() {
           {!onAuthPage ? (
             <AuthNav
               className="mt-4 w-full lg:hidden"
-              buttonClassName="mt-2 inline-flex w-full items-center justify-center rounded-full bg-[#3B2A8F] px-5 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-white shadow-[0_4px_20px_-6px_rgba(59,42,143,0.45)] transition-colors duration-200 hover:bg-[#2d1f6d]"
+              buttonClassName={`mt-2 w-full ${btnPrimary}`}
               onNavigate={closeMobile}
             />
           ) : null}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useAuth } from "@/components/AuthProvider";
+import { btnPrimary } from "@/lib/layout";
 import Link from "next/link";
 
 type AuthNavProps = {
@@ -39,7 +40,7 @@ export default function AuthNav({
       onClick={onNavigate}
       className={
         buttonClassName ||
-        `inline-flex items-center justify-center rounded-full bg-[#3B2A8F] px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.14em] text-white shadow-[0_4px_20px_-6px_rgba(59,42,143,0.45)] transition-all duration-200 hover:bg-[#2d1f6d] hover:shadow-[0_6px_24px_-6px_rgba(59,42,143,0.55)] ${className}`
+        `${btnPrimary} ${className}`
       }
     >
       Sign up

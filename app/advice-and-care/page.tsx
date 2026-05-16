@@ -2,7 +2,7 @@ import ContentCarousel, { type CarouselCard } from "@/components/ContentCarousel
 import GetInTouch from "@/components/GetInTouch";
 import NewsEvents from "@/components/NewsEvents";
 import { ArrowRight } from "lucide-react";
-import { containerClass, sectionTitle } from "@/lib/layout";
+import { containerClass } from "@/lib/layout";
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -22,7 +22,7 @@ const pillars = [
       "Naturally, cost comes to mind when looking for care. It can be a difficult and complex area to understand but we can provide guidance to support you.",
     href: "/advice-and-care/cost-of-care",
     image:
-      "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933382/pexels-jsme-mila-523821574-18459193_nlhoas.jpg",
   },
   {
     title: "FAQs",
@@ -30,7 +30,7 @@ const pillars = [
       "Whatever question you have, chances are you're not alone in having that thought. We hope our FAQs section gives you the information you need.",
     href: "/advice-and-care/faqs",
     image:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933365/pexels-kampus-7551662_ock8o9.jpg",
   },
   {
     title: "How to age well",
@@ -38,68 +38,68 @@ const pillars = [
       "We believe that ageing should be a positive experience. Care at home can help someone retain their independence, yet receive the care vital for their health and wellbeing.",
     href: "/advice-and-care/how-to-age-well",
     image:
-      "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933350/pexels-jsme-mila-523821574-29372720_niar1j.jpg",
   },
 ] as const;
 
 const guideCards: CarouselCard[] = [
   {
     image:
-      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933332/pexels-jsme-mila-523821574-18429571_lahwba.jpg",
     title: "Do all pensioners get winter fuel allowance?",
     href: "/advice-and-care/articles",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778932857/centre-for-ageing-better-rQJ3xo-0WYE-unsplash_mhe64i.jpg",
     title: "Home adaptations for disabled older people",
     href: "/advice-and-care/articles",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1516307365426-b304ed83931e?w=800&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933400/pexels-kampus-8949833_tldckz.jpg",
     title: "Signs of loneliness in older people",
     href: "/advice-and-care/articles",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933400/pexels-olly-3768131_mdki5q.jpg",
     title: "Symptoms of dehydration in older people",
     href: "/advice-and-care/articles",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933399/pexels-olly-3791666_nap6fe.jpg",
     title: "How to get power of attorney for ageing parents",
     href: "/advice-and-care/articles",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933382/pexels-jsme-mila-523821574-18459193_nlhoas.jpg",
     title: "How to get hot meals delivered for ageing adults",
     href: "/advice-and-care/articles",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933365/pexels-kampus-7551662_ock8o9.jpg",
     title: "A guide to common medical abbreviations on prescriptions",
     href: "/advice-and-care/articles",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933350/pexels-jsme-mila-523821574-29372720_niar1j.jpg",
     title: "Financial benefits for pensioners: topping up your income",
     href: "/advice-and-care/cost-of-care",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1587854692152-cf240093c7f3?w=800&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933332/pexels-jsme-mila-523821574-18429571_lahwba.jpg",
     title: "How to use a dosette box",
     href: "/advice-and-care/articles",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&q=80",
+      "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778932857/centre-for-ageing-better-rQJ3xo-0WYE-unsplash_mhe64i.jpg",
     title: "The best mobile phones for the elderly",
     href: "/advice-and-care/articles",
   },
@@ -176,7 +176,7 @@ export default function AdviceAndCarePage() {
             </div>
             <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm bg-[#f2f2f2]">
               <Image
-                src="https://images.unsplash.com/photo-1516307365426-b304ed83931e?w=1200&q=80"
+                src="https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933400/pexels-kampus-8949833_tldckz.jpg"
                 alt="Family having a conversation about care at home"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -283,7 +283,7 @@ export default function AdviceAndCarePage() {
           </div>
           <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm bg-[#f2f2f2]">
             <Image
-              src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1200&q=80"
+              src="https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933400/pexels-olly-3768131_mdki5q.jpg"
               alt="Caregiver supporting an older adult at home"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"

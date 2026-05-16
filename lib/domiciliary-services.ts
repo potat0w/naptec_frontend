@@ -30,7 +30,7 @@ export const homeHelpHousekeeping: ServicePage = {
         "Creating a space that your loved one feels more comfortable in",
         "Reducing your loved one's workload, allowing them to rest more",
       ],
-      image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1200&q=80",
+      image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933365/pexels-kampus-7551662_ock8o9.jpg",
       imageAlt: "Home help and housekeeping support",
     },
     {
@@ -40,9 +40,9 @@ export const homeHelpHousekeeping: ServicePage = {
         "Whatever their housekeeping needs, our caregivers can personalise a service and routine to suit you. From increased wellbeing to spending more time with family, there are so many benefits to arranging home help.",
         "Our service is also a great starting point that allows you to expand to cover more care needs over time, so your loved one can become familiar with their caregiver and get used to having someone around the home.",
       ],
-      image: "https://images.unsplash.com/photo-1556911220-bff31c812dba?w=1200&q=80",
+      image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933350/pexels-jsme-mila-523821574-29372720_niar1j.jpg",
       imageAlt: "Caregiver helping with household tasks",
-      cta: { label: "Request home help suited to you", href: "/enquire" },
+      cta: { label: "Enquire now", href: "/enquire" },
     },
   ],
   faqs: [
@@ -68,22 +68,22 @@ export const homeHelpHousekeeping: ServicePage = {
   guidesTitle: "Guides",
   guides: [
     {
-      image: "https://images.unsplash.com/photo-1556911220-bff31c812dba?w=800&q=80",
+      image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933332/pexels-jsme-mila-523821574-18429571_lahwba.jpg",
       title: "Laundry and cleaning support",
       href: "/advice-and-care/articles",
     },
     {
-      image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80",
+      image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778932857/centre-for-ageing-better-rQJ3xo-0WYE-unsplash_mhe64i.jpg",
       title: "Helping older adults with housekeeping",
       href: "/advice-and-care/articles",
     },
     {
-      image: "https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=800&q=80",
+      image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933400/pexels-kampus-8949833_tldckz.jpg",
       title: "Pet care support",
       href: "/advice-and-care/articles",
     },
     {
-      image: "https://images.unsplash.com/photo-1416879595882-3373a0488b5b?w=800&q=80",
+      image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933400/pexels-olly-3768131_mdki5q.jpg",
       title: "A guide to low maintenance gardens for the elderly",
       href: "/advice-and-care/how-to-age-well",
     },
@@ -116,7 +116,7 @@ export const personalCare: ServicePage = {
         "Helps families take a rest from caring",
         "Enables your loved one to remain living at home",
       ],
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1200&q=80",
+      image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933399/pexels-olly-3791666_nap6fe.jpg",
       imageAlt: "Personal care assistance at home",
     },
     {
@@ -126,7 +126,7 @@ export const personalCare: ServicePage = {
         "At Naptec we say no to one-size-fits-all care. Your caregiver will be matched with you, will take time to get to know you, and will build a trusted relationship to ensure that your care and support is personal to you and carried out in the way you want, to assist your independence.",
         "Our caregivers are highly trained in providing personal care assistance, including support with moving and positioning, helping with medication, mealtime support, assisting with bathing or showering, and continence care.",
       ],
-      image: "https://images.unsplash.com/photo-1516307365426-b304ed83931e?w=1200&q=80",
+      image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933382/pexels-jsme-mila-523821574-18459193_nlhoas.jpg",
       imageAlt: "Customised personal care at home",
     },
     {
@@ -134,7 +134,7 @@ export const personalCare: ServicePage = {
       paragraphs: [
         "Personal care at home means support is delivered where you feel most comfortable, with people you get to know over time. Whether you need help getting ready in the morning, support through the day, or assistance before bed, we adapt visits to your routine and preferences.",
       ],
-      image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1200&q=80",
+      image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933365/pexels-kampus-7551662_ock8o9.jpg",
       imageAlt: "Caregiver supporting personal care needs",
     },
   ],
@@ -179,22 +179,22 @@ export const personalCare: ServicePage = {
   guidesTitle: "Guides & Support",
   guides: [
     {
-      image: "https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=800&q=80",
+      image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933350/pexels-jsme-mila-523821574-29372720_niar1j.jpg",
       title: "The importance of personal hygiene care for older adults",
       href: "/advice-and-care/articles",
     },
     {
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80",
+      image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933332/pexels-jsme-mila-523821574-18429571_lahwba.jpg",
       title: "How to talk about personal hygiene with your loved one",
       href: "/advice-and-care/articles",
     },
     {
-      image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80",
+      image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778932857/centre-for-ageing-better-rQJ3xo-0WYE-unsplash_mhe64i.jpg",
       title: "5 essential hygiene routines to keep your loved ones healthy",
       href: "/advice-and-care/articles",
     },
     {
-      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80",
+      image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933400/pexels-kampus-8949833_tldckz.jpg",
       title: "Medication management",
       href: "/advice-and-care/articles",
     },
@@ -217,9 +217,9 @@ export const overnightCare: ServicePage = {
         "At Naptec, we understand that it is important for you to know that you or your loved one feels safe and well supported at home no matter the time of day or night. Our experienced and dedicated caregivers are available to provide care and support during the night, whether this be as a sleep-in service or a waking night service – our overnight care is tailored for whatever you might need.",
         "Overnight care is perfect for those who are elderly or unwell, and may either require frequent assistance during the night hours – such as with administering medication or help reaching the bathroom – or who simply want a comforting presence nearby should they need it. Having overnight care at home means that you or your loved one can remain living independently at home with the care and support you need to stay safe and well.",
       ],
-      image: "https://images.unsplash.com/photo-1520206183501-b80da4e6a791?w=1200&q=80",
+      image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933400/pexels-olly-3768131_mdki5q.jpg",
       imageAlt: "Overnight care at home",
-      cta: { label: "Request overnight care suited to you", href: "/enquire" },
+      cta: { label: "Enquire now", href: "/enquire" },
     },
     {
       heading: "Sleep-in Service",
@@ -227,7 +227,7 @@ export const overnightCare: ServicePage = {
         "A sleep-in service is when the caregiver sleeps in your home while you sleep. This type of service is ideal for those who do not need care during the night, but who are uncomfortable being alone and want the reassurance of knowing there is someone nearby should they need help. This can especially be the case for those with progressive conditions such as dementia that can leave someone feeling confused, disoriented, or stressed – having a familiar face on hand can alleviate feelings of isolation or loneliness.",
         "Knowing there is a caregiver sleeping close by gives peace of mind and can improve overall wellbeing, because you or your loved one are able to sleep well without anxiety. The sleep-in service may also include assisting you to bed in the evening or preparing breakfast when you wake in the morning.",
       ],
-      image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1200&q=80",
+      image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933399/pexels-olly-3791666_nap6fe.jpg",
       imageAlt: "Sleep-in overnight care service",
       discoverMore: { href: "/enquire" },
     },
@@ -237,7 +237,7 @@ export const overnightCare: ServicePage = {
         "A waking night service is when the caregiver is awake and on duty throughout the night at your home. This service is ideal for those who wake frequently throughout the night needing care and support, such as assistance to the bathroom, personal or continence care, regular repositioning especially after an accident or injury, medication administration, or help orientating to the time of day in order to return to sleep.",
         "Our care is always personalised to your needs, meaning we can revisit your overnight care options whenever you require, or if there is a change in circumstances. Whatever your situation, our caregivers are on hand to ensure you live well at home, your way.",
       ],
-      image: "https://images.unsplash.com/photo-1519494026891-96105836061d?w=1200&q=80",
+      image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933382/pexels-jsme-mila-523821574-18459193_nlhoas.jpg",
       imageAlt: "Waking night care service",
       discoverMore: { href: "/enquire" },
     },
@@ -265,17 +265,17 @@ export const overnightCare: ServicePage = {
   guidesTitle: "Guides & Support",
   guides: [
     {
-      image: "https://images.unsplash.com/photo-1520206183501-b80da4e6a791?w=800&q=80",
+      image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933365/pexels-kampus-7551662_ock8o9.jpg",
       title: "What is Overnight Care?",
       href: "/advice-and-care/articles",
     },
     {
-      image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=800&q=80",
+      image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933350/pexels-jsme-mila-523821574-29372720_niar1j.jpg",
       title: "Healthy sleep and insomnia in older adults",
       href: "/advice-and-care/how-to-age-well",
     },
     {
-      image: "https://images.unsplash.com/photo-1519494026891-96105836061d?w=800&q=80",
+      image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933332/pexels-jsme-mila-523821574-18429571_lahwba.jpg",
       title: "Sleep-in vs waking night care",
       href: "/advice-and-care/articles",
     },
@@ -308,7 +308,7 @@ export const dayCare: ServicePage = {
         "Helps families take a rest from caring",
         "Is specialised and expert",
       ],
-      image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&q=80",
+      image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778932857/centre-for-ageing-better-rQJ3xo-0WYE-unsplash_mhe64i.jpg",
       imageAlt: "Day care at home",
     },
     {
@@ -317,9 +317,9 @@ export const dayCare: ServicePage = {
         "Day care at home means that a caregiver will work with you to develop a plan for activities that are personalised to you and enable you to live your life your way. Day care at Naptec is tailored to your needs, whether that is through physical activities such as walking or reminiscence activities to stimulate your memories.",
         "It can also include rehabilitative sessions as recommended by other professionals such as physiotherapists and occupational therapists to assist your recovery. Our experienced caregivers are highly trained and will provide a day care service for adults that includes companionship, home help, personal care and specialist care.",
       ],
-      image: "https://images.unsplash.com/photo-1516307365426-b304ed83931e?w=1200&q=80",
+      image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933400/pexels-kampus-8949833_tldckz.jpg",
       imageAlt: "Daytime activities with a caregiver",
-      cta: { label: "Take the first step", href: "/enquire" },
+      cta: { label: "Enquire now", href: "/enquire" },
     },
   ],
   faqs: [
@@ -339,17 +339,17 @@ export const dayCare: ServicePage = {
   guidesTitle: "Advice & Support",
   guides: [
     {
-      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80",
+      image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933400/pexels-olly-3768131_mdki5q.jpg",
       title: "Looking for respite care? Look no further than the home",
       href: "/what-we-do/respite-care",
     },
     {
-      image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80",
+      image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933399/pexels-olly-3791666_nap6fe.jpg",
       title: "Making communities dementia friendly",
       href: "/advice-and-care/articles",
     },
     {
-      image: "https://images.unsplash.com/photo-1516307365426-b304ed83931e?w=800&q=80",
+      image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933382/pexels-jsme-mila-523821574-18459193_nlhoas.jpg",
       title: "New dementia training",
       href: "/advice-and-care/articles",
     },
@@ -383,7 +383,7 @@ export const respiteCare: ServicePage = {
         "It is delivered by caregivers matched to you and your loved one",
         "It is given by highly trained and experienced caregivers",
       ],
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1200&q=80",
+      image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933365/pexels-kampus-7551662_ock8o9.jpg",
       imageAlt: "Respite care at home",
     },
     {
@@ -393,9 +393,9 @@ export const respiteCare: ServicePage = {
         "We can also provide home visits to support you to care for your loved one if you need time to get back on your feet – for example after a hospital stay or if you have been unwell.",
         "Our caregivers are highly trained and experienced in providing a variety of care services including companionship, personal care and dementia care.",
       ],
-      image: "https://images.unsplash.com/photo-1516307365426-b304ed83931e?w=1200&q=80",
+      image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933350/pexels-jsme-mila-523821574-29372720_niar1j.jpg",
       imageAlt: "Family carer taking a well-deserved break",
-      cta: { label: "Respite care tailored to you", href: "/enquire" },
+      cta: { label: "Enquire now", href: "/enquire" },
     },
   ],
   faqs: [
@@ -475,27 +475,27 @@ export const respiteCare: ServicePage = {
   guidesTitle: "Guides",
   guides: [
     {
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80",
+      image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933332/pexels-jsme-mila-523821574-18429571_lahwba.jpg",
       title: "What is respite care?",
       href: "/advice-and-care/articles",
     },
     {
-      image: "https://images.unsplash.com/photo-1516307365426-b304ed83931e?w=800&q=80",
+      image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778932857/centre-for-ageing-better-rQJ3xo-0WYE-unsplash_mhe64i.jpg",
       title: "The benefits of in-home respite care",
       href: "/advice-and-care/articles",
     },
     {
-      image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80",
+      image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933400/pexels-kampus-8949833_tldckz.jpg",
       title: "How long can respite care last?",
       href: "/advice-and-care/cost-of-care",
     },
     {
-      image: "https://images.unsplash.com/photo-1559027615-cd4628901751?w=800&q=80",
+      image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933400/pexels-olly-3768131_mdki5q.jpg",
       title: "Carer's burnout",
       href: "/advice-and-care/how-to-age-well",
     },
     {
-      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80",
+      image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933399/pexels-olly-3791666_nap6fe.jpg",
       title: "Who pays for respite care?",
       href: "/advice-and-care/cost-of-care",
     },

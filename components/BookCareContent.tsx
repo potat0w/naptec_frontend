@@ -1,6 +1,7 @@
 "use client";
 
 import { useAuth } from "@/components/AuthProvider";
+import { btnPrimary } from "@/lib/layout";
 import Link from "next/link";
 import { useState, type FormEvent } from "react";
 
@@ -67,7 +68,7 @@ export default function BookCareContent() {
             </p>
             <Link
               href="/"
-              className="mt-8 w-fit rounded-full bg-[#3B2A8F] px-8 py-3.5 text-sm font-medium text-white transition-colors hover:bg-[#2d1f6e]"
+              className={`mt-8 w-fit ${btnPrimary}`}
             >
               Back to home
             </Link>
@@ -165,7 +166,7 @@ export default function BookCareContent() {
             <div className="mt-10 flex justify-end">
               <button
                 type="submit"
-                className="rounded-full bg-[#3B2A8F] px-12 py-3.5 text-sm font-semibold text-white transition-[filter] hover:brightness-95"
+                className={btnPrimary}
               >
                 Request caregiver
               </button>

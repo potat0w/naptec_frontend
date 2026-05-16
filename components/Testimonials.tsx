@@ -1,5 +1,6 @@
 "use client";
 
+import { images } from "@/lib/images";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { useCallback, useState } from "react";
@@ -8,16 +9,14 @@ const serif = { fontFamily: "var(--font-playfair), ui-serif, serif" } as const;
 
 const slides = [
   {
-    image:
-      "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1200&q=80",
+    image: images.caregiver,
     alt: "A care professional speaking with an older adult at home",
     author: "Paul, Client",
     quote:
       "Naptec provide first class care. My care professionals are patient, kind and very reliable. I am very happy with the service they provide.",
   },
   {
-    image:
-      "https://images.unsplash.com/photo-1477396149883-496cf7042b91?w=1200&q=80",
+    image: images.handsCare,
     alt: "An older adult smiling outdoors",
     author: "Elisie, Client",
     quote:
@@ -60,7 +59,7 @@ export default function Testimonials() {
         ))}
       </div>
 
-      <div className="flex flex-col justify-center bg-[#3B2A8F] px-6 py-14 text-white sm:px-10 lg:px-14 lg:py-20">
+      <div className="flex flex-col justify-center bg-brand px-6 py-14 text-white sm:px-10 lg:px-14 lg:py-20">
         <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/70">
           Client testimonial
         </p>
@@ -87,7 +86,7 @@ export default function Testimonials() {
           <button
             type="button"
             onClick={() => go(1)}
-            className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-[#3B2A8F] transition-colors hover:bg-white/90"
+            className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-brand transition-colors hover:bg-white/90"
             aria-label="Next testimonial"
           >
             <ChevronRight className="h-5 w-5" strokeWidth={2} />

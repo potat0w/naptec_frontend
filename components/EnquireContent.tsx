@@ -5,6 +5,7 @@ import {
   enquiryTypes,
   type EnquiryType,
 } from "@/lib/enquire-options";
+import { btnPrimary, btnSecondary } from "@/lib/layout";
 import Link from "next/link";
 import { useState, type FormEvent } from "react";
 
@@ -95,21 +96,21 @@ export default function EnquireContent({ titleId, onClose }: EnquireContentProps
                   <button
                     type="button"
                     onClick={onClose}
-                    className="w-fit rounded-full bg-[#3B2A8F] px-8 py-3.5 text-sm font-medium text-white transition-colors hover:bg-[#2d1f6d]"
+                    className={`w-fit ${btnPrimary}`}
                   >
                     Close
                   </button>
                 ) : (
                   <Link
                     href="/"
-                    className="w-fit rounded-full bg-[#3B2A8F] px-8 py-3.5 text-sm font-medium text-white transition-colors hover:bg-[#2d1f6d]"
+                    className={`w-fit ${btnPrimary}`}
                   >
                     Back to home
                   </Link>
                 )}
                 <Link
                   href="/book"
-                  className="w-fit rounded-full border border-[#3B2A8F] px-8 py-3.5 text-sm font-medium text-[#3B2A8F] transition-colors hover:bg-[#3B2A8F]/5"
+                  className={`w-fit ${btnSecondary}`}
                 >
                   Book a caregiver
                 </Link>
@@ -253,7 +254,7 @@ export default function EnquireContent({ titleId, onClose }: EnquireContentProps
               <div className="pt-2">
                 <button
                   type="submit"
-                  className="w-full rounded-full bg-[#3B2A8F] px-8 py-3.5 text-sm font-semibold text-white shadow-[0_8px_28px_-8px_rgba(59,42,143,0.45)] transition-all hover:bg-[#2d1f6d] hover:shadow-[0_10px_32px_-8px_rgba(59,42,143,0.5)] sm:w-auto sm:min-w-[12rem]"
+                  className={`w-full sm:w-auto sm:min-w-[12rem] ${btnPrimary}`}
                 >
                   Send enquiry
                 </button>

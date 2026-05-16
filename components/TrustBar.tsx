@@ -28,7 +28,7 @@ export default function TrustBar() {
 
   return (
     <section
-      className="overflow-hidden border-t border-white/10 bg-[#3B2A8F] text-white"
+      className="overflow-hidden border-t border-white/10 bg-brand text-white"
       aria-label="Why families choose Naptec"
     >
       <div className="py-8 sm:py-10">

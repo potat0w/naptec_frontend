@@ -42,27 +42,27 @@ const pillars = [
 
 const guideCards = [
   {
-    image: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800&q=80",
+    image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933399/pexels-olly-3791666_nap6fe.jpg",
     title: "Financial benefits for pensioners: topping up your income",
     href: "/advice-and-care/cost-of-care",
   },
   {
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80",
+    image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933382/pexels-jsme-mila-523821574-18459193_nlhoas.jpg",
     title: "How to get power of attorney for ageing parents",
     href: "/advice-and-care/articles",
   },
   {
-    image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&q=80",
+    image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933365/pexels-kampus-7551662_ock8o9.jpg",
     title: "The best mobile phones for the elderly",
     href: "/advice-and-care/articles",
   },
   {
-    image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80",
+    image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933350/pexels-jsme-mila-523821574-29372720_niar1j.jpg",
     title: "How to get hot meals delivered for ageing adults",
     href: "/advice-and-care/articles",
   },
   {
-    image: "https://images.unsplash.com/photo-1516307365426-b304ed83931e?w=800&q=80",
+    image: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933332/pexels-jsme-mila-523821574-18429571_lahwba.jpg",
     title: "Festive Christmas games for older adults",
     href: "/advice-and-care/articles",
   },
@@ -167,9 +167,9 @@ export default function HowToAgeWellPage() {
 
         <ContentBlock
           heading="At Naptec, we're here to help you age well"
-          image="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&q=80"
+          image="https://res.cloudinary.com/dw1n6qugv/image/upload/v1778932857/centre-for-ageing-better-rQJ3xo-0WYE-unsplash_mhe64i.jpg"
           imageAlt="Older adults enjoying time together at home"
-          cta={{ label: "Learn More", href: "/advice-and-care/cost-of-care" }}
+          cta={{ label: "Learn more", href: "/advice-and-care/cost-of-care" }}
         >
           <p>
             Growing old can be difficult, both for the person who is ageing and
@@ -187,7 +187,7 @@ export default function HowToAgeWellPage() {
 
         <ContentBlock
           heading="How do people react to ageing?"
-          image="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1200&q=80"
+          image="https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933400/pexels-kampus-8949833_tldckz.jpg"
           imageAlt="Family conversation about ageing and care"
           reverse
           cta={{ label: "Discover how we can help you", href: "/enquire" }}
@@ -220,7 +220,7 @@ export default function HowToAgeWellPage() {
 
         <ContentBlock
           heading="Can home care slow ageing?"
-          image="https://images.unsplash.com/photo-1516307365426-b304ed83931e?w=1200&q=80"
+          image="https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933400/pexels-olly-3768131_mdki5q.jpg"
           imageAlt="Caregiver supporting an older adult at home"
         >
           <p>

@@ -1,7 +1,16 @@
-"use client";
-
 import {
-  ChevronLeft,
+  bodyText,
+  btnPrimary,
+  cardTitle,
+  containerClass,
+  labelEyebrow,
+  sectionBgWhite,
+  sectionPy,
+  sectionTitle,
+} from "@/lib/layout";
+import { slugify } from "@/lib/slugify";
+import {
+  CalendarHeart,
   ChevronRight,
   HeartPulse,
   Home,
@@ -9,16 +18,14 @@ import {
   Users,
   type LucideIcon,
 } from "lucide-react";
-import { containerClass, headingSerif, sectionPy, sectionTitle } from "@/lib/layout";
-import { slugify } from "@/lib/slugify";
 import Link from "next/link";
-import { useCallback, useRef } from "react";
 
 type ServiceLine = { label: string; href: string };
 
 type ServiceCard = {
   key: string;
   title: string;
+  href: string;
   Icon: LucideIcon;
   services: readonly ServiceLine[] | null;
   description: string | null;
@@ -35,6 +42,7 @@ const cards: ServiceCard[] = [
   {
     key: "home-care",
     title: "Home Care",
+    href: "/what-we-do/domiciliary-care",
     Icon: Home,
     services: [
       line("Companionship", "companionship"),
@@ -49,6 +57,7 @@ const cards: ServiceCard[] = [
   {
     key: "specialist",
     title: "Specialist Care",
+    href: "/what-we-do/specialist-care",
     Icon: HeartPulse,
     services: [
       line("Dementia & Alzheimer's", "dementia-and-alzheimers"),
@@ -64,6 +73,7 @@ const cards: ServiceCard[] = [
   {
     key: "live-in",
     title: "Live-In Care",
+    href: "/what-we-do/live-in-care",
     Icon: Users,
     services: null,
     description:
@@ -72,6 +82,7 @@ const cards: ServiceCard[] = [
   {
     key: "domiciliary",
     title: "Domiciliary Care",
+    href: "/what-we-do/domiciliary-care",
     Icon: User,
     services: [
       line("Companionship", "companionship"),
@@ -82,107 +93,90 @@ const cards: ServiceCard[] = [
     ],
     description: null,
   },
+  {
+    key: "respite",
+    title: "Respite Care",
+    href: "/what-we-do/respite-care",
+    Icon: CalendarHeart,
+    services: null,
+    description:
+      "Respite care gives family carers time to rest while your loved one receives consistent, compassionate support from a trusted Naptec caregiver at home.",
+  },
 ];
 
-const cardTitleClass = `${headingSerif} text-[1.75rem] leading-tight sm:text-[2rem] lg:text-[2.125rem]`;
-
-export default function HomeCareServices() {
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  const scrollBy = useCallback((direction: -1 | 1) => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const first = el.firstElementChild;
-    const step =
-      first instanceof HTMLElement
-        ? first.offsetWidth + 24
-        : el.clientWidth * 0.9;
-    el.scrollBy({ left: direction * step, behavior: "smooth" });
-  }, []);
+function ServiceCardBlock({ card }: { card: ServiceCard }) {
+  const Icon = card.Icon;
 
   return (
+    <article className="flex h-full min-h-[360px] flex-col bg-surface-card p-8 sm:min-h-[380px] sm:p-10">
+      <Icon
+        className="mx-auto h-10 w-10 shrink-0 text-brand sm:h-11 sm:w-11"
+        strokeWidth={1.5}
+        aria-hidden
+      />
+      <h3 className={`mt-6 shrink-0 text-center ${cardTitle}`}>
+        {card.title}
+      </h3>
+
+      {card.description ? (
+        <p className="mt-5 flex-1 text-center text-sm leading-[1.65] text-body">
+          {card.description}
+        </p>
+      ) : (
+        <ul className="mt-5 flex-1 text-center">
+          {card.services?.map((item) => (
+            <li
+              key={item.label}
+              className="py-[0.35rem] text-sm leading-[1.65] text-body"
+            >
+              <Link href={item.href} className="transition-colors hover:text-brand">
+                {item.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      <Link
+        href={card.href}
+        className="mt-auto inline-flex items-center justify-center gap-1 self-center pt-8 text-xs font-bold uppercase tracking-[0.14em] text-brand transition-colors hover:text-brand-dark"
+      >
+        Learn more
+        <ChevronRight className="h-3.5 w-3.5" strokeWidth={2.5} aria-hidden />
+      </Link>
+    </article>
+  );
+}
+
+export default function HomeCareServices() {
+  return (
     <section
-      className={`overflow-hidden bg-white ${sectionPy}`}
+      className={`${sectionBgWhite} ${sectionPy}`}
       aria-labelledby="home-care-services-heading"
     >
       <div className={containerClass}>
-        <div className="flex flex-col gap-8 sm:gap-10 lg:flex-row lg:items-end lg:justify-between">
-          <div className="max-w-2xl">
-            <h2 id="home-care-services-heading" className={sectionTitle}>
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 lg:items-start lg:gap-6">
+          <div className="flex flex-col items-start self-start">
+            <p className={labelEyebrow}>Our services</p>
+            <h2 id="home-care-services-heading" className={`mt-4 ${sectionTitle}`}>
               Our Home Care Services
             </h2>
-            <p className="mt-4 text-base leading-relaxed text-neutral-600 sm:mt-5 sm:text-lg sm:leading-relaxed">
+            <p className={`mt-7 max-w-md ${bodyText}`}>
               We can help you make an informed, compassionate choice for your
               loved one, with bespoke packages to suit their domiciliary care
               needs.
             </p>
-          </div>
-          <div className="flex shrink-0 items-center gap-3 xl:hidden">
-            <button
-              type="button"
-              onClick={() => scrollBy(-1)}
-              className="flex h-12 w-12 items-center justify-center rounded-full bg-[#e8e8e4] text-neutral-700 transition-[filter] hover:brightness-95"
-              aria-label="Previous service"
+            <Link
+              href="/what-we-do/domiciliary-care"
+              className={`mt-8 w-fit ${btnPrimary}`}
             >
-              <ChevronLeft className="h-5 w-5" strokeWidth={2} />
-            </button>
-            <button
-              type="button"
-              onClick={() => scrollBy(1)}
-              className="flex h-12 w-12 items-center justify-center rounded-full bg-[#3B2A8F] text-white transition-[filter] hover:brightness-95"
-              aria-label="Next service"
-            >
-              <ChevronRight className="h-5 w-5" strokeWidth={2} />
-            </button>
+              View services
+            </Link>
           </div>
-        </div>
 
-        <div
-          ref={scrollRef}
-          className="-mx-4 mt-10 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth px-4 pb-1 [-ms-overflow-style:none] [scrollbar-width:none] sm:-mx-6 sm:mt-12 sm:gap-6 sm:px-6 lg:mx-0 lg:px-0 xl:mt-14 xl:grid xl:grid-cols-4 xl:gap-6 xl:overflow-visible xl:snap-none [&::-webkit-scrollbar]:hidden"
-        >
-          {cards.map((card) => {
-            const Icon = card.Icon;
-            return (
-              <article
-                key={card.key}
-                className="group relative flex w-[min(82vw,360px)] shrink-0 snap-start flex-col rounded-xl border border-neutral-200/80 bg-[#f4f4f2] p-8 transition-colors duration-300 hover:border-[#3B2A8F] hover:bg-[#3B2A8F] sm:w-[min(38vw,400px)] sm:p-9 xl:w-auto xl:min-w-0 xl:p-10"
-              >
-                <Icon
-                  className="h-9 w-9 text-[#3B2A8F] transition-colors duration-300 group-hover:text-white sm:h-10 sm:w-10"
-                  strokeWidth={1.5}
-                  aria-hidden
-                />
-                <h3
-                  className={`mt-5 text-[#3B2A8F] transition-colors duration-300 group-hover:text-white sm:mt-6 ${cardTitleClass}`}
-                >
-                  {card.title}
-                </h3>
-                <hr
-                  className="my-5 w-10 border-t-2 border-[#3B2A8F]/25 transition-colors duration-300 group-hover:border-white/40 sm:my-6"
-                  aria-hidden
-                />
-                {card.description ? (
-                  <p className="text-[0.9375rem] leading-[1.85] text-neutral-700 transition-colors duration-300 group-hover:text-white/95 sm:text-base sm:leading-[1.9]">
-                    {card.description}
-                  </p>
-                ) : (
-                  <ul className="space-y-0 text-[0.9375rem] leading-[2] sm:text-base sm:leading-[2.1]">
-                    {card.services?.map((item) => (
-                      <li key={item.label}>
-                        <Link
-                          href={item.href}
-                          className="text-neutral-800 transition-colors duration-300 hover:underline group-hover:text-white"
-                        >
-                          {item.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </article>
-            );
-          })}
+          {cards.map((card) => (
+            <ServiceCardBlock key={card.key} card={card} />
+          ))}
         </div>
       </div>
     </section>
