@@ -2,16 +2,9 @@
 
 import FormSplitLayout from "@/components/FormSplitLayout";
 import {
-  careHomes,
-  enquiryTypes,
-  type EnquiryType,
-} from "@/lib/enquire-options";
-import {
   formCheckboxClass,
   formInputClass,
-  formLabelClass,
   formRequiredClass,
-  formSelectClass,
   formTextareaClass,
   headingFont,
 } from "@/lib/auth/form-styles";
@@ -25,14 +18,9 @@ type EnquireContentProps = {
   onClose?: () => void;
 };
 
-function radioPillClass(selected: boolean) {
-  return selected
-    ? "border-brand bg-brand text-white shadow-[0_8px_24px_-10px_rgba(100,69,150,0.45)]"
-    : "border-surface-card bg-surface-alt/60 text-body hover:border-brand/35 hover:bg-white";
-}
+const enquireLabelClass = "mb-1.5 block text-sm font-medium text-body";
 
 export default function EnquireContent({ titleId, onClose }: EnquireContentProps) {
-  const [enquiryType, setEnquiryType] = useState<EnquiryType>("email");
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -41,7 +29,7 @@ export default function EnquireContent({ titleId, onClose }: EnquireContentProps
   };
 
   const form = (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-3.5">
       {submitted ? (
         <div className="py-4 text-center sm:text-left">
           <div
@@ -91,66 +79,20 @@ export default function EnquireContent({ titleId, onClose }: EnquireContentProps
         </div>
       ) : (
         <>
-          <div className="border-b border-surface-card pb-6">
+          <div className="pb-3">
             <p
               className="text-xl font-normal text-neutral-900 sm:text-2xl"
               style={headingFont}
             >
               Your enquiry
             </p>
-            <p className="mt-1.5 text-sm text-muted">
+            <p className="mt-1 text-sm text-muted">
               Tell us how we can help — fields marked * are required.
             </p>
           </div>
 
           <label className="block">
-            <span className={formLabelClass}>
-              Care home <span className={formRequiredClass}>*</span>
-            </span>
-            <select
-              name="careHome"
-              required
-              defaultValue=""
-              className={`${formSelectClass} text-neutral-500 [&:valid]:text-neutral-900`}
-            >
-              <option value="" disabled>
-                Please select a care home…
-              </option>
-              {careHomes.map((home) => (
-                <option key={home.value} value={home.value}>
-                  {home.label}
-                </option>
-              ))}
-            </select>
-          </label>
-
-          <fieldset>
-            <legend className={formLabelClass}>
-              Please select enquiry type:{" "}
-              <span className={formRequiredClass}>*</span>
-            </legend>
-            <div className="mt-3 grid gap-3 sm:grid-cols-3">
-              {enquiryTypes.map((type) => (
-                <label
-                  key={type.value}
-                  className={`flex cursor-pointer items-center justify-center rounded-2xl border px-3 py-3.5 text-center text-sm font-medium transition-all duration-200 ${radioPillClass(enquiryType === type.value)}`}
-                >
-                  <input
-                    type="radio"
-                    name="enquiryType"
-                    value={type.value}
-                    checked={enquiryType === type.value}
-                    onChange={() => setEnquiryType(type.value)}
-                    className="sr-only"
-                  />
-                  {type.label}
-                </label>
-              ))}
-            </div>
-          </fieldset>
-
-          <label className="block">
-            <span className={formLabelClass}>
+            <span className={enquireLabelClass}>
               Full name <span className={formRequiredClass}>*</span>
             </span>
             <input
@@ -163,7 +105,7 @@ export default function EnquireContent({ titleId, onClose }: EnquireContentProps
           </label>
 
           <label className="block">
-            <span className={formLabelClass}>
+            <span className={enquireLabelClass}>
               Phone number <span className={formRequiredClass}>*</span>
             </span>
             <input
@@ -176,7 +118,7 @@ export default function EnquireContent({ titleId, onClose }: EnquireContentProps
           </label>
 
           <label className="block">
-            <span className={formLabelClass}>
+            <span className={enquireLabelClass}>
               Email address <span className={formRequiredClass}>*</span>
             </span>
             <input
@@ -189,13 +131,13 @@ export default function EnquireContent({ titleId, onClose }: EnquireContentProps
           </label>
 
           <label className="block">
-            <span className={formLabelClass}>Message</span>
-            <textarea name="message" rows={4} className={formTextareaClass} />
+            <span className={enquireLabelClass}>Message</span>
+            <textarea name="message" rows={2} className={formTextareaClass} />
           </label>
 
-          <fieldset className="space-y-4 rounded-2xl border border-surface-card/80 bg-surface-alt/40 px-4 py-5 sm:px-5">
+          <fieldset className="space-y-2.5 rounded-2xl border border-surface-card/80 bg-surface-alt/40 px-3.5 py-3.5 sm:px-4">
             <legend className="sr-only">Consent</legend>
-            <label className="flex cursor-pointer gap-3 text-sm leading-relaxed text-body">
+            <label className="flex cursor-pointer gap-2.5 text-sm leading-snug text-body">
               <input
                 type="checkbox"
                 name="privacyConsent"
@@ -214,7 +156,7 @@ export default function EnquireContent({ titleId, onClose }: EnquireContentProps
                 <span className={formRequiredClass}>*</span>
               </span>
             </label>
-            <label className="flex cursor-pointer gap-3 text-sm leading-relaxed text-body">
+            <label className="flex cursor-pointer gap-2.5 text-sm leading-snug text-body">
               <input
                 type="checkbox"
                 name="marketingConsent"
@@ -262,10 +204,12 @@ export default function EnquireContent({ titleId, onClose }: EnquireContentProps
     <FormSplitLayout
       imageSrc={images.handsCare}
       imageAlt="Care professional holding hands with a client"
+      imageTextPosition="center"
+      formPanelClassName="pt-4 pb-6 sm:pt-5 sm:pb-8 lg:pt-6 lg:pb-10"
       titleId={titleId}
       eyebrow="Get in touch"
       title="Start a care enquiry"
-      subtitle="Select your enquiry type, home of interest and complete the form. Our team will be in touch shortly."
+      subtitle="Complete the form below and our team will be in touch shortly."
       aside={
         <>
           <p className="text-sm leading-relaxed text-white/90">

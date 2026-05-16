@@ -43,7 +43,7 @@ export default function LoginForm() {
 
   return (
     <>
-      <div className="pb-3">
+      <div className="pb-2">
         <p className={formSectionTitleClass} style={headingFont}>
           Sign in
         </p>
@@ -52,7 +52,7 @@ export default function LoginForm() {
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="mt-3 space-y-3">
+      <form onSubmit={handleSubmit} className="mt-2 space-y-2">
         {error ? (
           <p className={formErrorClass} role="alert">
             {error}

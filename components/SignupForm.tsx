@@ -60,7 +60,7 @@ export default function SignupForm() {
 
   return (
     <>
-      <div className="pb-3">
+      <div className="pb-2">
         <p className={formSectionTitleClass} style={headingFont}>
           Your details
         </p>
@@ -69,15 +69,15 @@ export default function SignupForm() {
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="mt-3 space-y-3">
+      <form onSubmit={handleSubmit} className="mt-2 space-y-2">
         {error ? (
           <p className={formErrorClass} role="alert">
             {error}
           </p>
         ) : null}
 
-        <div className="space-y-3">
-          <div className="grid gap-3 sm:grid-cols-2">
+        <div className="space-y-2">
+          <div className="grid gap-2 sm:grid-cols-2">
             <label className="block">
               <span className={authLabelClass}>First name *</span>
               <input
