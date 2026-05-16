@@ -17,6 +17,8 @@ export default async function LoginPage({ searchParams }: PageProps) {
 
   return (
     <AuthShell
+      formPanelAlign="center"
+      formPanelClassName="py-10 sm:py-12 lg:py-14"
       eyebrow="Book a caregiver"
       title="Welcome back"
       subtitle="Sign in to continue booking care with your Naptec account."

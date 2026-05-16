@@ -1,5 +1,6 @@
 import AboutUsSection from "@/components/AboutUsSection";
 import CqcSection from "@/components/CqcSection";
+import FadeIn from "@/components/FadeIn";
 import GetInTouch from "@/components/GetInTouch";
 import HomeHero from "@/components/HomeHero";
 import RecruitmentCta from "@/components/RecruitmentCta";
@@ -21,16 +22,36 @@ export default function Home() {
   return (
     <main className="flex flex-1 flex-col">
       <HomeHero />
-      <TrustBar />
-      <AboutUsSection />
-      <CqcSection />
-      <PopularServices />
-      <WhyUs />
-      <HomeCareServices />
-      <Testimonials />
-      <GetInTouch />
-      <RecruitmentCta />
-      <NewsEvents />
+      <FadeIn when="mount" delay={400}>
+        <TrustBar />
+      </FadeIn>
+      <FadeIn>
+        <AboutUsSection />
+      </FadeIn>
+      <FadeIn>
+        <CqcSection />
+      </FadeIn>
+      <FadeIn>
+        <PopularServices />
+      </FadeIn>
+      <FadeIn>
+        <WhyUs />
+      </FadeIn>
+      <FadeIn>
+        <HomeCareServices />
+      </FadeIn>
+      <FadeIn>
+        <Testimonials />
+      </FadeIn>
+      <FadeIn>
+        <GetInTouch />
+      </FadeIn>
+      <FadeIn>
+        <RecruitmentCta />
+      </FadeIn>
+      <FadeIn>
+        <NewsEvents />
+      </FadeIn>
     </main>
   );
 }

@@ -26,16 +26,16 @@ export default function HomeHero() {
         <div
           className={`${containerClass} relative z-10 order-2 flex flex-col justify-center py-10 sm:py-14 lg:order-1 lg:col-start-1 lg:row-start-1 lg:max-w-none lg:py-20 xl:pr-8`}
         >
-          <p className={labelEyebrow}>Welcome to Naptec</p>
-          <h1 className="mt-4 max-w-lg text-[2.75rem] font-normal leading-[1.08] text-neutral-900 sm:text-5xl lg:text-[3.5rem] xl:text-6xl">
+          <p className={`${labelEyebrow} animate-fade-up`}>Welcome to Naptec</p>
+          <h1 className="animate-fade-up animate-fade-up-delay-1 mt-4 max-w-lg text-[2.75rem] font-normal leading-[1.08] text-neutral-900 sm:text-5xl lg:text-[3.5rem] xl:text-6xl">
             Quality home care for your <em className={accentItalic}>loved ones</em>
           </h1>
-          <p className="mt-6 max-w-md text-base leading-relaxed text-body sm:text-lg sm:leading-[1.7]">
+          <p className="animate-fade-up animate-fade-up-delay-2 mt-6 max-w-md text-base leading-relaxed text-body sm:text-lg sm:leading-[1.7]">
             Compassionate, reliable care that helps your loved one stay safe,
             comfortable, and independent in the place they know best.
           </p>
 
-          <div className="mt-9 sm:mt-10">
+          <div className="animate-fade-up animate-fade-up-delay-3 mt-9 sm:mt-10">
             <Link href="/enquire" className={btnPrimaryLg}>
               Book appointment
               <span
@@ -57,7 +57,7 @@ export default function HomeHero() {
             </Link>
           </div>
 
-          <p className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted">
+          <p className="animate-fade-up animate-fade-up-delay-4 mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted">
             <span className="flex items-center gap-2">
               <span className="h-1.5 w-1.5 rounded-full bg-brand" aria-hidden />
               CQC-regulated care
@@ -72,7 +72,7 @@ export default function HomeHero() {
           </p>
         </div>
 
-        <div className="relative order-1 mx-4 aspect-[5/4] overflow-hidden rounded-2xl sm:mx-6 sm:aspect-[16/10] lg:absolute lg:inset-y-0 lg:right-0 lg:order-2 lg:mx-0 lg:aspect-auto lg:w-[54%] lg:max-w-none lg:rounded-none">
+        <div className="animate-fade-up animate-fade-up-delay-2 relative order-1 mx-4 aspect-[5/4] overflow-hidden rounded-2xl sm:mx-6 sm:aspect-[16/10] lg:absolute lg:inset-y-0 lg:right-0 lg:order-2 lg:mx-0 lg:aspect-auto lg:w-[54%] lg:max-w-none lg:rounded-none">
           <Image
             src={images.hero}
             alt="Care professional supporting a client outdoors in the sunshine"

@@ -2,7 +2,14 @@
 
 import { useAuth } from "@/components/AuthProvider";
 import AuthSubmitButton from "@/components/AuthSubmitButton";
-import { authInputClass, authLabelClass, headingFont } from "@/lib/auth/form-styles";
+import {
+  authInputClass,
+  authLabelClass,
+  formErrorClass,
+  formSectionSubtitleClass,
+  formSectionTitleClass,
+  headingFont,
+} from "@/lib/auth/form-styles";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, type FormEvent } from "react";
 
@@ -53,72 +60,68 @@ export default function SignupForm() {
 
   return (
     <>
-      <p
-        className="text-2xl font-normal text-neutral-900 sm:text-[1.65rem]"
-        style={headingFont}
-      >
-        Your details
-      </p>
-      <p className="mt-1.5 text-sm text-neutral-500">
-        We&apos;ll use this to set up your booking.
-      </p>
+      <div className="pb-3">
+        <p className={formSectionTitleClass} style={headingFont}>
+          Your details
+        </p>
+        <p className={formSectionSubtitleClass}>
+          We&apos;ll use this to set up your booking.
+        </p>
+      </div>
 
-      <form onSubmit={handleSubmit} className="mt-7 space-y-5">
+      <form onSubmit={handleSubmit} className="mt-3 space-y-3">
         {error ? (
-          <p
-            className="rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700"
-            role="alert"
-          >
+          <p className={formErrorClass} role="alert">
             {error}
           </p>
         ) : null}
 
-        <div className="grid gap-5 sm:grid-cols-2">
+        <div className="space-y-3">
+          <div className="grid gap-3 sm:grid-cols-2">
+            <label className="block">
+              <span className={authLabelClass}>First name *</span>
+              <input
+                type="text"
+                name="firstName"
+                required
+                autoComplete="given-name"
+                className={authInputClass}
+              />
+            </label>
+            <label className="block">
+              <span className={authLabelClass}>Last name *</span>
+              <input
+                type="text"
+                name="lastName"
+                required
+                autoComplete="family-name"
+                className={authInputClass}
+              />
+            </label>
+          </div>
+
           <label className="block">
-            <span className={authLabelClass}>First name *</span>
+            <span className={authLabelClass}>Email *</span>
             <input
-              type="text"
-              name="firstName"
+              type="email"
+              name="email"
               required
-              autoComplete="given-name"
+              autoComplete="email"
               className={authInputClass}
             />
           </label>
+
           <label className="block">
-            <span className={authLabelClass}>Last name *</span>
+            <span className={authLabelClass}>Phone *</span>
             <input
-              type="text"
-              name="lastName"
+              type="tel"
+              name="phone"
               required
-              autoComplete="family-name"
+              autoComplete="tel"
               className={authInputClass}
             />
           </label>
-        </div>
 
-        <label className="block">
-          <span className={authLabelClass}>Email *</span>
-          <input
-            type="email"
-            name="email"
-            required
-            autoComplete="email"
-            className={authInputClass}
-          />
-        </label>
-
-        <label className="block">
-          <span className={authLabelClass}>Phone *</span>
-          <input
-            type="tel"
-            name="phone"
-            required
-            autoComplete="tel"
-            className={authInputClass}
-          />
-        </label>
-
-        <div className="grid gap-5 sm:grid-cols-2">
           <label className="block">
             <span className={authLabelClass}>Password *</span>
             <input

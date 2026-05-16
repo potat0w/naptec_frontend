@@ -2,7 +2,14 @@
 
 import { useAuth } from "@/components/AuthProvider";
 import AuthSubmitButton from "@/components/AuthSubmitButton";
-import { authInputClass, authLabelClass, headingFont } from "@/lib/auth/form-styles";
+import {
+  authInputClass,
+  authLabelClass,
+  formErrorClass,
+  formSectionSubtitleClass,
+  formSectionTitleClass,
+  headingFont,
+} from "@/lib/auth/form-styles";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, type FormEvent } from "react";
 
@@ -36,22 +43,18 @@ export default function LoginForm() {
 
   return (
     <>
-      <p
-        className="text-2xl font-normal text-neutral-900 sm:text-[1.65rem]"
-        style={headingFont}
-      >
-        Sign in
-      </p>
-      <p className="mt-1.5 text-sm text-neutral-500">
-        Welcome back — continue to your booking.
-      </p>
+      <div className="pb-3">
+        <p className={formSectionTitleClass} style={headingFont}>
+          Sign in
+        </p>
+        <p className={formSectionSubtitleClass}>
+          Welcome back — continue to your booking.
+        </p>
+      </div>
 
-      <form onSubmit={handleSubmit} className="mt-7 space-y-5">
+      <form onSubmit={handleSubmit} className="mt-3 space-y-3">
         {error ? (
-          <p
-            className="rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700"
-            role="alert"
-          >
+          <p className={formErrorClass} role="alert">
             {error}
           </p>
         ) : null}

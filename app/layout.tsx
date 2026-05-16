@@ -3,8 +3,7 @@ import { Outfit, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "@/components/AuthProvider";
 import EnquireProvider from "@/components/EnquireProvider";
-import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
+import SiteChrome from "@/components/SiteChrome";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -42,9 +41,7 @@ export default function RootLayout({
       >
         <AuthProvider>
           <EnquireProvider>
-            <Navbar />
-            {children}
-            <Footer />
+            <SiteChrome>{children}</SiteChrome>
           </EnquireProvider>
         </AuthProvider>
       </body>

@@ -64,7 +64,7 @@ function EnquireModal({
       aria-modal="true"
       aria-labelledby={titleId}
     >
-      <header className="flex h-16 shrink-0 items-center bg-[#3B2A8F] px-6 sm:px-10">
+      <header className="flex h-16 shrink-0 items-center bg-brand px-6 sm:px-10">
         <Image
           src="/logo1.png"
           alt="Naptec"

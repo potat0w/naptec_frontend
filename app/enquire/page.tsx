@@ -8,9 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function EnquirePage() {
-  return (
-    <main className="flex flex-1 flex-col">
-      <EnquireContent />
-    </main>
-  );
+  return <EnquireContent />;
 }
