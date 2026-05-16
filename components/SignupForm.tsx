@@ -2,6 +2,7 @@
 
 import { useAuth } from "@/components/AuthProvider";
 import AuthSubmitButton from "@/components/AuthSubmitButton";
+import FormFieldError from "@/components/FormFieldError";
 import {
   authInputClass,
   authLabelClass,
@@ -10,6 +11,8 @@ import {
   formSectionTitleClass,
   headingFont,
 } from "@/lib/auth/form-styles";
+import { formValuesFromForm, inputErrorClass, validateWithSchema } from "@/lib/validation/helpers";
+import { signupSchema } from "@/lib/validation/schemas";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, type FormEvent } from "react";
 
@@ -19,34 +22,32 @@ export default function SignupForm() {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") ?? "/book";
   const [error, setError] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [pending, setPending] = useState(false);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError(null);
+    setFieldErrors({});
     setPending(true);
 
-    const form = new FormData(e.currentTarget);
-    const password = String(form.get("password") ?? "");
-    const confirmPassword = String(form.get("confirmPassword") ?? "");
+    const validation = await validateWithSchema(
+      signupSchema,
+      formValuesFromForm(e.currentTarget)
+    );
 
-    if (password.length < 8) {
-      setError("Password must be at least 8 characters.");
-      setPending(false);
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      setError("Passwords do not match.");
+    if (!validation.success) {
+      setError(validation.message);
+      setFieldErrors(validation.fieldErrors);
       setPending(false);
       return;
     }
 
     const result = signup({
-      firstName: String(form.get("firstName") ?? ""),
-      lastName: String(form.get("lastName") ?? ""),
-      email: String(form.get("email") ?? ""),
-      phone: String(form.get("phone") ?? ""),
+      firstName: validation.values.firstName,
+      lastName: validation.values.lastName,
+      email: validation.values.email,
+      phone: validation.values.phone,
     });
 
     setPending(false);
@@ -69,7 +70,7 @@ export default function SignupForm() {
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="mt-2 space-y-2">
+      <form onSubmit={handleSubmit} noValidate className="mt-2 space-y-2">
         {error ? (
           <p className={formErrorClass} role="alert">
             {error}
@@ -83,20 +84,22 @@ export default function SignupForm() {
               <input
                 type="text"
                 name="firstName"
-                required
                 autoComplete="given-name"
-                className={authInputClass}
+                aria-invalid={Boolean(fieldErrors.firstName)}
+                className={inputErrorClass(Boolean(fieldErrors.firstName), authInputClass)}
               />
+              <FormFieldError message={fieldErrors.firstName} />
             </label>
             <label className="block">
               <span className={authLabelClass}>Last name *</span>
               <input
                 type="text"
                 name="lastName"
-                required
                 autoComplete="family-name"
-                className={authInputClass}
+                aria-invalid={Boolean(fieldErrors.lastName)}
+                className={inputErrorClass(Boolean(fieldErrors.lastName), authInputClass)}
               />
+              <FormFieldError message={fieldErrors.lastName} />
             </label>
           </div>
 
@@ -105,10 +108,11 @@ export default function SignupForm() {
             <input
               type="email"
               name="email"
-              required
               autoComplete="email"
-              className={authInputClass}
+              aria-invalid={Boolean(fieldErrors.email)}
+              className={inputErrorClass(Boolean(fieldErrors.email), authInputClass)}
             />
+            <FormFieldError message={fieldErrors.email} />
           </label>
 
           <label className="block">
@@ -116,10 +120,11 @@ export default function SignupForm() {
             <input
               type="tel"
               name="phone"
-              required
               autoComplete="tel"
-              className={authInputClass}
+              aria-invalid={Boolean(fieldErrors.phone)}
+              className={inputErrorClass(Boolean(fieldErrors.phone), authInputClass)}
             />
+            <FormFieldError message={fieldErrors.phone} />
           </label>
 
           <label className="block">
@@ -127,22 +132,25 @@ export default function SignupForm() {
             <input
               type="password"
               name="password"
-              required
-              minLength={8}
               autoComplete="new-password"
-              className={authInputClass}
+              aria-invalid={Boolean(fieldErrors.password)}
+              className={inputErrorClass(Boolean(fieldErrors.password), authInputClass)}
             />
+            <FormFieldError message={fieldErrors.password} />
           </label>
           <label className="block">
             <span className={authLabelClass}>Confirm password *</span>
             <input
               type="password"
               name="confirmPassword"
-              required
-              minLength={8}
               autoComplete="new-password"
-              className={authInputClass}
+              aria-invalid={Boolean(fieldErrors.confirmPassword)}
+              className={inputErrorClass(
+                Boolean(fieldErrors.confirmPassword),
+                authInputClass
+              )}
             />
+            <FormFieldError message={fieldErrors.confirmPassword} />
           </label>
         </div>
 

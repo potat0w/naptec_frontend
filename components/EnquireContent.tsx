@@ -1,8 +1,10 @@
 "use client";
 
+import FormFieldError from "@/components/FormFieldError";
 import FormSplitLayout from "@/components/FormSplitLayout";
 import {
   formCheckboxClass,
+  formErrorClass,
   formInputClass,
   formRequiredClass,
   formTextareaClass,
@@ -10,6 +12,8 @@ import {
 } from "@/lib/auth/form-styles";
 import { images } from "@/lib/images";
 import { btnPrimary, btnSecondary } from "@/lib/layout";
+import { formValuesFromForm, inputErrorClass, validateWithSchema } from "@/lib/validation/helpers";
+import { enquireSchema } from "@/lib/validation/schemas";
 import Link from "next/link";
 import { useState, type FormEvent } from "react";
 
@@ -22,14 +26,39 @@ const enquireLabelClass = "mb-1.5 block text-sm font-medium text-body";
 
 export default function EnquireContent({ titleId, onClose }: EnquireContentProps) {
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const [pending, setPending] = useState(false);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setError(null);
+    setFieldErrors({});
+    setPending(true);
+
+    const validation = await validateWithSchema(
+      enquireSchema,
+      formValuesFromForm(e.currentTarget)
+    );
+
+    if (!validation.success) {
+      setError(validation.message);
+      setFieldErrors(validation.fieldErrors);
+      setPending(false);
+      return;
+    }
+
+    setPending(false);
     setSubmitted(true);
   };
 
   const form = (
-    <form onSubmit={handleSubmit} className="space-y-3.5">
+    <form onSubmit={handleSubmit} noValidate className="space-y-3.5">
+      {error ? (
+        <p className={formErrorClass} role="alert">
+          {error}
+        </p>
+      ) : null}
       {submitted ? (
         <div className="py-4 text-center sm:text-left">
           <div
@@ -98,10 +127,11 @@ export default function EnquireContent({ titleId, onClose }: EnquireContentProps
             <input
               type="text"
               name="fullName"
-              required
               autoComplete="name"
-              className={formInputClass}
+              aria-invalid={Boolean(fieldErrors.fullName)}
+              className={inputErrorClass(Boolean(fieldErrors.fullName), formInputClass)}
             />
+            <FormFieldError message={fieldErrors.fullName} />
           </label>
 
           <label className="block">
@@ -111,10 +141,11 @@ export default function EnquireContent({ titleId, onClose }: EnquireContentProps
             <input
               type="tel"
               name="phone"
-              required
               autoComplete="tel"
-              className={formInputClass}
+              aria-invalid={Boolean(fieldErrors.phone)}
+              className={inputErrorClass(Boolean(fieldErrors.phone), formInputClass)}
             />
+            <FormFieldError message={fieldErrors.phone} />
           </label>
 
           <label className="block">
@@ -124,24 +155,36 @@ export default function EnquireContent({ titleId, onClose }: EnquireContentProps
             <input
               type="email"
               name="email"
-              required
               autoComplete="email"
-              className={formInputClass}
+              aria-invalid={Boolean(fieldErrors.email)}
+              className={inputErrorClass(Boolean(fieldErrors.email), formInputClass)}
             />
+            <FormFieldError message={fieldErrors.email} />
           </label>
 
           <label className="block">
             <span className={enquireLabelClass}>Message</span>
-            <textarea name="message" rows={2} className={formTextareaClass} />
+            <textarea
+              name="message"
+              rows={2}
+              aria-invalid={Boolean(fieldErrors.message)}
+              className={inputErrorClass(Boolean(fieldErrors.message), formTextareaClass)}
+            />
+            <FormFieldError message={fieldErrors.message} />
           </label>
 
-          <fieldset className="space-y-2.5 rounded-2xl border border-surface-card/80 bg-surface-alt/40 px-3.5 py-3.5 sm:px-4">
+          <fieldset
+            className={`space-y-2.5 rounded-2xl border bg-surface-alt/40 px-3.5 py-3.5 sm:px-4 ${
+              fieldErrors.privacyConsent
+                ? "border-red-300"
+                : "border-surface-card/80"
+            }`}
+          >
             <legend className="sr-only">Consent</legend>
             <label className="flex cursor-pointer gap-2.5 text-sm leading-snug text-body">
               <input
                 type="checkbox"
                 name="privacyConsent"
-                required
                 value="yes"
                 className={formCheckboxClass}
               />
@@ -156,6 +199,7 @@ export default function EnquireContent({ titleId, onClose }: EnquireContentProps
                 <span className={formRequiredClass}>*</span>
               </span>
             </label>
+            <FormFieldError message={fieldErrors.privacyConsent} />
             <label className="flex cursor-pointer gap-2.5 text-sm leading-snug text-body">
               <input
                 type="checkbox"
@@ -173,9 +217,10 @@ export default function EnquireContent({ titleId, onClose }: EnquireContentProps
           <div className="pt-1">
             <button
               type="submit"
-              className={`w-full sm:w-auto sm:min-w-[12rem] ${btnPrimary}`}
+              disabled={pending}
+              className={`w-full sm:w-auto sm:min-w-[12rem] ${btnPrimary} disabled:cursor-not-allowed disabled:opacity-60`}
             >
-              Send enquiry
+              {pending ? "Sending…" : "Send enquiry"}
             </button>
           </div>
         </>

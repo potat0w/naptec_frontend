@@ -41,13 +41,13 @@ export default function Home() {
         <HomeCareServices />
       </FadeIn>
       <FadeIn>
-        <Testimonials />
-      </FadeIn>
-      <FadeIn>
         <GetInTouch />
       </FadeIn>
       <FadeIn>
         <RecruitmentCta />
+      </FadeIn>
+      <FadeIn>
+        <Testimonials />
       </FadeIn>
       <FadeIn>
         <NewsEvents />

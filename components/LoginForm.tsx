@@ -2,6 +2,7 @@
 
 import { useAuth } from "@/components/AuthProvider";
 import AuthSubmitButton from "@/components/AuthSubmitButton";
+import FormFieldError from "@/components/FormFieldError";
 import {
   authInputClass,
   authLabelClass,
@@ -10,6 +11,8 @@ import {
   formSectionTitleClass,
   headingFont,
 } from "@/lib/auth/form-styles";
+import { formValuesFromForm, inputErrorClass, validateWithSchema } from "@/lib/validation/helpers";
+import { loginSchema } from "@/lib/validation/schemas";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, type FormEvent } from "react";
 
@@ -19,18 +22,28 @@ export default function LoginForm() {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") ?? "/book";
   const [error, setError] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [pending, setPending] = useState(false);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError(null);
+    setFieldErrors({});
     setPending(true);
 
-    const form = new FormData(e.currentTarget);
-    const result = login(
-      String(form.get("email") ?? ""),
-      String(form.get("password") ?? "")
+    const validation = await validateWithSchema(
+      loginSchema,
+      formValuesFromForm(e.currentTarget)
     );
+
+    if (!validation.success) {
+      setError(validation.message);
+      setFieldErrors(validation.fieldErrors);
+      setPending(false);
+      return;
+    }
+
+    const result = login(validation.values.email, validation.values.password);
 
     setPending(false);
     if (!result.ok) {
@@ -52,7 +65,7 @@ export default function LoginForm() {
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="mt-2 space-y-2">
+      <form onSubmit={handleSubmit} noValidate className="mt-2 space-y-2">
         {error ? (
           <p className={formErrorClass} role="alert">
             {error}
@@ -64,10 +77,11 @@ export default function LoginForm() {
           <input
             type="email"
             name="email"
-            required
             autoComplete="email"
-            className={authInputClass}
+            aria-invalid={Boolean(fieldErrors.email)}
+            className={inputErrorClass(Boolean(fieldErrors.email), authInputClass)}
           />
+          <FormFieldError message={fieldErrors.email} />
         </label>
 
         <label className="block">
@@ -75,10 +89,11 @@ export default function LoginForm() {
           <input
             type="password"
             name="password"
-            required
             autoComplete="current-password"
-            className={authInputClass}
+            aria-invalid={Boolean(fieldErrors.password)}
+            className={inputErrorClass(Boolean(fieldErrors.password), authInputClass)}
           />
+          <FormFieldError message={fieldErrors.password} />
         </label>
 
         <AuthSubmitButton pending={pending} disabled={!ready}>

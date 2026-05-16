@@ -1,6 +1,10 @@
 "use client";
 
+import FormFieldError from "@/components/FormFieldError";
+import { formErrorClass } from "@/lib/auth/form-styles";
 import { btnPrimary, btnSecondary } from "@/lib/layout";
+import { formValuesFromForm, inputErrorClass, validateWithSchema } from "@/lib/validation/helpers";
+import { recruitmentApplySchema } from "@/lib/validation/schemas";
 import Link from "next/link";
 import { useState, type FormEvent } from "react";
 
@@ -20,9 +24,30 @@ export default function RecruitmentApplyForm() {
   const [experience, setExperience] = useState<Experience>("new");
   const [cvFileName, setCvFileName] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const [pending, setPending] = useState(false);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setError(null);
+    setFieldErrors({});
+    setPending(true);
+
+    const validation = await validateWithSchema(recruitmentApplySchema, {
+      ...formValuesFromForm(e.currentTarget),
+      position,
+      experience,
+    });
+
+    if (!validation.success) {
+      setError(validation.message);
+      setFieldErrors(validation.fieldErrors);
+      setPending(false);
+      return;
+    }
+
+    setPending(false);
     setSubmitted(true);
   };
 
@@ -111,27 +136,35 @@ export default function RecruitmentApplyForm() {
               </div>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={handleSubmit} noValidate className="space-y-5">
+              {error ? (
+                <p className={formErrorClass} role="alert">
+                  {error}
+                </p>
+              ) : null}
+
               <div className="grid gap-5 sm:grid-cols-2">
                 <label className="block">
                   <span className={labelClass}>First name *</span>
                   <input
                     type="text"
                     name="firstName"
-                    required
                     autoComplete="given-name"
-                    className={inputClass}
+                    aria-invalid={Boolean(fieldErrors.firstName)}
+                    className={inputErrorClass(Boolean(fieldErrors.firstName), inputClass)}
                   />
+                  <FormFieldError message={fieldErrors.firstName} />
                 </label>
                 <label className="block">
                   <span className={labelClass}>Last name *</span>
                   <input
                     type="text"
                     name="lastName"
-                    required
                     autoComplete="family-name"
-                    className={inputClass}
+                    aria-invalid={Boolean(fieldErrors.lastName)}
+                    className={inputErrorClass(Boolean(fieldErrors.lastName), inputClass)}
                   />
+                  <FormFieldError message={fieldErrors.lastName} />
                 </label>
               </div>
 
@@ -140,10 +173,11 @@ export default function RecruitmentApplyForm() {
                 <input
                   type="email"
                   name="email"
-                  required
                   autoComplete="email"
-                  className={inputClass}
+                  aria-invalid={Boolean(fieldErrors.email)}
+                  className={inputErrorClass(Boolean(fieldErrors.email), inputClass)}
                 />
+                <FormFieldError message={fieldErrors.email} />
               </label>
 
               <label className="block">
@@ -151,14 +185,16 @@ export default function RecruitmentApplyForm() {
                 <input
                   type="tel"
                   name="telephone"
-                  required
                   autoComplete="tel"
-                  className={inputClass}
+                  aria-invalid={Boolean(fieldErrors.telephone)}
+                  className={inputErrorClass(Boolean(fieldErrors.telephone), inputClass)}
                 />
+                <FormFieldError message={fieldErrors.telephone} />
               </label>
 
               <fieldset>
                 <legend className={labelClass}>Position you&apos;re interested in *</legend>
+                <FormFieldError message={fieldErrors.position} />
                 <div className="mt-2 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
                   {(
                     [
@@ -191,6 +227,7 @@ export default function RecruitmentApplyForm() {
 
               <fieldset>
                 <legend className={labelClass}>Care experience *</legend>
+                <FormFieldError message={fieldErrors.experience} />
                 <div className="mt-2 space-y-2">
                   {(
                     [
@@ -234,15 +271,16 @@ export default function RecruitmentApplyForm() {
                 <span className={labelClass}>CV *</span>
                 <div
                   className={`relative rounded-lg border border-dashed px-4 py-5 transition-colors ${
-                    cvFileName
-                      ? "border-[#3B2A8F] bg-[#3B2A8F]/5"
-                      : "border-neutral-300 bg-neutral-50/50 hover:border-neutral-400"
+                    fieldErrors.cv
+                      ? "border-red-300 bg-red-50/50"
+                      : cvFileName
+                        ? "border-[#3B2A8F] bg-[#3B2A8F]/5"
+                        : "border-neutral-300 bg-neutral-50/50 hover:border-neutral-400"
                   }`}
                 >
                   <input
                     type="file"
                     name="cv"
-                    required
                     accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
                     onChange={(e) => {
                       const file = e.target.files?.[0];
@@ -257,6 +295,7 @@ export default function RecruitmentApplyForm() {
                     PDF or Word document, max 5MB
                   </p>
                 </div>
+                <FormFieldError message={fieldErrors.cv} />
               </label>
 
               <label className="block">
@@ -265,8 +304,10 @@ export default function RecruitmentApplyForm() {
                   name="availability"
                   rows={3}
                   placeholder="e.g. weekdays, evenings, weekends"
-                  className={`${inputClass} resize-y`}
+                  aria-invalid={Boolean(fieldErrors.availability)}
+                  className={inputErrorClass(Boolean(fieldErrors.availability), `${inputClass} resize-y`)}
                 />
+                <FormFieldError message={fieldErrors.availability} />
               </label>
 
               <label className="block">
@@ -274,15 +315,22 @@ export default function RecruitmentApplyForm() {
                 <textarea
                   name="message"
                   rows={4}
-                  className={`${inputClass} resize-y`}
+                  aria-invalid={Boolean(fieldErrors.message)}
+                  className={inputErrorClass(Boolean(fieldErrors.message), `${inputClass} resize-y`)}
                 />
+                <FormFieldError message={fieldErrors.message} />
               </label>
 
-              <label className="flex cursor-pointer items-start gap-3 rounded-lg border border-neutral-100 bg-neutral-50/80 px-4 py-3">
+              <label
+                className={`flex cursor-pointer items-start gap-3 rounded-lg border px-4 py-3 ${
+                  fieldErrors.rightToWork
+                    ? "border-red-300 bg-red-50/50"
+                    : "border-neutral-100 bg-neutral-50/80"
+                }`}
+              >
                 <input
                   type="checkbox"
                   name="rightToWork"
-                  required
                   className="mt-0.5 h-4 w-4 shrink-0 accent-[#3B2A8F]"
                 />
                 <span className="text-sm leading-relaxed text-neutral-700">
@@ -290,12 +338,14 @@ export default function RecruitmentApplyForm() {
                   processing my details for recruitment purposes. *
                 </span>
               </label>
+              <FormFieldError message={fieldErrors.rightToWork} />
 
               <button
                 type="submit"
-                className={`w-full sm:w-auto ${btnPrimary}`}
+                disabled={pending}
+                className={`w-full sm:w-auto ${btnPrimary} disabled:cursor-not-allowed disabled:opacity-60`}
               >
-                Submit application
+                {pending ? "Submitting…" : "Submit application"}
               </button>
             </form>
           )}

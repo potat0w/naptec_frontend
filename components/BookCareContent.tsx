@@ -1,11 +1,18 @@
 "use client";
 
 import { useAuth } from "@/components/AuthProvider";
+import FormFieldError from "@/components/FormFieldError";
+import { formErrorClass } from "@/lib/auth/form-styles";
 import { btnPrimary } from "@/lib/layout";
+import { formValuesFromForm, inputErrorClass, validateWithSchema } from "@/lib/validation/helpers";
+import { bookCareSchema } from "@/lib/validation/schemas";
 import Link from "next/link";
 import { useState, type FormEvent } from "react";
 
 const serif = { fontFamily: "var(--font-playfair), ui-serif, serif" } as const;
+
+const inputClass =
+  "w-full rounded-full border border-gray-200 bg-white px-5 py-3.5 text-sm text-gray-900 outline-none transition-[border-color,box-shadow] placeholder:text-gray-400 focus:border-brand focus:ring-2 focus:ring-brand/15";
 
 type CareFor = "loved-one" | "me";
 
@@ -13,9 +20,29 @@ export default function BookCareContent() {
   const { user } = useAuth();
   const [careFor, setCareFor] = useState<CareFor>("me");
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const [pending, setPending] = useState(false);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setError(null);
+    setFieldErrors({});
+    setPending(true);
+
+    const validation = await validateWithSchema(bookCareSchema, {
+      ...formValuesFromForm(e.currentTarget),
+      careFor,
+    });
+
+    if (!validation.success) {
+      setError(validation.message);
+      setFieldErrors(validation.fieldErrors);
+      setPending(false);
+      return;
+    }
+
+    setPending(false);
     setSubmitted(true);
   };
 
@@ -40,7 +67,7 @@ export default function BookCareContent() {
           Just looking for advice first?{" "}
           <Link
             href="/enquire"
-            className="font-medium text-[#3B2A8F] underline underline-offset-4 hover:text-[#2d1f6d]"
+            className="font-medium text-brand underline underline-offset-4 transition-colors hover:text-brand-dark"
           >
             Send a general enquiry
           </Link>{" "}
@@ -49,13 +76,19 @@ export default function BookCareContent() {
         <p className="mt-10 text-sm text-gray-600">Call Naptec on:</p>
         <a
           href="tel:03308228465"
-          className="mt-1 block text-3xl font-semibold tracking-tight text-gray-900 transition-colors hover:text-[#3B2A8F]"
+          className="mt-1 block text-3xl font-semibold tracking-tight text-gray-900 transition-colors hover:text-brand"
         >
           03308 228465
         </a>
       </div>
 
-      <form onSubmit={handleSubmit} className="flex flex-col">
+      <form onSubmit={handleSubmit} noValidate className="flex flex-col">
+        {error ? (
+          <p className={`mb-4 ${formErrorClass}`} role="alert">
+            {error}
+          </p>
+        ) : null}
+
         {submitted ? (
           <div className="flex flex-1 flex-col justify-center py-8">
             <p className="text-3xl font-normal text-gray-900" style={serif}>
@@ -66,10 +99,7 @@ export default function BookCareContent() {
               caregiver match and home visit. (Demo — nothing was sent to a
               server.)
             </p>
-            <Link
-              href="/"
-              className={`mt-8 w-fit ${btnPrimary}`}
-            >
+            <Link href="/" className={`mt-8 w-fit ${btnPrimary}`}>
               Back to home
             </Link>
           </div>
@@ -81,22 +111,24 @@ export default function BookCareContent() {
                 <input
                   type="text"
                   name="firstName"
-                  required
                   defaultValue={user?.firstName}
                   placeholder="First Name *"
-                  className="w-full rounded-full border border-gray-200 bg-white px-5 py-3.5 text-sm text-gray-900 outline-none transition-[border-color,box-shadow] placeholder:text-gray-400 focus:border-[#3B2A8F] focus:ring-2 focus:ring-[#3B2A8F]/15"
+                  aria-invalid={Boolean(fieldErrors.firstName)}
+                  className={inputErrorClass(Boolean(fieldErrors.firstName), inputClass)}
                 />
+                <FormFieldError message={fieldErrors.firstName} />
               </label>
               <label className="block">
                 <span className="sr-only">Last name</span>
                 <input
                   type="text"
                   name="lastName"
-                  required
                   defaultValue={user?.lastName}
                   placeholder="Last Name *"
-                  className="w-full rounded-full border border-gray-200 bg-white px-5 py-3.5 text-sm text-gray-900 outline-none transition-[border-color,box-shadow] placeholder:text-gray-400 focus:border-[#3B2A8F] focus:ring-2 focus:ring-[#3B2A8F]/15"
+                  aria-invalid={Boolean(fieldErrors.lastName)}
+                  className={inputErrorClass(Boolean(fieldErrors.lastName), inputClass)}
                 />
+                <FormFieldError message={fieldErrors.lastName} />
               </label>
             </div>
             <label className="mt-4 block">
@@ -104,28 +136,31 @@ export default function BookCareContent() {
               <input
                 type="email"
                 name="email"
-                required
                 defaultValue={user?.email}
                 placeholder="Email Address *"
-                className="w-full rounded-full border border-gray-200 bg-white px-5 py-3.5 text-sm text-gray-900 outline-none transition-[border-color,box-shadow] placeholder:text-gray-400 focus:border-[#3B2A8F] focus:ring-2 focus:ring-[#3B2A8F]/15"
+                aria-invalid={Boolean(fieldErrors.email)}
+                className={inputErrorClass(Boolean(fieldErrors.email), inputClass)}
               />
+              <FormFieldError message={fieldErrors.email} />
             </label>
             <label className="mt-4 block">
               <span className="sr-only">Telephone</span>
               <input
                 type="tel"
                 name="telephone"
-                required
                 defaultValue={user?.phone}
                 placeholder="Telephone *"
-                className="w-full rounded-full border border-gray-200 bg-white px-5 py-3.5 text-sm text-gray-900 outline-none transition-[border-color,box-shadow] placeholder:text-gray-400 focus:border-[#3B2A8F] focus:ring-2 focus:ring-[#3B2A8F]/15"
+                aria-invalid={Boolean(fieldErrors.telephone)}
+                className={inputErrorClass(Boolean(fieldErrors.telephone), inputClass)}
               />
+              <FormFieldError message={fieldErrors.telephone} />
             </label>
 
             <fieldset className="mt-8">
               <legend className="text-sm text-gray-700">
                 Who is the care for? *
               </legend>
+              <FormFieldError message={fieldErrors.careFor} />
               <div className="mt-4 flex flex-wrap gap-8">
                 {(
                   [
@@ -148,7 +183,7 @@ export default function BookCareContent() {
                     <span
                       className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 transition-colors ${
                         careFor === option.value
-                          ? "border-[#3B2A8F] bg-[#3B2A8F]"
+                          ? "border-brand bg-brand"
                           : "border-gray-300 bg-white"
                       }`}
                       aria-hidden
@@ -166,9 +201,10 @@ export default function BookCareContent() {
             <div className="mt-10 flex justify-end">
               <button
                 type="submit"
-                className={btnPrimary}
+                disabled={pending}
+                className={`${btnPrimary} disabled:cursor-not-allowed disabled:opacity-60`}
               >
-                Request caregiver
+                {pending ? "Submitting…" : "Request caregiver"}
               </button>
             </div>
           </>

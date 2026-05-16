@@ -53,7 +53,7 @@ export default function PopularServices() {
       aria-labelledby="popular-services-heading"
     >
       <div className={containerClass}>
-        <h2 id="popular-services-heading" className={`${sectionTitle} text-center`}>
+        <h2 id="popular-services-heading" className={sectionTitle}>
           Popular Services
         </h2>
         <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3 lg:mt-12">

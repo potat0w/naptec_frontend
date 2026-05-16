@@ -1,7 +1,4 @@
 import {
-  bodyText,
-  btnPrimary,
-  cardTitle,
   containerClass,
   labelEyebrow,
   sectionBgWhite,
@@ -12,8 +9,6 @@ import { slugify } from "@/lib/slugify";
 import {
   CalendarHeart,
   ChevronRight,
-  HeartPulse,
-  Home,
   User,
   Users,
   type LucideIcon,
@@ -24,6 +19,7 @@ type ServiceLine = { label: string; href: string };
 
 type ServiceCard = {
   key: string;
+  number: string;
   title: string;
   href: string;
   Icon: LucideIcon;
@@ -40,38 +36,8 @@ function line(label: string, slug?: string): ServiceLine {
 
 const cards: ServiceCard[] = [
   {
-    key: "home-care",
-    title: "Home Care",
-    href: "/what-we-do/domiciliary-care",
-    Icon: Home,
-    services: [
-      line("Companionship", "companionship"),
-      line("Home Help & Housekeeping", "home-help-and-housekeeping"),
-      line("Personal Care", "personal-care"),
-      line("Overnight Care", "overnight-care"),
-      line("Day Care", "day-care"),
-      line("Respite Care", "respite-care"),
-    ],
-    description: null,
-  },
-  {
-    key: "specialist",
-    title: "Specialist Care",
-    href: "/what-we-do/specialist-care",
-    Icon: HeartPulse,
-    services: [
-      line("Dementia & Alzheimer's", "dementia-and-alzheimers"),
-      line("Cancer", "cancer"),
-      line("Parkinson's Care", "parkinsons"),
-      line("Neurological", "neurological"),
-      line("Palliative", "palliative"),
-      line("Postoperative & Recovery", "postoperative-and-recovery"),
-      line("Arthritis & Mobility", "arthritis-and-mobility"),
-    ],
-    description: null,
-  },
-  {
     key: "live-in",
+    number: "01",
     title: "Live-In Care",
     href: "/what-we-do/live-in-care",
     Icon: Users,
@@ -81,6 +47,7 @@ const cards: ServiceCard[] = [
   },
   {
     key: "domiciliary",
+    number: "02",
     title: "Domiciliary Care",
     href: "/what-we-do/domiciliary-care",
     Icon: User,
@@ -95,6 +62,7 @@ const cards: ServiceCard[] = [
   },
   {
     key: "respite",
+    number: "03",
     title: "Respite Care",
     href: "/what-we-do/respite-care",
     Icon: CalendarHeart,
@@ -108,29 +76,40 @@ function ServiceCardBlock({ card }: { card: ServiceCard }) {
   const Icon = card.Icon;
 
   return (
-    <article className="flex h-full min-h-[360px] flex-col bg-surface-card p-8 sm:min-h-[380px] sm:p-10">
-      <Icon
-        className="mx-auto h-10 w-10 shrink-0 text-brand sm:h-11 sm:w-11"
-        strokeWidth={1.5}
+    <article className="relative flex min-h-[380px] flex-col overflow-hidden rounded-[1.25rem] bg-surface-card p-8 sm:min-h-[420px] sm:p-10">
+      <span
+        className="pointer-events-none absolute right-7 top-5 select-none font-serif text-[5rem] font-extrabold leading-none text-brand/10 sm:text-[5.5rem]"
         aria-hidden
-      />
-      <h3 className={`mt-6 shrink-0 text-center ${cardTitle}`}>
+      >
+        {card.number}
+      </span>
+
+      <div className="relative mb-6 flex h-[3.25rem] w-[3.25rem] items-center justify-center rounded-xl bg-brand/12 text-brand">
+        <Icon className="h-6 w-6" strokeWidth={1.8} aria-hidden />
+      </div>
+
+      <h3 className="relative shrink-0 font-serif text-2xl font-bold text-brand-deeper sm:text-[1.5rem]">
         {card.title}
       </h3>
 
       {card.description ? (
-        <p className="mt-5 flex-1 text-center text-sm leading-[1.65] text-body">
+        <p className="relative mt-5 flex-1 text-sm leading-[1.7] text-body">
           {card.description}
         </p>
       ) : (
-        <ul className="mt-5 flex-1 text-center">
+        <ul className="relative mt-5 flex flex-1 flex-col">
           {card.services?.map((item) => (
-            <li
-              key={item.label}
-              className="py-[0.35rem] text-sm leading-[1.65] text-body"
-            >
-              <Link href={item.href} className="transition-colors hover:text-brand">
-                {item.label}
+            <li key={item.label} className="border-b border-brand/15 last:border-b-0">
+              <Link
+                href={item.href}
+                className="group flex items-center justify-between py-2.5 text-sm text-brand-dark transition-colors hover:text-brand"
+              >
+                <span>{item.label}</span>
+                <ChevronRight
+                  className="h-3.5 w-3.5 shrink-0 text-brand opacity-50 transition-opacity group-hover:opacity-100"
+                  strokeWidth={2}
+                  aria-hidden
+                />
               </Link>
             </li>
           ))}
@@ -139,10 +118,10 @@ function ServiceCardBlock({ card }: { card: ServiceCard }) {
 
       <Link
         href={card.href}
-        className="mt-auto inline-flex items-center justify-center gap-1 self-center pt-8 text-xs font-bold uppercase tracking-[0.14em] text-brand transition-colors hover:text-brand-dark"
+        className="relative mt-6 inline-flex items-center gap-1.5 self-start text-[0.6875rem] font-bold uppercase tracking-[0.1em] text-brand transition-colors hover:text-brand-dark"
       >
         Learn more
-        <ChevronRight className="h-3.5 w-3.5" strokeWidth={2.5} aria-hidden />
+        <ChevronRight className="h-3 w-3" strokeWidth={2.5} aria-hidden />
       </Link>
     </article>
   );
@@ -155,25 +134,16 @@ export default function HomeCareServices() {
       aria-labelledby="home-care-services-heading"
     >
       <div className={containerClass}>
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 lg:items-start lg:gap-6">
-          <div className="flex flex-col items-start self-start">
-            <p className={labelEyebrow}>Our services</p>
-            <h2 id="home-care-services-heading" className={`mt-4 ${sectionTitle}`}>
-              Our Home Care Services
-            </h2>
-            <p className={`mt-7 max-w-md ${bodyText}`}>
-              We can help you make an informed, compassionate choice for your
-              loved one, with bespoke packages to suit their domiciliary care
-              needs.
-            </p>
-            <Link
-              href="/what-we-do/domiciliary-care"
-              className={`mt-8 w-fit ${btnPrimary}`}
-            >
-              View services
-            </Link>
-          </div>
+        <div className="mb-10 lg:mb-12">
+          <p className={labelEyebrow}>Our services</p>
+          <h2 id="home-care-services-heading" className={`mt-4 ${sectionTitle}`}>
+            Our Home Care
+            <br />
+            Services
+          </h2>
+        </div>
 
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           {cards.map((card) => (
             <ServiceCardBlock key={card.key} card={card} />
           ))}
