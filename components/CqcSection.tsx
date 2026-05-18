@@ -11,6 +11,9 @@ import Link from "next/link";
 const serif = { fontFamily: "var(--font-playfair), ui-serif, serif" } as const;
 
 export default function CqcSection() {
+  return null;
+
+  /*
   return (
     <section
       className={`${sectionBgWhite} ${sectionPy}`}
@@ -73,4 +76,5 @@ export default function CqcSection() {
       </div>
     </section>
   );
+  */
 }

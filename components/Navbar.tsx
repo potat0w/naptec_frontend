@@ -1,21 +1,19 @@
 "use client";
 
 import AuthNav from "@/components/AuthNav";
+import MobileNav, { MobileHeaderActions, MobileNavTrigger } from "@/components/MobileNav";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   useCallback,
   useEffect,
-  useId,
   useMemo,
   useRef,
   useState,
 } from "react";
 
 import { slugify } from "@/lib/slugify";
-import { btnPrimary } from "@/lib/layout";
-
 const whatWeDoColumns = [
   {
     title: "Domiciliary Care",
@@ -89,15 +87,11 @@ export default function Navbar() {
   const [hash, setHash] = useState("");
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [mobileAccordion, setMobileAccordion] = useState<
-    "what" | "why" | "advice" | null
-  >(null);
   const [whatMegaOpen, setWhatMegaOpen] = useState(false);
   const whatMegaCloseTimerRef = useRef<ReturnType<typeof setTimeout> | null>(
     null,
   );
   const megaPanelRef = useRef<HTMLDivElement>(null);
-  const mobileMenuId = useId();
 
   const cancelWhatMegaClose = useCallback(() => {
     if (whatMegaCloseTimerRef.current !== null) {
@@ -130,22 +124,8 @@ export default function Navbar() {
     return () => window.removeEventListener("hashchange", syncHash);
   }, [pathname]);
 
-  useEffect(() => {
-    if (!mobileOpen) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = prev;
-    };
-  }, [mobileOpen]);
-
-  useEffect(() => {
-    if (!mobileOpen) setMobileAccordion(null);
-  }, [mobileOpen]);
-
   const closeMobile = useCallback(() => {
     setMobileOpen(false);
-    setMobileAccordion(null);
   }, []);
 
   const isWhatActive = useMemo(
@@ -327,35 +307,12 @@ export default function Navbar() {
           </ul>
         </div>
 
-        <div className="relative z-10 ml-auto flex flex-none items-center gap-3 lg:gap-4">
-          <AuthNav className="hidden lg:inline-flex" />
-
-          <button
-            type="button"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-neutral-200 text-neutral-800 transition-colors hover:bg-neutral-50 lg:hidden"
-            aria-controls={mobileMenuId}
-            aria-expanded={mobileOpen}
-            aria-label={mobileOpen ? "Close menu" : "Open menu"}
-            onClick={() => setMobileOpen((v) => !v)}
-          >
-            <span className="relative block h-3.5 w-5">
-              <span
-                className={`absolute left-0 top-0 h-0.5 w-full rounded-full bg-current transition-transform duration-200 ${
-                  mobileOpen ? "translate-y-1.5 rotate-45" : ""
-                }`}
-              />
-              <span
-                className={`absolute left-0 top-1.5 h-0.5 w-full rounded-full bg-current transition-opacity duration-200 ${
-                  mobileOpen ? "opacity-0" : "opacity-100"
-                }`}
-              />
-              <span
-                className={`absolute left-0 top-3 h-0.5 w-full rounded-full bg-current transition-transform duration-200 ${
-                  mobileOpen ? "-translate-y-1.5 -rotate-45" : ""
-                }`}
-              />
-            </span>
-          </button>
+        <div className="relative z-10 ml-auto flex flex-none items-center gap-2 sm:gap-3 lg:gap-4">
+          <span className="hidden lg:contents">
+            <AuthNav />
+          </span>
+          <MobileHeaderActions />
+          <MobileNavTrigger open={mobileOpen} onToggle={() => setMobileOpen((v) => !v)} />
         </div>
       </div>
 
@@ -408,193 +365,7 @@ export default function Navbar() {
         </div>
       </nav>
 
-      <div
-        id={mobileMenuId}
-        className={`lg:hidden ${
-          mobileOpen
-            ? "pointer-events-auto max-h-[calc(100vh-4rem)] opacity-100"
-            : "pointer-events-none max-h-0 opacity-0"
-        } overflow-hidden border-t border-neutral-100 bg-white shadow-inner transition-[max-height,opacity] duration-300 ease-out`}
-        aria-hidden={!mobileOpen}
-      >
-        <div className="mx-auto w-full space-y-3 px-4 py-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
-          <div
-            className={`rounded-xl border px-3 transition-colors duration-200 ${
-              mobileAccordion === "what"
-                ? "border-[#3B2A8F]/20 bg-[#3B2A8F]/5"
-                : "border-neutral-100 bg-white"
-            }`}
-          >
-            <button
-              type="button"
-              className="flex w-full items-center justify-between py-3 text-left text-xs font-semibold uppercase tracking-[0.14em] text-neutral-900"
-              aria-expanded={mobileAccordion === "what"}
-              aria-controls="mobile-accordion-what"
-              onClick={() =>
-                setMobileAccordion((cur) => (cur === "what" ? null : "what"))
-              }
-            >
-              What We Do
-              <ChevronDown
-                className={`h-4 w-4 shrink-0 text-neutral-500 transition-transform duration-200 ${
-                  mobileAccordion === "what" ? "rotate-180" : ""
-                }`}
-              />
-            </button>
-            <div
-              id="mobile-accordion-what"
-              className={`grid transition-[grid-template-rows] duration-300 ease-out ${
-                mobileAccordion === "what"
-                  ? "grid-rows-[1fr]"
-                  : "grid-rows-[0fr]"
-              }`}
-            >
-              <div className="min-h-0 overflow-hidden">
-                <div className="space-y-6 pb-4 pt-1">
-                  {whatWeDoColumns.map((column) => (
-                    <div key={column.title}>
-                      <Link
-                        href={column.href}
-                        className="text-sm font-semibold text-[#3B2A8F]"
-                        onClick={closeMobile}
-                      >
-                        {column.title}
-                      </Link>
-                      {column.items.length > 0 ? (
-                        <ul className="mt-2 space-y-2">
-                          {column.items.map((item) => (
-                            <li key={item}>
-                              <Link
-                                href={`/what-we-do/${slugify(item)}`}
-                                className="text-sm text-neutral-700"
-                                onClick={closeMobile}
-                              >
-                                {item}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      ) : null}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div
-            className={`rounded-xl border px-3 transition-colors duration-200 ${
-              mobileAccordion === "why"
-                ? "border-[#3B2A8F]/20 bg-[#3B2A8F]/5"
-                : "border-neutral-100 bg-white"
-            }`}
-          >
-            <button
-              type="button"
-              className="flex w-full items-center justify-between py-3 text-left text-xs font-semibold uppercase tracking-[0.14em] text-neutral-900"
-              aria-expanded={mobileAccordion === "why"}
-              aria-controls="mobile-accordion-why"
-              onClick={() =>
-                setMobileAccordion((cur) => (cur === "why" ? null : "why"))
-              }
-            >
-              Why Us
-              <ChevronDown
-                className={`h-4 w-4 shrink-0 text-neutral-500 transition-transform duration-200 ${
-                  mobileAccordion === "why" ? "rotate-180" : ""
-                }`}
-              />
-            </button>
-            <div
-              id="mobile-accordion-why"
-              className={`grid transition-[grid-template-rows] duration-300 ease-out ${
-                mobileAccordion === "why"
-                  ? "grid-rows-[1fr]"
-                  : "grid-rows-[0fr]"
-              }`}
-            >
-              <div className="min-h-0 overflow-hidden">
-                <ul className="space-y-1 pb-4 pt-1">
-                  {whyUsLinks.map((item) => (
-                    <li key={item.href}>
-                      <Link
-                        href={item.href}
-                        className="block rounded-lg py-2 text-sm font-medium text-neutral-800"
-                        onClick={closeMobile}
-                      >
-                        {item.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <Link
-            href="/how-it-works"
-            className="block py-3 text-xs font-semibold uppercase tracking-[0.14em] text-neutral-900"
-            onClick={closeMobile}
-          >
-            How It Works
-          </Link>
-
-          <div
-            className={`rounded-xl border px-3 transition-colors duration-200 ${
-              mobileAccordion === "advice"
-                ? "border-[#3B2A8F]/20 bg-[#3B2A8F]/5"
-                : "border-neutral-100 bg-white"
-            }`}
-          >
-            <button
-              type="button"
-              className="flex w-full items-center justify-between py-3 text-left text-xs font-semibold uppercase tracking-[0.14em] text-neutral-900"
-              aria-expanded={mobileAccordion === "advice"}
-              aria-controls="mobile-accordion-advice"
-              onClick={() =>
-                setMobileAccordion((cur) => (cur === "advice" ? null : "advice"))
-              }
-            >
-              Advice &amp; Care
-              <ChevronDown
-                className={`h-4 w-4 shrink-0 text-neutral-500 transition-transform duration-200 ${
-                  mobileAccordion === "advice" ? "rotate-180" : ""
-                }`}
-              />
-            </button>
-            <div
-              id="mobile-accordion-advice"
-              className={`grid transition-[grid-template-rows] duration-300 ease-out ${
-                mobileAccordion === "advice"
-                  ? "grid-rows-[1fr]"
-                  : "grid-rows-[0fr]"
-              }`}
-            >
-              <div className="min-h-0 overflow-hidden">
-                <ul className="space-y-1 pb-4 pt-1">
-                  {adviceAndCareLinks.map((item) => (
-                    <li key={item.href}>
-                      <Link
-                        href={item.href}
-                        className="block rounded-lg py-2 text-sm font-medium text-neutral-800"
-                        onClick={closeMobile}
-                      >
-                        {item.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <AuthNav
-            className="mt-4 flex justify-end lg:hidden"
-            buttonClassName={`mt-2 w-full ${btnPrimary}`}
-            onNavigate={closeMobile}
-          />
-        </div>
-      </div>
+      <MobileNav open={mobileOpen} onClose={closeMobile} />
     </header>
   );
 }

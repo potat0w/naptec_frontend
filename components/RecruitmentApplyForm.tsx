@@ -92,13 +92,6 @@ export default function RecruitmentApplyForm() {
               Part-time, full-time, and live-in opportunities
             </li>
           </ul>
-          <p className="mt-10 text-sm text-neutral-600">Questions about careers?</p>
-          <a
-            href="tel:03308228465"
-            className="mt-1 block text-2xl font-semibold tracking-tight text-neutral-900 transition-colors hover:text-[#3B2A8F] sm:text-3xl"
-          >
-            03308 228465
-          </a>
           <p className="mt-6 text-sm text-neutral-600">
             Looking for home care for yourself or a loved one?{" "}
             <Link

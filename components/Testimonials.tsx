@@ -38,6 +38,9 @@ export default function Testimonials() {
 
   const slide = slides[currentSlide];
 
+  return null;
+
+  /*
   return (
     <section
       className="grid w-full grid-cols-1 lg:grid-cols-2"
@@ -95,4 +98,5 @@ export default function Testimonials() {
       </div>
     </section>
   );
+  */
 }

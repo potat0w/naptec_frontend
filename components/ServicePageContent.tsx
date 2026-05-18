@@ -1,6 +1,6 @@
 import AccordionList from "@/components/AccordionList";
 import ContentCarousel from "@/components/ContentCarousel";
-import FaqTestimonials from "@/components/FaqTestimonials";
+// import FaqTestimonials from "@/components/FaqTestimonials";
 import CareOfferingsCarousel from "@/components/CareOfferingsCarousel";
 import GetInTouch from "@/components/GetInTouch";
 import { btnPrimary } from "@/lib/layout";
@@ -159,12 +159,6 @@ export default function ServicePageContent({ service }: { service: ServicePage }
             <p className="mt-6 text-sm text-neutral-600">
               Are you in need of a little guidance right away?
             </p>
-            <a
-              href="tel:03308228465"
-              className="mt-2 block text-3xl font-semibold tracking-tight text-neutral-900 transition-colors hover:text-[#3B2A8F]"
-            >
-              03308 228465
-            </a>
             <Link
               href="/enquire"
               className="mt-6 inline-block text-sm text-neutral-600 underline underline-offset-4 transition-colors hover:text-[#3B2A8F]"
@@ -183,7 +177,7 @@ export default function ServicePageContent({ service }: { service: ServicePage }
         </div>
       </section>
 
-      <FaqTestimonials />
+      {/* <FaqTestimonials /> */}
 
       <CareOfferingsCarousel />
 

@@ -37,6 +37,9 @@ export default function FaqTestimonials() {
 
   const current = testimonials[index];
 
+  return null;
+
+  /*
   return (
     <section
       className="border-t border-neutral-100 bg-[#faf8f4] px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
@@ -82,4 +85,5 @@ export default function FaqTestimonials() {
       </div>
     </section>
   );
+  */
 }

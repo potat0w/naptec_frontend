@@ -10,6 +10,7 @@ type AuthNavProps = {
   className?: string;
   buttonClassName?: string;
   onNavigate?: () => void;
+  dropUp?: boolean;
 };
 
 function userInitials(firstName: string, lastName: string) {
@@ -22,6 +23,7 @@ export default function AuthNav({
   className = "",
   buttonClassName = "",
   onNavigate,
+  dropUp = false,
 }: AuthNavProps) {
   const { user, ready, logout } = useAuth();
   const [open, setOpen] = useState(false);
@@ -60,7 +62,9 @@ export default function AuthNav({
         {open ? (
           <div
             role="menu"
-            className="absolute right-0 top-full z-50 mt-2 min-w-[11rem] overflow-hidden rounded-xl border border-neutral-100 bg-white py-1 shadow-xl shadow-neutral-900/10"
+            className={`absolute right-0 z-50 min-w-[11rem] overflow-hidden rounded-xl border border-neutral-100 bg-white py-1 shadow-xl shadow-neutral-900/10 ${
+              dropUp ? "bottom-full mb-2" : "top-full mt-2"
+            }`}
           >
             <Link
               role="menuitem"

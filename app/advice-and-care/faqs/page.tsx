@@ -1,6 +1,6 @@
 import AccordionList from "@/components/AccordionList";
 import ContentCarousel, { type CarouselCard } from "@/components/ContentCarousel";
-import FaqTestimonials from "@/components/FaqTestimonials";
+// import FaqTestimonials from "@/components/FaqTestimonials";
 import Link from "next/link";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
@@ -373,7 +373,7 @@ export default function FaqsPage() {
         ariaLabel="Advice and support articles"
       />
 
-      <FaqTestimonials />
+      {/* <FaqTestimonials /> */}
     </main>
   );
 }

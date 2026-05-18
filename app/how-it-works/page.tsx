@@ -1,4 +1,4 @@
-import FaqTestimonials from "@/components/FaqTestimonials";
+// import FaqTestimonials from "@/components/FaqTestimonials";
 import GetInTouch from "@/components/GetInTouch";
 import HowItWorksSteps from "@/components/HowItWorksSteps";
 import Image from "next/image";
@@ -98,7 +98,7 @@ export default function HowItWorksPage() {
         </div>
       </section>
 
-      <FaqTestimonials />
+      {/* <FaqTestimonials /> */}
     </main>
   );
 }

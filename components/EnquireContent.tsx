@@ -236,10 +236,10 @@ export default function EnquireContent({ titleId, onClose }: EnquireContentProps
       Naptec processes your personal data to respond to your enquiry. For more
       information on how we use your data, please contact us at{" "}
       <a
-        href="mailto:hello@naptec.co.uk"
+        href="mailto:info@naptec.co.uk"
         className="text-brand underline underline-offset-2 transition-colors hover:text-brand-dark"
       >
-        hello@naptec.co.uk
+        info@naptec.co.uk
       </a>
       .
     </p>
@@ -258,15 +258,6 @@ export default function EnquireContent({ titleId, onClose }: EnquireContentProps
       aside={
         <>
           <p className="text-sm leading-relaxed text-white/90">
-            Looking to contact a relative?{" "}
-            <a
-              href="tel:03308228465"
-              className="font-medium text-white underline underline-offset-4 transition-colors hover:text-white/80"
-            >
-              Contact the home team
-            </a>
-          </p>
-          <p className="text-sm leading-relaxed text-white/90">
             Want to apply for a job?{" "}
             <Link
               href="/recruitment/apply"
@@ -275,15 +266,6 @@ export default function EnquireContent({ titleId, onClose }: EnquireContentProps
               Contact recruitment
             </Link>
             . Recruitment enquiries via this form will not receive a response.
-          </p>
-          <p className="text-sm text-white/80">
-            Call Naptec on{" "}
-            <a
-              href="tel:03308228465"
-              className="font-semibold text-white transition-colors hover:text-white/90"
-            >
-              03308 228465
-            </a>
           </p>
         </>
       }

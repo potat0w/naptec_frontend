@@ -116,24 +116,15 @@ export default function Footer() {
             <h3 className="mt-10 font-sans text-xs font-bold uppercase tracking-[0.14em] text-white">
               National Office
             </h3>
-            <a
-              href="tel:03308228465"
-              className="mt-4 block text-2xl font-semibold tracking-tight text-white transition-colors hover:text-white/90"
-            >
-              03308 228465
-            </a>
-            <p className="mt-2 text-xs text-white/55">
-              Calls may be recorded for quality and training purposes.
-            </p>
             <p className="mt-6 text-sm leading-relaxed text-white/70">
               Unit 2, Walnut Tree Business Centre, Walnut Tree Farm, Lower
               Stretton, Warrington, Cheshire WA4 4PG
             </p>
             <a
-              href="mailto:hello@naptec.co.uk"
+              href="mailto:info@naptec.co.uk"
               className="mt-4 inline-block text-sm text-white/75 underline underline-offset-4 transition-colors hover:text-white"
             >
-              hello@naptec.co.uk
+              info@naptec.co.uk
             </a>
             <Link
               href="/recruitment"

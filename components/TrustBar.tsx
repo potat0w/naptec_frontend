@@ -1,8 +1,8 @@
 const stats = [
-  { lead: "Highest regulatory ratings", highlight: null, tail: null },
-  { lead: "Care for", highlight: "18,000+", tail: "older people" },
-  { lead: "Recommended by", highlight: "95%", tail: "of our clients" },
-  { lead: "Homecare.co.uk rating", highlight: "9.6/10", tail: null },
+  { lead: "Compassionate Care, Delivered Daily", highlight: null, tail: null },
+  { lead: "Trusted Support for Independent Living", highlight: null, tail: null },
+  { lead: "Personalized Home Care for Every Family", highlight: null, tail: null },
+  { lead: "Dedicated to Dignity, Comfort & Care", highlight: null, tail: null },
 ] as const;
 
 function TrustStat({ item }: { item: (typeof stats)[number] }) {

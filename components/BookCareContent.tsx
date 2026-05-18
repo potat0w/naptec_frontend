@@ -219,13 +219,6 @@ export default function BookCareContent() {
                 Send an enquiry
               </Link>
             </p>
-            <p className="mt-4 text-sm text-muted">Call Naptec:</p>
-            <a
-              href="tel:03308228465"
-              className="text-2xl font-semibold text-neutral-900 hover:text-brand"
-            >
-              03308 228465
-            </a>
           </section>
 
           <div className="lg:col-span-3">

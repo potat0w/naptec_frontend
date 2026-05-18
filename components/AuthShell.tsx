@@ -54,15 +54,6 @@ export default function AuthShell({
               </Link>{" "}
               — no account needed.
             </p>
-            <p className="text-sm text-white/80">
-              Call Naptec on{" "}
-              <a
-                href="tel:03308228465"
-                className="font-semibold text-white transition-colors hover:text-white/90"
-              >
-                03308 228465
-              </a>
-            </p>
           </>
         }
       >

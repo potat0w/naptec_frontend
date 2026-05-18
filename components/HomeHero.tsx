@@ -57,19 +57,6 @@ export default function HomeHero() {
             </Link>
           </div>
 
-          <p className="animate-fade-up animate-fade-up-delay-4 mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted">
-            <span className="flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-brand" aria-hidden />
-              CQC-regulated care
-            </span>
-            <span className="hidden h-3 w-px bg-neutral-300 sm:block" aria-hidden />
-            <Link
-              href="tel:03308228465"
-              className="font-medium text-neutral-700 transition-colors hover:text-brand"
-            >
-              03308 228465
-            </Link>
-          </p>
         </div>
 
         <div className="animate-fade-up animate-fade-up-delay-2 relative order-1 mx-4 aspect-[5/4] overflow-hidden rounded-2xl sm:mx-6 sm:aspect-[16/10] lg:absolute lg:inset-y-0 lg:right-0 lg:order-2 lg:mx-0 lg:aspect-auto lg:w-[54%] lg:max-w-none lg:rounded-none">
