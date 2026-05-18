@@ -18,7 +18,12 @@ function TrustStat({ item }: { item: (typeof stats)[number] }) {
           {item.tail ? ` ${item.tail}` : null}
         </>
       ) : null}
-      <span className="mx-10 hidden h-4 w-px shrink-0 bg-white/25 sm:block" aria-hidden />
+      <span
+        className="trust-bar-divider mx-6 shrink-0 text-white/40 sm:mx-10 sm:h-4 sm:w-px sm:bg-white/25 sm:text-transparent"
+        aria-hidden
+      >
+        |
+      </span>
     </p>
   );
 }
@@ -33,7 +38,7 @@ export default function TrustBar() {
     >
       <div className="py-8 sm:py-10">
         <div className="trust-bar-track overflow-hidden">
-          <div className="trust-bar-inner flex w-max">
+          <div className="trust-bar-inner">
             {items.map((item, i) => (
               <TrustStat key={`${item.lead}-${i}`} item={item} />
             ))}
