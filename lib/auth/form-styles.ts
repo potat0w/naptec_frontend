@@ -26,7 +26,7 @@ export const formErrorClass =
 
 export const authInputClass = formInputClass;
 
-export const authLabelClass = formLabelClass;
+export const authLabelClass = "mb-2 block text-sm font-medium text-body";
 
 export const headingFont = {
   fontFamily: "var(--font-playfair), ui-serif, serif",

@@ -78,14 +78,14 @@ export default function SignupForm() {
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} noValidate className="mt-2 space-y-2">
+      <form onSubmit={handleSubmit} noValidate className="mt-6 space-y-5">
         {error ? (
           <p className={formErrorClass} role="alert">
             {error}
           </p>
         ) : null}
 
-        <div className="space-y-2">
+        <div className="space-y-5">
           <div className="grid gap-2 sm:grid-cols-2">
             <label className="block">
               <span className={authLabelClass}>First name *</span>

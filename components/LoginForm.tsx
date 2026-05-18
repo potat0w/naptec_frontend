@@ -73,7 +73,7 @@ export default function LoginForm() {
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} noValidate className="mt-2 space-y-2">
+      <form onSubmit={handleSubmit} noValidate className="mt-6 space-y-5">
         {error ? (
           <p className={formErrorClass} role="alert">
             {error}
