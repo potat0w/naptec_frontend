@@ -47,8 +47,8 @@ export default function MeetOurTeamPage() {
       </section>
 
       <MeetOurTeam />
-      <NaptecSocialBar />
       <GetInTouch />
+      <NaptecSocialBar />
     </main>
   );
 }
