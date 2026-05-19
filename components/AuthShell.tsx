@@ -1,4 +1,5 @@
 import FormSplitLayout from "@/components/FormSplitLayout";
+import SiteLogo from "@/components/SiteLogo";
 import { images } from "@/lib/images";
 import Link from "next/link";
 import type { ReactNode } from "react";
@@ -57,6 +58,9 @@ export default function AuthShell({
           </>
         }
       >
+        <div className="mb-8">
+          <SiteLogo className="h-12 w-auto sm:h-14" width={260} height={68} />
+        </div>
         {children}
         <p className="mt-4 text-center text-sm text-muted">
           {alternateLabel}{" "}

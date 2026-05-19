@@ -4,6 +4,7 @@ import "./globals.css";
 import AuthProvider from "@/components/AuthProvider";
 import EnquireProvider from "@/components/EnquireProvider";
 import SiteChrome from "@/components/SiteChrome";
+import { siteLogo } from "@/lib/site-logo";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -22,6 +23,10 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "Naptec",
   description: "Quality home care from Naptec",
+  icons: {
+    icon: siteLogo.src,
+    apple: siteLogo.src,
+  },
 };
 
 export default function RootLayout({

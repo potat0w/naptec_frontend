@@ -65,7 +65,7 @@ export default function AboutUsSection() {
           </ul>
 
           <Link
-            href="/why-us/our-story"
+            href="/why-us/our-team"
             className={`mt-10 ${btnPrimary}`}
           >
             Learn more

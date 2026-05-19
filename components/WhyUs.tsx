@@ -51,7 +51,7 @@ const slides = [
       { text: " service" },
     ],
     body: "Naptec is rooted in the communities we serve. Every office is run by people who live locally and care deeply, combining national standards with a personal, neighbourhood approach to home care.",
-    href: "/why-us/our-story",
+    href: "/why-us/our-team",
   },
   {
     image:

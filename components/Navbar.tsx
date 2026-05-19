@@ -2,57 +2,18 @@
 
 import AuthNav from "@/components/AuthNav";
 import MobileNav, { MobileHeaderActions, MobileNavTrigger } from "@/components/MobileNav";
-import Image from "next/image";
+import SiteLogo from "@/components/SiteLogo";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   useCallback,
   useEffect,
   useMemo,
-  useRef,
   useState,
 } from "react";
 
+import { whatWeDoMenu } from "@/lib/nav-what-we-do";
 import { slugify } from "@/lib/slugify";
-const whatWeDoColumns = [
-  {
-    title: "Domiciliary Care",
-    href: "/what-we-do/domiciliary-care",
-    items: [
-      "Companionship",
-      "Home Help & Housekeeping",
-      "Personal Care",
-      "Overnight Care",
-      "Day Care",
-      "Respite Care",
-    ],
-  },
-  {
-    title: "Specialist Care",
-    href: "/what-we-do/specialist-care",
-    items: [
-      "Dementia & Alzheimer's",
-      "Cancer",
-      "Parkinson's Care",
-      "Neurological",
-      "Palliative",
-      "Postoperative & Recovery",
-      "Arthritis & Mobility",
-    ],
-  },
-  {
-    title: "Live In Care",
-    href: "/what-we-do/live-in-care",
-    items: [] as const,
-  },
-] as const;
-
-const whyUsLinks = [
-  { label: "Our Story", href: "/why-us/our-story" },
-  { label: "Our Caregivers", href: "/why-us/our-caregivers" },
-  { label: "AI-Powered Reporting", href: "/why-us/ai-powered-reporting" },
-  { label: "Trust & Safety", href: "/why-us/trust-and-safety" },
-] as const;
 
 const adviceAndCareLinks = [
   { label: "Advice & Support", href: "/advice-and-care" },
@@ -87,29 +48,6 @@ export default function Navbar() {
   const [hash, setHash] = useState("");
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [whatMegaOpen, setWhatMegaOpen] = useState(false);
-  const whatMegaCloseTimerRef = useRef<ReturnType<typeof setTimeout> | null>(
-    null,
-  );
-  const megaPanelRef = useRef<HTMLDivElement>(null);
-
-  const cancelWhatMegaClose = useCallback(() => {
-    if (whatMegaCloseTimerRef.current !== null) {
-      clearTimeout(whatMegaCloseTimerRef.current);
-      whatMegaCloseTimerRef.current = null;
-    }
-  }, []);
-
-  const scheduleWhatMegaClose = useCallback(() => {
-    cancelWhatMegaClose();
-    whatMegaCloseTimerRef.current = setTimeout(() => {
-      setWhatMegaOpen(false);
-      whatMegaCloseTimerRef.current = null;
-    }, 120);
-  }, [cancelWhatMegaClose]);
-
-  useEffect(() => () => cancelWhatMegaClose(), [cancelWhatMegaClose]);
-
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 6);
     onScroll();
@@ -132,8 +70,8 @@ export default function Navbar() {
     () => (pathname ?? "").startsWith("/what-we-do"),
     [pathname],
   );
-  const isWhyActive = useMemo(
-    () => (pathname ?? "").startsWith("/why-us"),
+  const isMeetTeamActive = useMemo(
+    () => (pathname ?? "").startsWith("/why-us/our-team"),
     [pathname],
   );
   const isAdviceActive = useMemo(
@@ -157,100 +95,70 @@ export default function Navbar() {
       <nav className="relative z-50 w-full" aria-label="Primary">
         <div className="relative mx-auto flex h-16 w-full items-center gap-3 px-4 sm:h-[4.25rem] sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
           <div className="relative z-10 flex min-w-0 items-center gap-3 sm:gap-4">
-          <Link
-            href="/"
-            className="flex min-w-0 items-center"
+          <SiteLogo
+            className="h-12 w-auto sm:h-[3.25rem]"
+            width={96}
+            height={96}
+            priority
             onClick={closeMobile}
-          >
-            <Image
-              src="/logo1.png"
-              alt="Naptec"
-              width={280}
-              height={70}
-              className="h-11 w-auto shrink-0 object-contain sm:h-12 md:h-14"
-              priority
-            />
-          </Link>
+          />
         </div>
 
         <div className="hidden min-w-0 flex-1 justify-center lg:flex">
           <ul className="flex items-center gap-8 xl:gap-10">
-            <li
-              className="relative"
-              onMouseEnter={() => {
-                cancelWhatMegaClose();
-                setWhatMegaOpen(true);
-              }}
-              onMouseLeave={scheduleWhatMegaClose}
-            >
+            <li className="group/what relative">
               <button
                 type="button"
                 className={`inline-flex items-center gap-1 ${linkBase} ${
                   isWhatActive ? linkActive : ""
                 }`}
                 aria-haspopup="true"
-                aria-expanded={whatMegaOpen}
-                aria-controls="naptec-mega-what-we-do"
-                onFocus={() => {
-                  cancelWhatMegaClose();
-                  setWhatMegaOpen(true);
-                }}
-                onBlur={(e) => {
-                  const rel = e.relatedTarget;
-                  if (
-                    rel &&
-                    megaPanelRef.current &&
-                    megaPanelRef.current.contains(rel)
-                  ) {
-                    return;
-                  }
-                  scheduleWhatMegaClose();
-                }}
+                aria-expanded="false"
+                aria-controls="naptec-menu-what-we-do"
               >
                 What We Do
-                <ChevronDown
-                  className={`h-4 w-4 text-neutral-500 transition-transform duration-200 ${
-                    whatMegaOpen ? "rotate-180" : ""
-                  }`}
-                />
-              </button>
-            </li>
-
-            <li className="group/why relative">
-              <button
-                type="button"
-                className={`inline-flex items-center gap-1 ${linkBase} ${
-                  isWhyActive ? linkActive : ""
-                }`}
-                aria-haspopup="true"
-                aria-expanded="false"
-                aria-controls="naptec-menu-why-us"
-              >
-                Why Us
-                <ChevronDown className="h-4 w-4 text-neutral-500 transition-transform duration-200 group-hover/why:rotate-180" />
+                <ChevronDown className="h-4 w-4 text-neutral-500 transition-transform duration-200 group-hover/what:rotate-180" />
               </button>
               <div
-                id="naptec-menu-why-us"
+                id="naptec-menu-what-we-do"
                 role="menu"
-                aria-label="Why us"
-                className="pointer-events-none invisible absolute left-1/2 top-full z-50 min-w-[16rem] -translate-x-1/2 -translate-y-1 pt-3 opacity-0 transition-all duration-200 ease-out group-hover/why:pointer-events-auto group-hover/why:visible group-hover/why:translate-y-0 group-hover/why:opacity-100 group-focus-within/why:pointer-events-auto group-focus-within/why:visible group-focus-within/why:translate-y-0 group-focus-within/why:opacity-100"
+                aria-label="What we do"
+                className="pointer-events-none invisible absolute left-1/2 top-full z-50 min-w-[20rem] -translate-x-1/2 -translate-y-1 pt-4 opacity-0 transition-all duration-200 ease-out group-hover/what:pointer-events-auto group-hover/what:visible group-hover/what:translate-y-0 group-hover/what:opacity-100 group-focus-within/what:pointer-events-auto group-focus-within/what:visible group-focus-within/what:translate-y-0 group-focus-within/what:opacity-100"
               >
-                <div className="rounded-xl border border-neutral-100 bg-white p-2 shadow-xl shadow-neutral-900/10">
-                  <ul className="py-1">
-                    {whyUsLinks.map((item) => (
-                      <li key={item.href} role="none">
-                        <Link
-                          role="menuitem"
-                          href={item.href}
-                          className="block rounded-lg px-3 py-2 text-sm font-medium text-neutral-700 transition-colors hover:bg-neutral-50 hover:text-[#3B2A8F]"
-                        >
-                          {item.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
+                <div className="rounded-2xl border border-neutral-100/80 bg-white px-5 py-5 shadow-xl shadow-neutral-900/[0.08]">
+                  {whatWeDoMenu.map((section) => (
+                    <div key={section.title}>
+                      <Link
+                        href={section.href}
+                        className="block border-b border-neutral-100 pb-3 text-[0.8125rem] font-bold uppercase tracking-[0.16em] text-[#3B2A8F] transition-colors hover:text-[#2d1f6d]"
+                      >
+                        {section.title}
+                      </Link>
+                      <ul className="mt-3 space-y-0.5">
+                        {section.items.map((item) => (
+                          <li key={item}>
+                            <Link
+                              href={`/what-we-do/${slugify(item)}`}
+                              className="block rounded-lg px-3 py-2.5 text-[0.9375rem] leading-snug text-neutral-600 transition-colors hover:bg-brand/5 hover:text-[#3B2A8F]"
+                            >
+                              {item}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
                 </div>
               </div>
+            </li>
+
+            <li>
+              <Link
+                href="/why-us/our-team"
+                className={`${linkBase} ${isMeetTeamActive ? linkActive : ""}`}
+              >
+                Meet team
+              </Link>
             </li>
 
             <li>
@@ -316,53 +224,6 @@ export default function Navbar() {
         </div>
       </div>
 
-        <div
-          ref={megaPanelRef}
-          id="naptec-mega-what-we-do"
-          role="region"
-          aria-label="What we do services"
-          className={`absolute left-0 top-full z-50 hidden w-full border-t border-gray-100 bg-white shadow-lg transition-[opacity,transform,visibility] duration-300 ease-out lg:block ${
-            whatMegaOpen
-              ? "pointer-events-auto visible translate-y-0 opacity-100"
-              : "pointer-events-none invisible -translate-y-2 opacity-0"
-          }`}
-          onMouseEnter={() => {
-            cancelWhatMegaClose();
-            setWhatMegaOpen(true);
-          }}
-          onMouseLeave={scheduleWhatMegaClose}
-          onFocusCapture={() => {
-            cancelWhatMegaClose();
-            setWhatMegaOpen(true);
-          }}
-        >
-          <div className="mx-auto grid w-full grid-cols-3 gap-16 px-4 py-10 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
-            {whatWeDoColumns.map((column) => (
-              <div key={column.title} className="min-w-0">
-                <Link
-                  href={column.href}
-                  className="mb-4 block text-sm font-bold uppercase tracking-widest text-[#3B2A8F]"
-                >
-                  {column.title}
-                </Link>
-                {column.items.length > 0 ? (
-                  <ul>
-                    {column.items.map((item) => (
-                      <li key={item}>
-                        <Link
-                          href={`/what-we-do/${slugify(item)}`}
-                          className="block py-1 text-sm text-gray-600 transition-colors duration-200 hover:text-[#3B2A8F]"
-                        >
-                          {item}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                ) : null}
-              </div>
-            ))}
-          </div>
-        </div>
       </nav>
 
       <MobileNav open={mobileOpen} onClose={closeMobile} />

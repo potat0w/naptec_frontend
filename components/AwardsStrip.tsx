@@ -18,7 +18,7 @@ export default function AwardsStrip() {
             Award-winning service you can trust
           </h2>
           <Link
-            href="/why-us/our-story"
+            href="/why-us/trust-and-safety"
             className="shrink-0 text-sm font-medium text-[#3B2A8F] underline underline-offset-4 transition-colors hover:text-[#2d1f6d]"
           >
             View all

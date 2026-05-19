@@ -7,10 +7,10 @@ import {
 } from "@/lib/layout";
 import { slugify } from "@/lib/slugify";
 import {
-  CalendarHeart,
   ChevronRight,
+  HeartHandshake,
+  Moon,
   User,
-  Users,
   type LucideIcon,
 } from "lucide-react";
 import Link from "next/link";
@@ -36,14 +36,14 @@ function line(label: string, slug?: string): ServiceLine {
 
 const cards: ServiceCard[] = [
   {
-    key: "live-in",
+    key: "overnight",
     number: "01",
-    title: "Live-In Care",
-    href: "/what-we-do/live-in-care",
-    Icon: Users,
+    title: "Overnight Care",
+    href: "/what-we-do/overnight-care",
+    Icon: Moon,
     services: null,
     description:
-      "When your loved one needs frequent support, our live-in care solutions can help them stay independent and comfortable at home.",
+      "Reassuring support through the night so your loved one feels safe at home — and family can rest knowing a trusted Naptec caregiver is there when needed.",
   },
   {
     key: "domiciliary",
@@ -61,14 +61,14 @@ const cards: ServiceCard[] = [
     description: null,
   },
   {
-    key: "respite",
+    key: "companionship",
     number: "03",
-    title: "Respite Care",
-    href: "/what-we-do/respite-care",
-    Icon: CalendarHeart,
+    title: "Companionship",
+    href: "/what-we-do/companionship",
+    Icon: HeartHandshake,
     services: null,
     description:
-      "Respite care gives family carers time to rest while your loved one receives consistent, compassionate support from a trusted Naptec caregiver at home.",
+      "Friendly company and conversation at home — for outings, appointments, or simply sharing time together, so your loved one stays connected and never feels alone.",
   },
 ];
 

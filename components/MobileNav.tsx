@@ -1,53 +1,14 @@
 "use client";
 
 import { useAuth } from "@/components/AuthProvider";
+import SiteLogo from "@/components/SiteLogo";
+import { whatWeDoMenu } from "@/lib/nav-what-we-do";
 import { dashboardPathForRole, roleLabel } from "@/lib/portal/role";
 import { slugify } from "@/lib/slugify";
 import { X } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-
-const whatWeDoColumns = [
-  {
-    title: "Domiciliary Care",
-    href: "/what-we-do/domiciliary-care",
-    items: [
-      "Companionship",
-      "Home Help & Housekeeping",
-      "Personal Care",
-      "Overnight Care",
-      "Day Care",
-      "Respite Care",
-    ],
-  },
-  {
-    title: "Specialist Care",
-    href: "/what-we-do/specialist-care",
-    items: [
-      "Dementia & Alzheimer's",
-      "Cancer",
-      "Parkinson's Care",
-      "Neurological",
-      "Palliative",
-      "Postoperative & Recovery",
-      "Arthritis & Mobility",
-    ],
-  },
-  {
-    title: "Live In Care",
-    href: "/what-we-do/live-in-care",
-    items: [] as const,
-  },
-] as const;
-
-const whyUsLinks = [
-  { label: "Our Story", href: "/why-us/our-story" },
-  { label: "Our Caregivers", href: "/why-us/our-caregivers" },
-  { label: "AI-Powered Reporting", href: "/why-us/ai-powered-reporting" },
-  { label: "Trust & Safety", href: "/why-us/trust-and-safety" },
-] as const;
 
 const adviceAndCareLinks = [
   { label: "Advice & Support", href: "/advice-and-care" },
@@ -268,15 +229,13 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
         aria-label="Mobile navigation"
       >
         <header className="flex shrink-0 items-center justify-between bg-brand-deeper px-5 py-4">
-          <Link href="/" onClick={onClose} className="shrink-0">
-            <Image
-              src="/logo1.png"
-              alt="Naptec"
-              width={200}
-              height={50}
-              className="h-8 w-auto brightness-0 invert sm:h-9"
-            />
-          </Link>
+          <SiteLogo
+            className="h-10 w-auto sm:h-11"
+            width={200}
+            height={56}
+            inverted
+            onClick={onClose}
+          />
           <button
             type="button"
             onClick={onClose}
@@ -302,46 +261,39 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
               active={path.startsWith("/what-we-do")}
               onToggle={() => setAccordion((c) => (c === "what" ? null : "what"))}
             >
-              {whatWeDoColumns.map((column) => (
-                <div key={column.title} className="pt-1">
+              {whatWeDoMenu.map((section) => (
+                <div key={section.title} className="pt-1">
                   <Link
-                    href={column.href}
+                    href={section.href}
                     onClick={onClose}
                     className="block px-3 py-2 text-sm font-medium text-brand"
                   >
-                    {column.title}
+                    {section.title}
                   </Link>
-                  {column.items.length > 0 ? (
-                    <ul>
-                      {column.items.map((item) => (
-                        <li key={item}>
-                          <Link
-                            href={`/what-we-do/${slugify(item)}`}
-                            onClick={onClose}
-                            className={subLinkClass}
-                          >
-                            {item}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  ) : null}
+                  <ul>
+                    {section.items.map((item) => (
+                      <li key={item}>
+                        <Link
+                          href={`/what-we-do/${slugify(item)}`}
+                          onClick={onClose}
+                          className={subLinkClass}
+                        >
+                          {item}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               ))}
             </AccordionSection>
 
-            <AccordionSection
-              label="Why us"
-              open={accordion === "why"}
-              active={path.startsWith("/why-us")}
-              onToggle={() => setAccordion((c) => (c === "why" ? null : "why"))}
+            <NavLink
+              href="/why-us/our-team"
+              active={path.startsWith("/why-us/our-team")}
+              onClose={onClose}
             >
-              {whyUsLinks.map((item) => (
-                <Link key={item.href} href={item.href} onClick={onClose} className={subLinkClass}>
-                  {item.label}
-                </Link>
-              ))}
-            </AccordionSection>
+              Meet team
+            </NavLink>
 
             <NavLink
               href="/how-it-works"

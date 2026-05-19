@@ -1,4 +1,5 @@
 export const images = {
+  logo: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1779202191/logo1_ctw4rm.png",
   hero: "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778932857/centre-for-ageing-better-rQJ3xo-0WYE-unsplash_mhe64i.jpg",
   handsCare:
     "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933400/pexels-kampus-8949833_tldckz.jpg",
@@ -14,6 +15,10 @@ export const images = {
     "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933350/pexels-jsme-mila-523821574-29372720_niar1j.jpg",
   companionship:
     "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933332/pexels-jsme-mila-523821574-18429571_lahwba.jpg",
+  teamJanet:
+    "https://res.cloudinary.com/dw1n6qugv/image/upload/v1779197872/1_msfkiy.png",
+  teamRafin:
+    "https://res.cloudinary.com/dw1n6qugv/image/upload/v1779198421/rafin_kzhmjy.png",
 } as const;
 
 export const careGallery = [

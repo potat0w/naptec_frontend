@@ -1,3 +1,4 @@
+import SiteLogo from "@/components/SiteLogo";
 import {
   FacebookIcon,
   InstagramIcon,
@@ -5,11 +6,11 @@ import {
   YouTubeIcon,
 } from "@/components/SocialIcons";
 import { containerClass } from "@/lib/layout";
-import Image from "next/image";
+import { naptecSocialLinks } from "@/lib/team";
 import Link from "next/link";
 
 const socialLinks = [
-  { label: "Facebook", href: "https://www.facebook.com", icon: FacebookIcon },
+  { label: "Facebook", href: naptecSocialLinks.facebook, icon: FacebookIcon },
   { label: "Instagram", href: "https://www.instagram.com", icon: InstagramIcon },
   { label: "LinkedIn", href: "https://www.linkedin.com", icon: LinkedInIcon },
   { label: "YouTube", href: "https://www.youtube.com", icon: YouTubeIcon },
@@ -23,12 +24,6 @@ const navColumns = [
       { label: "Companionship", href: "/what-we-do/companionship" },
       { label: "Home Help & Housekeeping", href: "/what-we-do/home-help-and-housekeeping" },
       { label: "Personal Care", href: "/what-we-do/personal-care" },
-      { label: "Specialist Care", href: "/what-we-do/specialist-care" },
-      { label: "Dementia", href: "/what-we-do/dementia-and-alzheimers" },
-      { label: "Cancer", href: "/what-we-do/cancer" },
-      { label: "Neurological", href: "/what-we-do/neurological" },
-      { label: "Palliative", href: "/what-we-do/palliative" },
-      { label: "Live-In Care", href: "/what-we-do/live-in-care" },
     ],
   },
   {
@@ -49,13 +44,8 @@ const navColumns = [
     ],
   },
   {
-    title: "Why Us",
-    links: [
-      { label: "Our Story", href: "/why-us/our-story" },
-      { label: "Our Caregivers", href: "/why-us/our-caregivers" },
-      { label: "AI-Powered Reporting", href: "/why-us/ai-powered-reporting" },
-      { label: "Trust & Safety", href: "/why-us/trust-and-safety" },
-    ],
+    title: "Meet team",
+    links: [{ label: "Meet our team", href: "/why-us/our-team" }],
   },
   {
     title: "Advice & Support",
@@ -104,15 +94,12 @@ export default function Footer() {
       <div className={`${containerClass} py-12 lg:py-16`}>
         <div className="flex w-full flex-col gap-12 lg:flex-row lg:items-start lg:gap-10 xl:gap-14">
           <div className="w-full shrink-0 lg:w-[min(100%,280px)] xl:w-[300px]">
-            <Link href="/" className="inline-block">
-              <Image
-                src="/logo1.png"
-                alt="Naptec"
-                width={140}
-                height={48}
-                className="h-10 w-auto brightness-0 invert"
-              />
-            </Link>
+            <SiteLogo
+              className="h-11 w-auto sm:h-12"
+              width={180}
+              height={56}
+              inverted
+            />
             <h3 className="mt-10 font-sans text-xs font-bold uppercase tracking-[0.14em] text-white">
               National Office
             </h3>
@@ -120,15 +107,18 @@ export default function Footer() {
               Unit 2, Walnut Tree Business Centre, Walnut Tree Farm, Lower
               Stretton, Warrington, Cheshire WA4 4PG
             </p>
+            <p className="mt-6 text-xs font-bold uppercase tracking-[0.14em] text-white/60">
+              Email
+            </p>
             <a
               href="mailto:info@naptec.co.uk"
-              className="mt-4 inline-block text-sm text-white/75 underline underline-offset-4 transition-colors hover:text-white"
+              className="mt-2 block break-all text-lg font-semibold tracking-tight text-white underline underline-offset-4 transition-colors hover:text-white/90 sm:break-normal"
             >
               info@naptec.co.uk
             </a>
             <Link
               href="/recruitment"
-              className="mt-6 inline-block text-sm font-semibold text-white transition-colors hover:text-white/85"
+              className="mt-6 block text-sm font-semibold text-white transition-colors hover:text-white/85"
             >
               Apply to be a Care Professional
             </Link>

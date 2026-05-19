@@ -1,6 +1,7 @@
 "use client";
 
 import { useAuth } from "@/components/AuthProvider";
+import SiteLogo from "@/components/SiteLogo";
 import { headingFont } from "@/lib/auth/form-styles";
 import { roleLabel } from "@/lib/portal/role";
 import {
@@ -67,12 +68,15 @@ export default function PortalShell({ portal, title, children }: PortalShellProp
         }`}
       >
         <div className="flex items-center justify-between border-b border-surface-card px-5 py-4">
-          <Link href={nav[0].href} className="flex items-center gap-2">
-            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand text-sm font-semibold text-white">
-              N
-            </span>
-            <span className="text-sm font-semibold text-neutral-900">
-              Naptec {portal === "admin" ? "Admin" : "Care"}
+          <Link href={nav[0].href} className="flex min-w-0 flex-col gap-1">
+            <SiteLogo
+              linked={false}
+              className="h-9 w-auto max-w-[140px]"
+              width={160}
+              height={40}
+            />
+            <span className="text-xs font-medium text-muted">
+              {portal === "admin" ? "Admin" : "Care"} portal
             </span>
           </Link>
           <button

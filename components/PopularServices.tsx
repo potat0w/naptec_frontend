@@ -10,10 +10,10 @@ import Link from "next/link";
 
 const services = [
   {
-    title: "Dementia Care",
+    title: "Home Help & Housekeeping",
     description:
-      "Caring for someone with dementia takes a physical, emotional and mental toll. But with years of experience, Naptec is here to help you with whatever you need.",
-    href: "/what-we-do/dementia-and-alzheimers",
+      "Practical support around the home — from light housekeeping and meal preparation to errands — so daily life stays comfortable and manageable.",
+    href: "/what-we-do/home-help-and-housekeeping",
   },
   {
     title: "Personal Care",
@@ -22,10 +22,10 @@ const services = [
     href: "/what-we-do/personal-care",
   },
   {
-    title: "Live-In Care",
+    title: "Overnight Care",
     description:
-      "Our live-in care solutions help older adults stay independent and comfortable in their own home for longer.",
-    href: "/what-we-do/live-in-care",
+      "Reassuring support through the night so your loved one feels safe at home — and family can rest knowing a trusted Naptec caregiver is there when needed.",
+    href: "/what-we-do/overnight-care",
   },
 ] as const;
 

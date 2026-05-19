@@ -1,7 +1,7 @@
 "use client";
 
 import EnquireContent from "@/components/EnquireContent";
-import Image from "next/image";
+import SiteLogo from "@/components/SiteLogo";
 import {
   createContext,
   useCallback,
@@ -65,12 +65,12 @@ function EnquireModal({
       aria-labelledby={titleId}
     >
       <header className="flex h-16 shrink-0 items-center bg-brand px-6 sm:px-10">
-        <Image
-          src="/logo1.png"
-          alt="Naptec"
-          width={140}
-          height={36}
-          className="h-8 w-auto brightness-0 invert"
+        <SiteLogo
+          className="h-9 w-auto"
+          width={160}
+          height={44}
+          inverted
+          linked={false}
           priority
         />
         <button
