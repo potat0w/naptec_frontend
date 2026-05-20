@@ -3,6 +3,7 @@ import { Outfit, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "@/components/AuthProvider";
 import EnquireProvider from "@/components/EnquireProvider";
+import AuthorCreditComment from "@/components/AuthorCreditComment";
 import SiteChrome from "@/components/SiteChrome";
 import { siteLogo } from "@/lib/site-logo";
 
@@ -49,15 +50,7 @@ export default function RootLayout({
             <SiteChrome>{children}</SiteChrome>
           </EnquireProvider>
         </AuthProvider>
-        <div
-          hidden
-          dangerouslySetInnerHTML={{
-            __html: `<!--
-Author: Kahon Binte Zaman
-Contact: kahonbintezaman@gmail.com
--->`,
-          }}
-        />
+        <AuthorCreditComment />
       </body>
     </html>
   );
