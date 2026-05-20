@@ -32,7 +32,7 @@ export const teamMembers: TeamMember[] = [
     name: "Eintzel Pliaka",
     role: "Director",
     bio: "Eintzel is the Director, bringing over many years of senior leadership experience in adult social care—specifically in domiciliary care operations and budget management.",
-    image: images.caregiver,
+    image: images.teamPliaka,
     imageAlt: "Eintzel Pliaka, Director at Naptec",
     social,
   },

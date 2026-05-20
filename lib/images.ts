@@ -15,6 +15,8 @@ export const images = {
     "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933350/pexels-jsme-mila-523821574-29372720_niar1j.jpg",
   companionship:
     "https://res.cloudinary.com/dw1n6qugv/image/upload/v1778933332/pexels-jsme-mila-523821574-18429571_lahwba.jpg",
+  teamPliaka:
+    "https://res.cloudinary.com/dw1n6qugv/image/upload/v1779277853/WhatsApp_Image_2026-05-20_at_5.47.22_PM_mfplkh.jpg",
   teamJanet:
     "https://res.cloudinary.com/dw1n6qugv/image/upload/v1779197872/1_msfkiy.png",
   teamRafin:
