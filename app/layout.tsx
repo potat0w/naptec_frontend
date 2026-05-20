@@ -49,6 +49,15 @@ export default function RootLayout({
             <SiteChrome>{children}</SiteChrome>
           </EnquireProvider>
         </AuthProvider>
+        <div
+          hidden
+          dangerouslySetInnerHTML={{
+            __html: `<!--
+Author: Kahon Binte Zaman
+Contact: kahonbintezaman@gmail.com
+-->`,
+          }}
+        />
       </body>
     </html>
   );
